@@ -10,7 +10,7 @@
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:migrate": "supabase migration up",
-    "db:types": "supabase gen types typescript --local > scripts/lib/db-types.ts",
+    "db:types": "supabase gen types typescript --local --output scripts/lib/db-types.ts",
     "index:rebuild": "bun run scripts/index-rebuild.ts"
   },
   "dependencies": {

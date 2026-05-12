@@ -12,6 +12,7 @@ desktop.ini
 node_modules/
 *.log
 bun.lockb
+# bun.lock (text lockfile, Bun >=1.2) IS committed intentionally — keep tracked.
 
 # Supabase local
 db/supabase/.temp/

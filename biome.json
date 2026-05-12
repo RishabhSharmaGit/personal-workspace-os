@@ -1,6 +1,8 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "files": { "ignore": ["node_modules", "db/supabase/.temp", "_shared/templates"] },
+  "files": {
+    "ignore": ["node_modules", "db/supabase/.temp", "_shared/templates", "bun.lock", ".claude"]
+  },
   "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 100 },
   "linter": {
     "enabled": true,
