@@ -1,0 +1,27 @@
+{
+  "name": "personal-workspace-os",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "lint": "biome check .",
+    "format": "biome format . --write",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase migration up",
+    "db:types": "supabase gen types typescript --local > scripts/lib/db-types.ts",
+    "index:rebuild": "bun run scripts/index-rebuild.ts"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "postgres": "^3.4.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "^1.1.10",
+    "typescript": "^5.5.4"
+  },
+  "trustedDependencies": ["@biomejs/biome"]
+}

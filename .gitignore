@@ -1,0 +1,24 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Bun / Node
+node_modules/
+*.log
+bun.lockb
+
+# Supabase local
+db/supabase/.temp/
+db/supabase/.branches/
+
+# Claude Code personal overrides
+.claude/settings.local.json
+
+# Local indexer cache
+scripts/.cache/
