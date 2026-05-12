@@ -62,6 +62,31 @@ export async function indexOneFile(absPath: string, repoRoot: string): Promise<v
   `;
   const itemId = itemRows[0]!.id;
 
+  // 1b. Upsert sources row for type='source' items, otherwise clear any stale row
+  //     (handles type-change from 'source' to 'note', etc.)
+  if (fm.type === 'source') {
+    await sql`
+      insert into sources (item_id, url, fetch_date, fetch_status, fetcher, content_hash, blob_path)
+      values (
+        ${itemId},
+        ${fm.source_url ?? null},
+        ${fm.source_fetched_at ?? null},
+        'ok',
+        ${fm.source_fetcher ?? null},
+        ${fm.source_content_hash ?? null},
+        ${fm.source_blob_path ?? null}
+      )
+      on conflict (item_id) do update set
+        url = excluded.url,
+        fetch_date = excluded.fetch_date,
+        fetcher = excluded.fetcher,
+        content_hash = excluded.content_hash,
+        blob_path = excluded.blob_path
+    `;
+  } else {
+    await sql`delete from sources where item_id = ${itemId}`;
+  }
+
   // 2. Replace tags
   await sql`delete from item_tags where item_id = ${itemId}`;
   for (const tagSlug of fm.tags) {

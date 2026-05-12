@@ -112,4 +112,88 @@ describe('indexOneFile', () => {
     `;
     expect(links[0]!.to_item_id).not.toBeNull();
   });
+
+  it('inserts a sources row when type=source with all provenance fields', async () => {
+    const sourcesDir = join(tmpRoot, 'workspaces', 'second-brain', 'sources');
+    mkdirSync(sourcesDir, { recursive: true });
+    const sourceFile = join(sourcesDir, 'test-source-with-url.md');
+    const sourceContent = `---
+slug: test-source-with-url
+title: Test Source With URL
+type: source
+status: durable
+tags: []
+links: []
+source: null
+confidence: high
+created: 2026-05-12
+updated: 2026-05-12
+source_url: https://example.com/article
+source_fetched_at: 2026-05-12T10:00:00Z
+source_fetcher: firecrawl-scrape
+source_content_hash: abc123def456
+source_blob_path: null
+---
+
+Article body.
+`;
+    writeFileSync(sourceFile, sourceContent, 'utf8');
+    await indexOneFile(sourceFile, tmpRoot);
+
+    const rows = await sql<
+      {
+        url: string | null;
+        fetch_status: string | null;
+        fetcher: string | null;
+        content_hash: string | null;
+        blob_path: string | null;
+      }[]
+    >`
+      select s.url, s.fetch_status, s.fetcher, s.content_hash, s.blob_path
+      from sources s join items i on i.id = s.item_id
+      where i.slug = 'test-source-with-url'
+    `;
+    expect(rows.length).toBe(1);
+    expect(rows[0]!.url).toBe('https://example.com/article');
+    expect(rows[0]!.fetch_status).toBe('ok');
+    expect(rows[0]!.fetcher).toBe('firecrawl-scrape');
+    expect(rows[0]!.content_hash).toBe('abc123def456');
+    expect(rows[0]!.blob_path).toBeNull();
+  });
+
+  it('upserts (not duplicates) the sources row on re-index', async () => {
+    const sourcesDir = join(tmpRoot, 'workspaces', 'second-brain', 'sources');
+    mkdirSync(sourcesDir, { recursive: true });
+    const sourceFile = join(sourcesDir, 'test-source-with-url.md');
+    const sourceContent = `---
+slug: test-source-with-url
+title: Test Source With URL
+type: source
+status: durable
+tags: []
+links: []
+source: null
+confidence: high
+created: 2026-05-12
+updated: 2026-05-12
+source_url: https://example.com/article
+source_fetched_at: 2026-05-12T10:00:00Z
+source_fetcher: firecrawl-scrape
+source_content_hash: abc123def456
+source_blob_path: null
+---
+
+Article body.
+`;
+    writeFileSync(sourceFile, sourceContent, 'utf8');
+    await indexOneFile(sourceFile, tmpRoot);
+    await indexOneFile(sourceFile, tmpRoot);
+
+    const rows = await sql<{ count: string }[]>`
+      select count(*)::text from sources s
+      join items i on i.id = s.item_id
+      where i.slug = 'test-source-with-url'
+    `;
+    expect(Number(rows[0]!.count)).toBe(1);
+  });
 });
