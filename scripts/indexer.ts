@@ -1,5 +1,5 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
-import { relative, sep } from 'node:path';
+import { relative, resolve, isAbsolute, sep } from 'node:path';
 import { createHash } from 'node:crypto';
 import { sql } from './lib/db.ts';
 import { parseDocument } from './lib/frontmatter.ts';
@@ -16,17 +16,18 @@ function workspaceSlugFromPath(absPath: string, repoRoot: string): string | null
 }
 
 export async function indexOneFile(absPath: string, repoRoot: string): Promise<void> {
+  // Cheap filters first — exit before any DB activity for unrelated paths.
+  if (!absPath.endsWith('.md')) return;
+  const wsSlug = workspaceSlugFromPath(absPath, repoRoot);
+  if (!wsSlug) return; // not under workspaces/
+
   if (!existsSync(absPath)) {
     // File deleted — remove from index
     const relPath = relative(repoRoot, absPath).replaceAll(sep, '/');
     await sql`delete from items where file_path = ${relPath}`;
     return;
   }
-  if (!absPath.endsWith('.md')) return;
   if (!statSync(absPath).isFile()) return;
-
-  const wsSlug = workspaceSlugFromPath(absPath, repoRoot);
-  if (!wsSlug) return; // not under workspaces/
 
   const wsRows = await sql<{ id: string }[]>`
     select id from workspaces where slug = ${wsSlug}
@@ -103,14 +104,40 @@ export async function indexOneFile(absPath: string, repoRoot: string): Promise<v
   `;
 }
 
-// CLI entry point: bun run scripts/indexer.ts <file>
+type HookEvent = {
+  tool_name?: string;
+  tool_input?: { file_path?: string };
+  tool_response?: { filePath?: string };
+};
+
+async function readHookEventFromStdin(): Promise<HookEvent | null> {
+  if (process.stdin.isTTY) return null;
+  const text = await Bun.stdin.text();
+  if (!text.trim()) return null;
+  try {
+    return JSON.parse(text) as HookEvent;
+  } catch {
+    return null;
+  }
+}
+
+// CLI entry point:
+//   Hook mode: <hook-event-json> | bun run scripts/indexer.ts
+//   Manual:    bun run scripts/indexer.ts <file-or-relative-path>
 if (import.meta.main) {
+  const repoRoot = process.cwd();
   const arg = process.argv[2];
-  if (!arg) {
+  let target: string | undefined = arg;
+  if (!target) {
+    const event = await readHookEventFromStdin();
+    target = event?.tool_input?.file_path ?? event?.tool_response?.filePath;
+  }
+  if (!target) {
     console.error('Usage: bun run scripts/indexer.ts <file>');
+    console.error('   or: <hook-event-json> | bun run scripts/indexer.ts');
     process.exit(2);
   }
-  const repoRoot = process.cwd();
-  await indexOneFile(arg, repoRoot);
+  const absPath = isAbsolute(target) ? target : resolve(repoRoot, target);
+  await indexOneFile(absPath, repoRoot);
   await sql.end();
 }

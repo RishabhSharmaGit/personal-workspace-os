@@ -18,7 +18,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run scripts/indexer.ts \"$CLAUDE_FILE_PATHS\""
+            "command": "bun",
+            "args": ["run", "scripts/indexer.ts"]
           }
         ]
       }
