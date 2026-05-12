@@ -2,7 +2,7 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'bun:test'
 import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { sql, closeDb } from './lib/db.ts';
+import { sql } from './lib/db.ts';
 import { indexOneFile } from './indexer.ts';
 
 let tmpRoot: string;
@@ -33,7 +33,8 @@ beforeAll(async () => {
 
 afterAll(async () => {
   rmSync(tmpRoot, { recursive: true, force: true });
-  await closeDb();
+  // Do not call closeDb(): `sql` is a module singleton shared with runs.test.ts.
+  // Process exit handles pool cleanup.
 });
 
 beforeEach(async () => {

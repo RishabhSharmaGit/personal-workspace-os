@@ -2,6 +2,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { sql } from './lib/db.ts';
 import { stringifyDocument, FrontmatterSchema } from './lib/frontmatter.ts';
+import { withRun } from './lib/runs.ts';
 import { datePrefixedSlug, slugify, isValidSlug } from './lib/slug.ts';
 import { createHash } from 'node:crypto';
 
@@ -56,7 +57,10 @@ if (import.meta.main) {
     process.exit(2);
   }
   const args = JSON.parse(payload) as StoreArgs;
-  const path = await storeChatAsSource(process.cwd(), args);
-  console.log(JSON.stringify({ path }));
+  await withRun('distill-chat', async (ctx) => {
+    const path = await storeChatAsSource(process.cwd(), args);
+    ctx.recordSummary(`stored chat ${path}`);
+    console.log(JSON.stringify({ path }));
+  });
   await sql.end();
 }

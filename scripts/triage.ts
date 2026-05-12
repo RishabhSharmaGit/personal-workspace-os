@@ -2,6 +2,7 @@ import { renameSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { sql } from './lib/db.ts';
 import { parseDocument, stringifyDocument } from './lib/frontmatter.ts';
+import { withRun } from './lib/runs.ts';
 
 export async function listPendingCaptures() {
   return await sql<
@@ -70,8 +71,11 @@ if (import.meta.main) {
       console.error("Usage: bun run scripts/triage.ts file '<json>'");
       process.exit(2);
     }
-    const newPath = await fileInboxItem(process.cwd(), JSON.parse(payload));
-    console.log(JSON.stringify({ newPath }));
+    await withRun('triage-inbox', async (ctx) => {
+      const newPath = await fileInboxItem(process.cwd(), JSON.parse(payload));
+      ctx.recordSummary(`filed to ${newPath}`);
+      console.log(JSON.stringify({ newPath }));
+    });
   } else {
     console.error('Usage: triage.ts (list-pending | list-inbox <ws> | file <json>)');
     process.exit(2);

@@ -1,6 +1,7 @@
 import { writeFileSync, mkdirSync, existsSync, appendFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { sql } from './lib/db.ts';
+import { withRun } from './lib/runs.ts';
 
 function isoWeek(d: Date): string {
   // YYYY-Www
@@ -75,7 +76,10 @@ export async function generateWeeklyReview(repoRoot: string): Promise<string> {
 }
 
 if (import.meta.main) {
-  const out = await generateWeeklyReview(process.cwd());
-  console.log(JSON.stringify({ path: out }));
+  await withRun('weekly-review', async (ctx) => {
+    const out = await generateWeeklyReview(process.cwd());
+    ctx.recordSummary(`generated ${out}`);
+    console.log(JSON.stringify({ path: out }));
+  });
   await sql.end();
 }

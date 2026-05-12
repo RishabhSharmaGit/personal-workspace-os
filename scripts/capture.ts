@@ -2,6 +2,7 @@ import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { sql } from './lib/db.ts';
 import { FrontmatterSchema, stringifyDocument } from './lib/frontmatter.ts';
+import { withRun } from './lib/runs.ts';
 import { isValidSlug, datePrefixedSlug } from './lib/slug.ts';
 
 type CaptureArgs = {
@@ -88,7 +89,10 @@ if (import.meta.main) {
     process.exit(2);
   }
   const args = JSON.parse(payload) as CaptureArgs;
-  const path = await captureItem(process.cwd(), args);
-  console.log(JSON.stringify({ path }));
+  await withRun('capture', async (ctx) => {
+    const path = await captureItem(process.cwd(), args);
+    ctx.recordSummary(`captured ${path}`);
+    console.log(JSON.stringify({ path }));
+  });
   await sql.end();
 }

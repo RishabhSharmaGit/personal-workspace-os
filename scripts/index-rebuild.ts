@@ -1,6 +1,7 @@
 import { readdirSync, statSync } from 'node:fs';
 import { join, sep } from 'node:path';
 import { sql } from './lib/db.ts';
+import { withRun } from './lib/runs.ts';
 import { indexOneFile } from './indexer.ts';
 
 function walkMarkdown(dir: string, out: string[] = []): string[] {
@@ -39,7 +40,10 @@ export async function rebuildIndex(repoRoot: string): Promise<{ processed: numbe
 }
 
 if (import.meta.main) {
-  const result = await rebuildIndex(process.cwd());
-  console.log(JSON.stringify(result));
+  await withRun('index-rebuild', async (ctx) => {
+    const result = await rebuildIndex(process.cwd());
+    ctx.recordSummary(`processed ${result.processed} files`);
+    console.log(JSON.stringify(result));
+  });
   await sql.end();
 }
