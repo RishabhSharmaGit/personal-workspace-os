@@ -1,0 +1,29 @@
+# {{WORKSPACE_NAME}} — Operating Rules
+
+## Purpose
+
+{{ONE_LINE_PURPOSE}}
+
+## What lives here
+
+- TODO list the kinds of items this workspace holds
+
+## What does NOT live here
+
+- TODO list adjacent concerns that belong in other workspaces
+
+## Capture sources accepted
+
+- TODO list capture pipelines this workspace expects
+
+## Linking conventions
+
+- TODO describe atomic vs chunky notes, linking discipline
+
+## Skills active here
+
+- TODO list `.claude/skills/<name>` skills used by this workspace
+
+## Naming
+
+- TODO note conventions (which folders use date prefix, etc.)
