@@ -6,11 +6,11 @@
     "test": "bun test",
     "lint": "biome check .",
     "format": "biome format . --write",
-    "db:start": "supabase start",
-    "db:stop": "supabase stop",
-    "db:reset": "supabase db reset",
-    "db:migrate": "supabase migration up",
-    "db:types": "supabase gen types typescript --local --output scripts/lib/db-types.ts",
+    "db:start": "npx supabase --workdir db start",
+    "db:stop": "npx supabase --workdir db stop",
+    "db:reset": "npx supabase --workdir db db reset",
+    "db:migrate": "npx supabase --workdir db migration up",
+    "db:types": "npx supabase --workdir db gen types typescript --local --output scripts/lib/db-types.ts",
     "index:rebuild": "bun run scripts/index-rebuild.ts"
   },
   "dependencies": {
