@@ -13,3 +13,5 @@
 ## Session log
 
 (Sessions append one-line summaries here via the `Stop` hook.)
+
+- 2026-05-12: weekly review 2026-W20 generated.
