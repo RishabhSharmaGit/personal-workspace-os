@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "workspaces": [
+    {
+      "slug": "second-brain",
+      "name": "Second Brain",
+      "path": "workspaces/second-brain",
+      "description": "General knowledge capture, retrieval, and distillation. Articles, ideas, chat distillations, source references."
+    }
+  ]
+}
