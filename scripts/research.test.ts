@@ -4,7 +4,8 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { sql } from './lib/db.ts';
 import { parseDocument } from './lib/frontmatter.ts';
-import { runInit } from './research.ts';
+import { runInit, runLog } from './research.ts';
+import type { IterationEntry } from './lib/research-parse.ts';
 
 let tmpRoot: string;
 
@@ -114,5 +115,88 @@ describe('runInit', () => {
     const second = await runInit(tmpRoot, opts);
     expect(first.slug).toBe('2099-01-05-research-test-dup');
     expect(second.slug).toBe('2099-01-05-research-test-dup-2');
+  });
+});
+
+describe('runLog', () => {
+  it('appends an iteration entry, bumps updated, updates agent_runs.summary, re-indexes', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-log',
+      workspace: 'second-brain',
+      seedQuestions: ['Q1?', 'Q2?'],
+      budget: 5,
+      dateOverride: '2099-02-01',
+    });
+
+    const entry: IterationEntry = {
+      iteration: 1,
+      sub_question: 'Q1?',
+      picked_reason: 'highest info_gain',
+      score: { info_gain: 9, gap_fill_bonus: 0, total: 9 },
+      sources_captured: ['2099-02-01-fake-source'],
+      notes_written: ['fake-note'],
+      contradictions: [],
+      status: 'kept',
+    };
+
+    const result = await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry,
+    });
+    expect(result.ok).toBe(true);
+    expect(result.iteration_number).toBe(1);
+
+    const md = readFileSync(join(tmpRoot, init.session_path), 'utf8');
+    expect(md).toContain('### Iteration 1 — Q1?');
+    expect(md).toContain('- **Status:** kept');
+
+    const runs = await sql<{ summary: string | null }[]>`
+      select summary from agent_runs where id = ${init.agent_run_id}
+    `;
+    expect(runs[0]!.summary).toContain('1 iter');
+  });
+
+  it('appends a second iteration preserving the first', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-log2',
+      workspace: 'second-brain',
+      seedQuestions: ['Q1?', 'Q2?'],
+      budget: 5,
+      dateOverride: '2099-02-02',
+    });
+    await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry: {
+        iteration: 1,
+        sub_question: 'Q1?',
+        picked_reason: 'r',
+        score: { info_gain: 9, gap_fill_bonus: 0, total: 9 },
+        sources_captured: [],
+        notes_written: [],
+        contradictions: [],
+        status: 'kept',
+      },
+    });
+    await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry: {
+        iteration: 2,
+        sub_question: 'Q2?',
+        picked_reason: 'r',
+        score: { info_gain: 8.5, gap_fill_bonus: 0, total: 8.5 },
+        sources_captured: [],
+        notes_written: [],
+        contradictions: [],
+        status: 'low-signal',
+      },
+    });
+    const md = readFileSync(join(tmpRoot, init.session_path), 'utf8');
+    expect(md).toContain('### Iteration 1 — Q1?');
+    expect(md).toContain('### Iteration 2 — Q2?');
+
+    const runs = await sql<{ summary: string | null }[]>`
+      select summary from agent_runs where id = ${init.agent_run_id}
+    `;
+    expect(runs[0]!.summary).toContain('2 iter');
   });
 });

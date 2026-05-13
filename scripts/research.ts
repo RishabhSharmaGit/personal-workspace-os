@@ -1,12 +1,18 @@
-import { writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { sql } from './lib/db.ts';
 import { indexOneFile } from './indexer.ts';
-import { FrontmatterSchema, stringifyDocument } from './lib/frontmatter.ts';
-import { startRun } from './lib/runs.ts';
+import { FrontmatterSchema, stringifyDocument, parseDocument } from './lib/frontmatter.ts';
+import { startRun, updateRunSummary } from './lib/runs.ts';
 import { isValidSlug, slugify } from './lib/slug.ts';
 import { findAnchorCandidates } from './lib/research-storage.ts';
 import { extractKeywords } from './lib/research-scoring.ts';
+import {
+  appendIterationToLandingPage,
+  parseIterationLog,
+  extractSection,
+  type IterationEntry,
+} from './lib/research-parse.ts';
 
 export type InitOptions = {
   topic: string;
@@ -153,16 +159,73 @@ function capitalize(s: string): string {
   return s.length === 0 ? s : s[0]!.toUpperCase() + s.slice(1);
 }
 
-// CLI entry point (subcommand dispatch — fleshed out in later tasks)
+export type LogOptions = {
+  sessionPath: string;   // relative to repoRoot
+  entry: IterationEntry;
+};
+
+export type LogResult = {
+  ok: true;
+  iteration_number: number;
+};
+
+export async function runLog(repoRoot: string, opts: LogOptions): Promise<LogResult> {
+  const absPath = join(repoRoot, opts.sessionPath);
+  const raw = readFileSync(absPath, 'utf8');
+  const { frontmatter } = parseDocument(raw);
+  if (frontmatter.type !== 'research') {
+    throw new Error(`runLog: session file is not type=research (${frontmatter.type})`);
+  }
+
+  const updated = appendIterationToLandingPage(raw, opts.entry);
+  // Bump frontmatter `updated:` to today
+  const today = new Date().toISOString().slice(0, 10);
+  const reFm = /(updated:\s*['"]?)(\d{4}-\d{2}-\d{2})(['"]?)/;
+  const withDate = updated.replace(reFm, (_, p1, _date, p3) => `${p1}${today}${p3}`);
+
+  writeFileSync(absPath, withDate, 'utf8');
+  await indexOneFile(absPath, repoRoot);
+
+  // Update agent_runs.summary
+  if (frontmatter.agent_run_id) {
+    const log = parseIterationLog(extractSection(withDate, 'Iteration log'));
+    await updateRunSummary(
+      frontmatter.agent_run_id,
+      `${log.length} iter${log.length === 1 ? '' : 's'} so far`,
+    );
+  }
+
+  return { ok: true, iteration_number: opts.entry.iteration };
+}
+
+// CLI entry point
 if (import.meta.main) {
+  function parseFlagArgs(argv: string[]): Record<string, string> {
+    const out: Record<string, string> = {};
+    for (let i = 0; i < argv.length; i += 2) {
+      const key = argv[i];
+      const val = argv[i + 1];
+      if (!key || !key.startsWith('--')) continue;
+      out[key.slice(2)] = val ?? '';
+    }
+    return out;
+  }
+
   const sub = process.argv[2];
   if (sub === 'init') {
     const opts = JSON.parse(process.argv[3] ?? '{}') as InitOptions;
     const result = await runInit(process.cwd(), opts);
     console.log(JSON.stringify(result));
-    await sql.end();
+  } else if (sub === 'log') {
+    const args = parseFlagArgs(process.argv.slice(3));
+    const result = await runLog(process.cwd(), {
+      sessionPath: args.session!,
+      entry: JSON.parse(args.json!),
+    });
+    console.log(JSON.stringify(result));
   } else {
-    console.error(`Usage: bun run scripts/research.ts <init|pick|log|finalize> --json '<args>'`);
+    console.error(`Usage: bun run scripts/research.ts <init|log|pick|finalize> ...`);
     process.exit(2);
   }
+  await sql.end();
 }
