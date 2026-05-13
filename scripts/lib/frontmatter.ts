@@ -7,7 +7,7 @@ const slugSchema = z.string().refine(isValidSlug, { message: 'invalid slug' });
 export const FrontmatterSchema = z.object({
   slug: slugSchema,
   title: z.string().min(1),
-  type: z.enum(['note', 'source', 'decision', 'inbox', 'capture']),
+  type: z.enum(['note', 'source', 'decision', 'inbox', 'capture', 'research']),
   status: z.enum(['raw', 'draft', 'durable', 'archived']),
   tags: z.array(z.string()).default([]),
   links: z.array(z.string()).default([]),
@@ -23,6 +23,9 @@ export const FrontmatterSchema = z.object({
     .optional(),
   source_content_hash: z.string().optional(),
   source_blob_path: z.string().nullable().optional(),
+  // research-only optional fields
+  agent_run_id: z.string().uuid().optional(),
+  budget: z.number().int().positive().optional(),
 });
 
 export type Frontmatter = z.infer<typeof FrontmatterSchema>;

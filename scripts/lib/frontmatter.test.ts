@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import { parseDocument, FrontmatterSchema } from './frontmatter.ts';
+import { parseDocument, FrontmatterSchema, stringifyDocument } from './frontmatter.ts';
 
 const validDoc = `---
 slug: llm-wiki-pattern
@@ -109,5 +109,49 @@ describe('FrontmatterSchema', () => {
       updated: '2026-05-12',
     });
     expect(result.success).toBe(true);
+  });
+
+  it('accepts type=research with agent_run_id and budget', () => {
+    const data = {
+      slug: '2026-05-13-rag-evaluation',
+      title: 'RAG Evaluation (research session)',
+      type: 'research',
+      status: 'draft',
+      tags: ['research-session', 'rag'],
+      links: [],
+      source: null,
+      confidence: 'medium',
+      created: '2026-05-13',
+      updated: '2026-05-13',
+      agent_run_id: '11111111-1111-1111-1111-111111111111',
+      budget: 5,
+    };
+    const fm = FrontmatterSchema.parse(data);
+    expect(fm.type).toBe('research');
+    expect(fm.budget).toBe(5);
+    expect(fm.agent_run_id).toBe('11111111-1111-1111-1111-111111111111');
+  });
+
+  it('round-trips a research landing page through parseDocument/stringifyDocument', () => {
+    const data = {
+      slug: '2026-05-13-test',
+      title: 'Test',
+      type: 'research' as const,
+      status: 'draft' as const,
+      tags: [],
+      links: [],
+      source: null,
+      confidence: 'medium' as const,
+      created: '2026-05-13',
+      updated: '2026-05-13',
+      agent_run_id: '11111111-1111-1111-1111-111111111111',
+      budget: 5,
+    };
+    const fm = FrontmatterSchema.parse(data);
+    const doc = stringifyDocument(fm, '# Test\n\n## Plan\n');
+    const reparsed = parseDocument(doc);
+    expect(reparsed.frontmatter.type).toBe('research');
+    expect(reparsed.frontmatter.agent_run_id).toBe(data.agent_run_id);
+    expect(reparsed.frontmatter.budget).toBe(5);
   });
 });
