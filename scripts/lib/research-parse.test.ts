@@ -111,7 +111,7 @@ describe('formatIterationEntry', () => {
     const md = formatIterationEntry(entry);
     expect(md).toContain('### Iteration 3 — Where are Bloom filters used?');
     expect(md).toContain('- **Picked because:** Applied angle gap');
-    expect(md).toContain('- **Score:** info_gain=7.0 + gap_fill=0 → 7.0');
+    expect(md).toContain('- **Score:** info_gain=7.0 + gap_fill=0.0 → 7.0');
     expect(md).toContain('- **Sources:** [[2026-05-13-redis-bloom]]');
     expect(md).toContain('- **Notes:** [[bloom-filter-applications]]');
     expect(md).toContain('- **Status:** kept');

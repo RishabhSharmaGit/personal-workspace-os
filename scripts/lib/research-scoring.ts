@@ -43,8 +43,8 @@ function seedInfoGain(index: number): number {
   return Math.max(9.0 - index * 0.5, 5.0);
 }
 
-const UNRESOLVED_LINK_INFO_GAIN = 7.5;
-const GAP_FILL_PER_LINK = 2.0;
+const UNRESOLVED_LINK_INFO_GAIN = 7.0;
+const GAP_FILL_PER_LINK = 1.0;
 
 export function buildCandidates(
   seedQuestions: string[],

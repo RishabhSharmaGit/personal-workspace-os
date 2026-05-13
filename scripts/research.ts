@@ -360,7 +360,8 @@ if (import.meta.main) {
 
   const sub = process.argv[2];
   if (sub === 'init') {
-    const opts = JSON.parse(process.argv[3] ?? '{}') as InitOptions;
+    const args = parseFlagArgs(process.argv.slice(3));
+    const opts = JSON.parse(args.json ?? '{}') as InitOptions;
     const result = await runInit(process.cwd(), opts);
     console.log(JSON.stringify(result));
   } else if (sub === 'log') {

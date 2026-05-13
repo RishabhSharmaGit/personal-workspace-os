@@ -178,7 +178,7 @@ export function formatIterationEntry(entry: IterationEntry): string {
   lines.push(`### Iteration ${entry.iteration} — ${entry.sub_question}`);
   lines.push(`- **Picked because:** ${entry.picked_reason}`);
   lines.push(
-    `- **Score:** info_gain=${entry.score.info_gain.toFixed(1)} + gap_fill=${entry.score.gap_fill_bonus} → ${entry.score.total.toFixed(1)}`,
+    `- **Score:** info_gain=${entry.score.info_gain.toFixed(1)} + gap_fill=${entry.score.gap_fill_bonus.toFixed(1)} → ${entry.score.total.toFixed(1)}`,
   );
   if (entry.sources_captured.length > 0) {
     lines.push(`- **Sources:** ${entry.sources_captured.map((s) => `[[${s}]]`).join(', ')}`);
