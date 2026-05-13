@@ -3,7 +3,7 @@ import { join, dirname } from 'node:path';
 import { sql } from './lib/db.ts';
 import { indexOneFile } from './indexer.ts';
 import { FrontmatterSchema, stringifyDocument, parseDocument } from './lib/frontmatter.ts';
-import { startRun, updateRunSummary } from './lib/runs.ts';
+import { startRun, updateRunSummary, finalizeRun } from './lib/runs.ts';
 import { isValidSlug, slugify } from './lib/slug.ts';
 import { findAnchorCandidates, getUnresolvedLinkSlugs, isAlreadyCovered } from './lib/research-storage.ts';
 import {
@@ -285,6 +285,66 @@ export async function runLog(repoRoot: string, opts: LogOptions): Promise<LogRes
   return { ok: true, iteration_number: opts.entry.iteration };
 }
 
+export type FinalizeOptions = {
+  sessionPath: string;
+  status: 'succeeded' | 'failed';
+  error?: string;
+};
+
+export type FinalizeResult = {
+  ok: true;
+  summary: string;
+};
+
+function countOpenQuestions(raw: string): number {
+  const synth = extractSection(raw, 'Synthesis');
+  const idx = synth.indexOf('Open questions');
+  if (idx === -1) return 0;
+  const tail = synth.slice(idx);
+  return (tail.match(/^- /gm) ?? []).length;
+}
+
+export async function runFinalize(
+  repoRoot: string,
+  opts: FinalizeOptions,
+): Promise<FinalizeResult> {
+  const absPath = join(repoRoot, opts.sessionPath);
+  const raw = readFileSync(absPath, 'utf8');
+  const { frontmatter } = parseDocument(raw);
+  if (frontmatter.type !== 'research') {
+    throw new Error(`runFinalize: session file is not type=research (${frontmatter.type})`);
+  }
+  if (!frontmatter.agent_run_id) {
+    throw new Error('runFinalize: session frontmatter is missing agent_run_id');
+  }
+
+  const logEntries = parseIterationLog(extractSection(raw, 'Iteration log'));
+  const totalIters = logEntries.length;
+  const totalNotes = new Set(logEntries.flatMap((e) => e.notes_written)).size;
+  const totalContradictions = logEntries.reduce((s, e) => s + e.contradictions.length, 0);
+  const openQs = countOpenQuestions(raw);
+  const summary = `${totalIters} iter${totalIters === 1 ? '' : 's'}, ${totalNotes} note${totalNotes === 1 ? '' : 's'}, ${totalContradictions} contradiction${totalContradictions === 1 ? '' : 's'}, ${openQs} open Q${openQs === 1 ? '' : 's'}`;
+
+  await finalizeRun(
+    frontmatter.agent_run_id,
+    opts.status,
+    summary,
+    opts.error ?? null,
+  );
+
+  // On success only, bump landing-page status to durable
+  if (opts.status === 'succeeded') {
+    const updated = raw.replace(
+      /^(status:\s*)draft(\s*$)/m,
+      '$1durable$2',
+    );
+    writeFileSync(absPath, updated, 'utf8');
+    await indexOneFile(absPath, repoRoot);
+  }
+
+  return { ok: true, summary };
+}
+
 // CLI entry point
 if (import.meta.main) {
   function parseFlagArgs(argv: string[]): Record<string, string> {
@@ -313,6 +373,14 @@ if (import.meta.main) {
   } else if (sub === 'pick') {
     const args = parseFlagArgs(process.argv.slice(3));
     const result = await runPick(process.cwd(), { sessionPath: args.session! });
+    console.log(JSON.stringify(result));
+  } else if (sub === 'finalize') {
+    const args = parseFlagArgs(process.argv.slice(3));
+    const result = await runFinalize(process.cwd(), {
+      sessionPath: args.session!,
+      status: args.status as 'succeeded' | 'failed',
+      error: args.error,
+    });
     console.log(JSON.stringify(result));
   } else {
     console.error(`Usage: bun run scripts/research.ts <init|log|pick|finalize> ...`);

@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { sql } from './lib/db.ts';
 import { parseDocument } from './lib/frontmatter.ts';
-import { runInit, runLog, runPick } from './research.ts';
+import { runInit, runLog, runPick, runFinalize } from './research.ts';
 import type { IterationEntry } from './lib/research-parse.ts';
 
 let tmpRoot: string;
@@ -292,5 +292,70 @@ describe('runPick', () => {
 
     // cleanup
     await sql`delete from items where slug = '2099-03-03-research-test-gap-note'`;
+  });
+});
+
+describe('runFinalize', () => {
+  it('flips agent_runs to succeeded, writes summary, bumps landing page to durable', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-final',
+      workspace: 'second-brain',
+      seedQuestions: ['Q?'],
+      budget: 5,
+      dateOverride: '2099-04-01',
+    });
+    await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry: {
+        iteration: 1, sub_question: 'Q?', picked_reason: 'r',
+        score: { info_gain: 9, gap_fill_bonus: 0, total: 9 },
+        sources_captured: ['s1'], notes_written: ['n1', 'n2'],
+        contradictions: [], status: 'kept',
+      },
+    });
+
+    const result = await runFinalize(tmpRoot, {
+      sessionPath: init.session_path,
+      status: 'succeeded',
+    });
+    expect(result.ok).toBe(true);
+    expect(result.summary).toContain('1 iter');
+    expect(result.summary).toContain('2 notes');
+
+    const md = readFileSync(join(tmpRoot, init.session_path), 'utf8');
+    const { frontmatter } = parseDocument(md);
+    expect(frontmatter.status).toBe('durable');
+
+    const runs = await sql<{ status: string; summary: string | null }[]>`
+      select status, summary from agent_runs where id = ${init.agent_run_id}
+    `;
+    expect(runs[0]!.status).toBe('succeeded');
+    expect(runs[0]!.summary).toBe(result.summary);
+  });
+
+  it('finalize(failed) flips agent_runs to failed and keeps landing page status=draft', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-final-fail',
+      workspace: 'second-brain',
+      seedQuestions: ['Q?'],
+      budget: 5,
+      dateOverride: '2099-04-02',
+    });
+    const result = await runFinalize(tmpRoot, {
+      sessionPath: init.session_path,
+      status: 'failed',
+      error: 'firecrawl-timeout',
+    });
+    expect(result.ok).toBe(true);
+
+    const md = readFileSync(join(tmpRoot, init.session_path), 'utf8');
+    const { frontmatter } = parseDocument(md);
+    expect(frontmatter.status).toBe('draft');
+
+    const runs = await sql<{ status: string; error: string | null }[]>`
+      select status, error from agent_runs where id = ${init.agent_run_id}
+    `;
+    expect(runs[0]!.status).toBe('failed');
+    expect(runs[0]!.error).toBe('firecrawl-timeout');
   });
 });
