@@ -31,9 +31,10 @@ General knowledge: articles, blog posts, repo references, ideas, chat distillati
 
 ## Skills active here
 
-- `capture`, `query`, `triage-inbox`, `weekly-review`, `distill-chat`, `index-rebuild`.
+- `capture`, `query`, `triage-inbox`, `weekly-review`, `distill-chat`, `index-rebuild`, `research`.
 
 ## Naming
 
 - Notes: concept-named, no date prefix. `notes/llm-wiki-pattern.md`.
 - Sources/inbox/decisions/archive: date-prefixed. `sources/2026-05-12-karpathy-zero-to-hero.md`.
+- Research sessions: date-prefixed, in `research/`. `research/2026-05-13-rag-evaluation.md`.
