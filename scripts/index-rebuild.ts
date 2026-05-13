@@ -2,7 +2,7 @@ import { readdirSync, statSync } from 'node:fs';
 import { join, sep } from 'node:path';
 import { sql } from './lib/db.ts';
 import { withRun } from './lib/runs.ts';
-import { indexOneFile } from './indexer.ts';
+import { indexOneFile, isIndexableMd } from './indexer.ts';
 
 function walkMarkdown(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
@@ -26,7 +26,7 @@ export async function rebuildIndex(repoRoot: string): Promise<{ processed: numbe
     await tx`delete from items`;
     await tx`delete from tags`;
   });
-  const files = walkMarkdown(wsDir);
+  const files = walkMarkdown(wsDir).filter((f) => isIndexableMd(f, repoRoot));
   let count = 0;
   for (const f of files) {
     try {

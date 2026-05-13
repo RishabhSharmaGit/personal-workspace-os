@@ -15,11 +15,25 @@ function workspaceSlugFromPath(absPath: string, repoRoot: string): string | null
   return rel[1];
 }
 
+// Workspace skeleton files live at workspaces/<ws>/ and are not items.
+const SKELETON_FILES = new Set(['CLAUDE.md', 'README.md', 'STATE.md']);
+
+export function isIndexableMd(absPath: string, repoRoot: string): boolean {
+  const rel = relative(repoRoot, absPath).split(sep);
+  if (rel[0] !== 'workspaces' || rel.length < 3) return false;
+  // Skeleton files at workspace root (depth 3 = ['workspaces', '<ws>', '<file>']).
+  if (rel.length === 3 && SKELETON_FILES.has(rel[2]!)) return false;
+  // Weekly digest files under archive/weekly/.
+  if (rel.includes('archive') && rel.includes('weekly')) return false;
+  return true;
+}
+
 export async function indexOneFile(absPath: string, repoRoot: string): Promise<void> {
   // Cheap filters first — exit before any DB activity for unrelated paths.
   if (!absPath.endsWith('.md')) return;
   const wsSlug = workspaceSlugFromPath(absPath, repoRoot);
   if (!wsSlug) return; // not under workspaces/
+  if (!isIndexableMd(absPath, repoRoot)) return; // skeleton/digest files
 
   if (!existsSync(absPath)) {
     // File deleted — remove from index

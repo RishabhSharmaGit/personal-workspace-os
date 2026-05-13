@@ -161,6 +161,35 @@ Article body.
     expect(rows[0]!.blob_path).toBeNull();
   });
 
+  it('silently skips workspace skeleton files (CLAUDE/README/STATE.md at workspace root)', async () => {
+    const wsRoot = join(tmpRoot, 'workspaces', 'second-brain');
+    mkdirSync(wsRoot, { recursive: true });
+    for (const name of ['CLAUDE.md', 'README.md', 'STATE.md']) {
+      const p = join(wsRoot, name);
+      writeFileSync(p, '# Not an item — no frontmatter\n', 'utf8');
+      // Should not throw, should not insert anything.
+      await indexOneFile(p, tmpRoot);
+    }
+    const rows = await sql<{ count: string }[]>`
+      select count(*) from items i join workspaces w on w.id = i.workspace_id
+      where w.slug = 'second-brain' and i.file_path like 'workspaces/second-brain/%.md'
+        and i.file_path not like 'workspaces/second-brain/%/%'
+    `;
+    expect(Number(rows[0]!.count)).toBe(0);
+  });
+
+  it('silently skips archive/weekly/*.md (weekly digest files)', async () => {
+    const weeklyDir = join(tmpRoot, 'workspaces', 'second-brain', 'archive', 'weekly');
+    mkdirSync(weeklyDir, { recursive: true });
+    const weeklyFile = join(weeklyDir, '2026-W20.md');
+    writeFileSync(weeklyFile, '# Weekly Review 2026-W20\n', 'utf8');
+    await indexOneFile(weeklyFile, tmpRoot);
+    const rows = await sql<{ count: string }[]>`
+      select count(*) from items where file_path = 'workspaces/second-brain/archive/weekly/2026-W20.md'
+    `;
+    expect(Number(rows[0]!.count)).toBe(0);
+  });
+
   it('upserts (not duplicates) the sources row on re-index', async () => {
     const sourcesDir = join(tmpRoot, 'workspaces', 'second-brain', 'sources');
     mkdirSync(sourcesDir, { recursive: true });
