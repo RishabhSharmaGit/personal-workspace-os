@@ -23,3 +23,19 @@
 - 2026-05-12: weekly review 2026-W20 generated.
 
 - 2026-05-12: weekly review 2026-W20 generated.
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
+
+- 2026-05-13: captures — text×1
