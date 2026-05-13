@@ -23,3 +23,7 @@ db/supabase/.branches/
 
 # Local indexer cache
 scripts/.cache/
+
+# Obsidian vault state (per-user, volatile)
+.obsidian/
+**/.obsidian/
