@@ -6,7 +6,7 @@ export type RunContext = {
   recordItemId: (itemId: string) => void;
 };
 
-async function insertStartedRun(skillName: string): Promise<string> {
+export async function startRun(skillName: string): Promise<string> {
   const rows = await sql<{ id: string }[]>`
     insert into agent_runs (skill_name, status)
     values (${skillName}, 'started')
@@ -15,12 +15,20 @@ async function insertStartedRun(skillName: string): Promise<string> {
   return rows[0]!.id;
 }
 
-async function finalizeRun(
+export async function updateRunSummary(runId: string, summary: string): Promise<void> {
+  await sql`
+    update agent_runs
+    set summary = ${summary}
+    where id = ${runId}
+  `;
+}
+
+export async function finalizeRun(
   runId: string,
   status: 'succeeded' | 'failed',
   summary: string | null,
   error: string | null,
-  itemId: string | null,
+  itemId: string | null = null,
 ): Promise<void> {
   await sql`
     update agent_runs
@@ -34,7 +42,7 @@ export async function withRun<T>(
   skillName: string,
   fn: (ctx: RunContext) => Promise<T>,
 ): Promise<T> {
-  const runId = await insertStartedRun(skillName);
+  const runId = await startRun(skillName);
   let summary: string | null = null;
   let itemId: string | null = null;
   const ctx: RunContext = {

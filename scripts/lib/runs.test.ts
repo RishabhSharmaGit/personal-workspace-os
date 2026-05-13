@@ -1,6 +1,6 @@
 import { afterAll, beforeEach, describe, expect, it } from 'bun:test';
 import { sql } from './db.ts';
-import { withRun } from './runs.ts';
+import { withRun, startRun, updateRunSummary, finalizeRun } from './runs.ts';
 
 // Note: do NOT call closeDb() in afterAll — `sql` is a module singleton shared
 // with indexer.test.ts. Closing it here would kill the pool the other suite needs.
@@ -85,5 +85,32 @@ describe('withRun', () => {
       observedStatus = rows[0]?.status ?? null;
     });
     expect(observedStatus).toBe('started');
+  });
+});
+
+describe('multi-call run lifecycle', () => {
+  it('startRun → updateRunSummary → finalizeRun(succeeded) round-trip', async () => {
+    const runId = await startRun('test-multi-call');
+    await updateRunSummary(runId, 'partial: 2 iters');
+    await finalizeRun(runId, 'succeeded', 'final: 5 iters, 5 notes', null);
+
+    const rows = await sql<{ status: string; summary: string | null; error: string | null; ended_at: Date | null }[]>`
+      select status, summary, error, ended_at from agent_runs where id = ${runId}
+    `;
+    expect(rows[0]!.status).toBe('succeeded');
+    expect(rows[0]!.summary).toBe('final: 5 iters, 5 notes');
+    expect(rows[0]!.error).toBeNull();
+    expect(rows[0]!.ended_at).not.toBeNull();
+  });
+
+  it('finalizeRun(failed) writes the error message', async () => {
+    const runId = await startRun('test-multi-call-fail');
+    await finalizeRun(runId, 'failed', 'iter 2 errored', 'firecrawl-timeout');
+
+    const rows = await sql<{ status: string; error: string | null }[]>`
+      select status, error from agent_runs where id = ${runId}
+    `;
+    expect(rows[0]!.status).toBe('failed');
+    expect(rows[0]!.error).toBe('firecrawl-timeout');
   });
 });
