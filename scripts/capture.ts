@@ -4,6 +4,7 @@ import { sql } from './lib/db.ts';
 import { FrontmatterSchema, stringifyDocument } from './lib/frontmatter.ts';
 import { withRun } from './lib/runs.ts';
 import { isValidSlug, datePrefixedSlug } from './lib/slug.ts';
+import { indexOneFile } from './indexer.ts';
 
 type CaptureArgs = {
   workspace: string;
@@ -68,6 +69,10 @@ export async function captureItem(repoRoot: string, args: CaptureArgs): Promise<
 
   const content = stringifyDocument(fm, args.body);
   writeFileSync(absPath, content, 'utf8');
+
+  // Index the new file so links/items are queryable before the next capture.
+  // PostToolUse hook only fires on Claude's Write|Edit tools, not Bash invocations.
+  await indexOneFile(absPath, repoRoot);
 
   // Insert a captures row (status='filed' since we placed it)
   const wsRows = await sql<{ id: string }[]>`
