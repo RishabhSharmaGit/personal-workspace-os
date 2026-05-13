@@ -1,0 +1,3 @@
+# One domain per line. Lines starting with # are ignored.
+# Add domains here to skip results from low-quality sources during research.
+quora.com
