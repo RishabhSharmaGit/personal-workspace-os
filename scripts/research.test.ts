@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { sql } from './lib/db.ts';
 import { parseDocument } from './lib/frontmatter.ts';
-import { runInit, runLog } from './research.ts';
+import { runInit, runLog, runPick } from './research.ts';
 import type { IterationEntry } from './lib/research-parse.ts';
 
 let tmpRoot: string;
@@ -198,5 +198,99 @@ describe('runLog', () => {
       select summary from agent_runs where id = ${init.agent_run_id}
     `;
     expect(runs[0]!.summary).toContain('2 iter');
+  });
+});
+
+describe('runPick', () => {
+  it('picks the top-scoring seed question on first iteration of a fresh session', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-pick',
+      workspace: 'second-brain',
+      seedQuestions: ['Cheap question?', 'Foundational question?', 'Niche question?'],
+      budget: 5,
+      dateOverride: '2099-03-01',
+    });
+    const pick = await runPick(tmpRoot, { sessionPath: init.session_path });
+    expect('skip' in pick).toBe(false);
+    if ('sub_question' in pick) {
+      // First seed question has highest info_gain (descending heuristic)
+      expect(pick.sub_question).toBe('Cheap question?');
+      expect(pick.scores.gap_fill_bonus).toBe(0);
+    }
+  });
+
+  it('returns skip="exhausted" when all seed questions are covered and no unresolved links', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-exhaust',
+      workspace: 'second-brain',
+      seedQuestions: ['Q1?', 'Q2?'],
+      budget: 5,
+      dateOverride: '2099-03-02',
+    });
+    await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry: {
+        iteration: 1, sub_question: 'Q1?', picked_reason: 'r',
+        score: { info_gain: 9, gap_fill_bonus: 0, total: 9 },
+        sources_captured: [], notes_written: [], contradictions: [], status: 'kept',
+      },
+    });
+    await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry: {
+        iteration: 2, sub_question: 'Q2?', picked_reason: 'r',
+        score: { info_gain: 8.5, gap_fill_bonus: 0, total: 8.5 },
+        sources_captured: [], notes_written: [], contradictions: [], status: 'kept',
+      },
+    });
+    const pick = await runPick(tmpRoot, { sessionPath: init.session_path });
+    expect('skip' in pick).toBe(true);
+    if ('skip' in pick) {
+      expect(pick.skip).toBe('exhausted');
+    }
+  });
+
+  it('surfaces an unresolved-link candidate when a session-created note has dangling links', async () => {
+    const init = await runInit(tmpRoot, {
+      topic: 'research-test-gap',
+      workspace: 'second-brain',
+      seedQuestions: ['Already-covered Q?'],
+      budget: 5,
+      dateOverride: '2099-03-03',
+    });
+    // Seed a session-created note with an unresolved link (directly in DB)
+    const wsRows = await sql<{ id: string }[]>`select id from workspaces where slug = 'second-brain'`;
+    const workspaceId = wsRows[0]!.id;
+    const noteRow = await sql<{ id: string }[]>`
+      insert into items (workspace_id, slug, file_path, type, status, title, content_hash, confidence)
+      values (${workspaceId}, '2099-03-03-research-test-gap-note',
+              'workspaces/second-brain/notes/2099-03-03-research-test-gap-note.md',
+              'note', 'durable', 'Note', 'hgap', 'high')
+      returning id
+    `;
+    await sql`
+      insert into links (from_item_id, to_slug, to_item_id)
+      values (${noteRow[0]!.id}, '2099-test-dangling-target', null)
+    `;
+    // Mark the seed question as covered
+    await runLog(tmpRoot, {
+      sessionPath: init.session_path,
+      entry: {
+        iteration: 1, sub_question: 'Already-covered Q?', picked_reason: 'r',
+        score: { info_gain: 9, gap_fill_bonus: 0, total: 9 },
+        sources_captured: [], notes_written: ['2099-03-03-research-test-gap-note'],
+        contradictions: [], status: 'kept',
+      },
+    });
+
+    const pick = await runPick(tmpRoot, { sessionPath: init.session_path });
+    expect('sub_question' in pick).toBe(true);
+    if ('sub_question' in pick) {
+      expect(pick.sub_question).toContain('2099-test-dangling-target');
+      expect(pick.scores.gap_fill_bonus).toBeGreaterThan(0);
+    }
+
+    // cleanup
+    await sql`delete from items where slug = '2099-03-03-research-test-gap-note'`;
   });
 });

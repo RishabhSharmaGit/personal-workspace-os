@@ -5,12 +5,18 @@ import { indexOneFile } from './indexer.ts';
 import { FrontmatterSchema, stringifyDocument, parseDocument } from './lib/frontmatter.ts';
 import { startRun, updateRunSummary } from './lib/runs.ts';
 import { isValidSlug, slugify } from './lib/slug.ts';
-import { findAnchorCandidates } from './lib/research-storage.ts';
-import { extractKeywords } from './lib/research-scoring.ts';
+import { findAnchorCandidates, getUnresolvedLinkSlugs, isAlreadyCovered } from './lib/research-storage.ts';
+import {
+  extractKeywords,
+  buildCandidates,
+  pickTopCandidate,
+  type Candidate,
+} from './lib/research-scoring.ts';
 import {
   appendIterationToLandingPage,
   parseIterationLog,
   extractSection,
+  parseSeedQuestions,
   type IterationEntry,
 } from './lib/research-parse.ts';
 
@@ -159,6 +165,87 @@ function capitalize(s: string): string {
   return s.length === 0 ? s : s[0]!.toUpperCase() + s.slice(1);
 }
 
+export type PickOptions = {
+  sessionPath: string;
+};
+
+export type PickSuccess = {
+  sub_question: string;
+  scores: { info_gain: number; gap_fill_bonus: number; total: number };
+  picked_reason: string;
+  candidate_anchors: string[];
+};
+
+export type PickSkip = {
+  skip: 'covered' | 'exhausted';
+  reason: string;
+  candidate?: { sub_question: string };
+};
+
+export type PickResult = PickSuccess | PickSkip;
+
+function workspaceSlugFromSessionPath(rel: string): string {
+  const parts = rel.split(/[/\\]/);
+  if (parts[0] !== 'workspaces' || !parts[1]) {
+    throw new Error(`Unexpected session path: ${rel}`);
+  }
+  return parts[1];
+}
+
+function pickReason(c: Candidate, iterIdx: number): string {
+  if (c.kind === 'unresolved-link') {
+    return `Resolves dangling [[link]] surfaced in earlier iteration (iter ${iterIdx})`;
+  }
+  return `Highest info_gain (${c.score.info_gain.toFixed(1)}) among remaining seed questions`;
+}
+
+export async function runPick(repoRoot: string, opts: PickOptions): Promise<PickResult> {
+  const absPath = join(repoRoot, opts.sessionPath);
+  const raw = readFileSync(absPath, 'utf8');
+  const { frontmatter } = parseDocument(raw);
+  if (frontmatter.type !== 'research') {
+    throw new Error(`runPick: session file is not type=research (${frontmatter.type})`);
+  }
+
+  const planSection = extractSection(raw, 'Plan');
+  const seedQuestions = parseSeedQuestions(planSection);
+  const logEntries = parseIterationLog(extractSection(raw, 'Iteration log'));
+
+  // Collect slugs of all notes written across all iterations so far (gap-fill source)
+  const sessionNoteSlugs = logEntries.flatMap((e) => e.notes_written);
+  const wsSlug = workspaceSlugFromSessionPath(opts.sessionPath);
+  const wsRows = await sql<{ id: string }[]>`
+    select id from workspaces where slug = ${wsSlug}
+  `;
+  if (wsRows.length === 0) {
+    throw new Error(`runPick: workspace not found for session ${opts.sessionPath}`);
+  }
+  const workspaceId = wsRows[0]!.id;
+  const unresolvedSlugs = await getUnresolvedLinkSlugs(workspaceId, sessionNoteSlugs);
+
+  const candidates: Candidate[] = buildCandidates(seedQuestions, logEntries, unresolvedSlugs);
+  if (candidates.length === 0) {
+    return { skip: 'exhausted', reason: 'no remaining seed questions and no unresolved links' };
+  }
+
+  const top = pickTopCandidate(candidates)!;
+  // Coverage check on the chosen candidate
+  if (await isAlreadyCovered(workspaceId, top.keywords)) {
+    return {
+      skip: 'covered',
+      reason: `>=3 high-confidence items already match ${JSON.stringify(top.keywords)}`,
+      candidate: { sub_question: top.sub_question },
+    };
+  }
+
+  return {
+    sub_question: top.sub_question,
+    scores: top.score,
+    picked_reason: pickReason(top, logEntries.length),
+    candidate_anchors: [],
+  };
+}
+
 export type LogOptions = {
   sessionPath: string;   // relative to repoRoot
   entry: IterationEntry;
@@ -222,6 +309,10 @@ if (import.meta.main) {
       sessionPath: args.session!,
       entry: JSON.parse(args.json!),
     });
+    console.log(JSON.stringify(result));
+  } else if (sub === 'pick') {
+    const args = parseFlagArgs(process.argv.slice(3));
+    const result = await runPick(process.cwd(), { sessionPath: args.session! });
     console.log(JSON.stringify(result));
   } else {
     console.error(`Usage: bun run scripts/research.ts <init|log|pick|finalize> ...`);
