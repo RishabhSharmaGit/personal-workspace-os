@@ -2,6 +2,7 @@ import { renameSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { sql } from './lib/db.ts';
 import { parseDocument, stringifyDocument } from './lib/frontmatter.ts';
+import { indexOneFile } from './indexer.ts';
 import { withRun } from './lib/runs.ts';
 
 export async function listPendingCaptures() {
@@ -54,6 +55,12 @@ export async function fileInboxItem(repoRoot: string, args: FileArgs): Promise<s
   const newRelPath = dirParts.join('/');
   const absTo = join(repoRoot, newRelPath);
   renameSync(absFrom, absTo);
+
+  // Reconcile DB. renameSync doesn't fire Claude's PostToolUse hook, so the
+  // existing item row stays pinned to the old inbox path/type/status unless
+  // we run the indexer here. Upsert is keyed on (workspace_id, slug), so
+  // the slug-stable row gets updated in place — no orphan, no duplicate.
+  await indexOneFile(absTo, repoRoot);
 
   return newRelPath;
 }
