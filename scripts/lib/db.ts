@@ -16,6 +16,10 @@ export async function closeDb(): Promise<void> {
   await sql.end();
 }
 
+export function isDbUnreachable(e: unknown): boolean {
+  return !!e && typeof e === 'object' && (e as { code?: string }).code === 'ECONNREFUSED';
+}
+
 export type Workspace = {
   id: string;
   slug: string;

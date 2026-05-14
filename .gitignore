@@ -20,6 +20,7 @@ db/supabase/.branches/
 
 # Claude Code personal overrides
 .claude/settings.local.json
+.mcp.json
 
 # Local indexer cache
 scripts/.cache/

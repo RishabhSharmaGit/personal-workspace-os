@@ -1,50 +1,70 @@
 #!/usr/bin/env bash
-# Claude Code status line script
-# Displays: cwd (basename) | git branch | model name | context usage
+# Claude Code dev statusline
+# Format: dir | branch[*] | [agent |] model[ · effort] | ctx N% | $cost
 
 input=$(cat)
 
-# Current working directory — prefer workspace.current_dir from JSON, fall back to $PWD
-cwd=$(echo "$input" | jq -r '.workspace.current_dir // ""')
+cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 [ -z "$cwd" ] && cwd="$PWD"
-# Show only the basename for brevity
 cwd_display=$(basename "$cwd")
 
-# Git branch (skip optional locks to avoid stalling)
 git_branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
+git_dirty=""
+if [ -n "$git_branch" ]; then
+  if [ -n "$(git -C "$cwd" --no-optional-locks status --porcelain 2>/dev/null | head -n1)" ]; then
+    git_dirty="*"
+  fi
+fi
 
-# Model display name
-model=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
+agent_name=$(echo "$input" | jq -r '.agent.name // empty')
+model=$(echo "$input" | jq -r '.model.display_name // "unknown"')
+effort=$(echo "$input" | jq -r '.effort.level // empty')
 
-# Context window percentage
-used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+ctx_remaining=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
+if [ -z "$ctx_remaining" ]; then
+  ctx_used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+  [ -n "$ctx_used" ] && ctx_remaining=$(echo "$ctx_used" | awk '{printf "%.0f", 100 - $1}')
+fi
 
-if [ -n "$used_pct" ]; then
-  # Build a 10-segment progress bar
-  filled=$(echo "$used_pct" | awk '{printf "%d", int($1 / 10 + 0.5)}')
+cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
+
+SEP=$' \033[2m|\033[0m '
+
+printf '\033[2;37m%s\033[0m' "$cwd_display"
+
+if [ -n "$git_branch" ]; then
+  printf '%s' "$SEP"
+  printf '\033[2;35m%s\033[0m' "$git_branch"
+  [ -n "$git_dirty" ] && printf '\033[2;33m%s\033[0m' "$git_dirty"
+fi
+
+if [ -n "$agent_name" ]; then
+  printf '%s' "$SEP"
+  printf '\033[2;32m%s\033[0m' "$agent_name"
+fi
+
+printf '%s' "$SEP"
+printf '\033[2;36m%s\033[0m' "$model"
+if [ -n "$effort" ]; then
+  printf '\033[2m · \033[0m'
+  printf '\033[2;36m%s\033[0m' "$effort"
+fi
+
+if [ -n "$ctx_remaining" ]; then
+  printf '%s' "$SEP"
+  pct=$(printf "%.0f" "$ctx_remaining")
+  filled=$(echo "$ctx_remaining" | awk '{printf "%d", int($1 / 10 + 0.5)}')
   bar=""
   for i in $(seq 1 10); do
-    if [ "$i" -le "$filled" ]; then
-      bar="${bar}█"
-    else
-      bar="${bar}░"
-    fi
+    if [ "$i" -le "$filled" ]; then bar="${bar}█"; else bar="${bar}░"; fi
   done
-  pct_display=$(printf "%.0f" "$used_pct")
-  ctx_part="[${bar}] ${pct_display}%"
-else
-  ctx_part="[░░░░░░░░░░] --%"
+  printf '\033[2;33m[%s] %s%%\033[0m' "$bar" "$pct"
 fi
 
-# Assemble status line with dimmed ANSI colors
-# dim white for cwd, dim magenta for branch, dim cyan for model, dim yellow for context bar
-printf "\033[2;37m%s\033[0m" "$cwd_display"
-if [ -n "$git_branch" ]; then
-  printf " \033[2m|\033[0m "
-  printf "\033[2;35m%s\033[0m" "$git_branch"
+if [ -n "$cost" ]; then
+  printf '%s' "$SEP"
+  cost_fmt=$(echo "$cost" | awk '{printf "$%.3f", $1}')
+  printf '\033[2;34m%s\033[0m' "$cost_fmt"
 fi
-printf " \033[2m|\033[0m "
-printf "\033[2;36m%s\033[0m" "$model"
-printf " \033[2m|\033[0m "
-printf "\033[2;33m%s\033[0m" "$ctx_part"
-printf "\n"
+
+printf '\n'

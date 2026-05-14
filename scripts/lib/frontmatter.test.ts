@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import { parseDocument, FrontmatterSchema, stringifyDocument } from './frontmatter.ts';
+import { FrontmatterSchema, parseDocument, stringifyDocument } from './frontmatter.ts';
 
 const validDoc = `---
 slug: llm-wiki-pattern

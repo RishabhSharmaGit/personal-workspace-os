@@ -1,7 +1,7 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { relative, resolve, isAbsolute, sep } from 'node:path';
 import { createHash } from 'node:crypto';
-import { sql } from './lib/db.ts';
+import { sql, isDbUnreachable } from './lib/db.ts';
 import { parseDocument } from './lib/frontmatter.ts';
 import { extractWikilinks } from './lib/wikilinks.ts';
 
@@ -177,6 +177,13 @@ if (import.meta.main) {
     process.exit(2);
   }
   const absPath = isAbsolute(target) ? target : resolve(repoRoot, target);
-  await indexOneFile(absPath, repoRoot);
-  await sql.end();
+  try {
+    await indexOneFile(absPath, repoRoot);
+    await sql.end();
+  } catch (e) {
+    if (isDbUnreachable(e)) {
+      process.exit(0);
+    }
+    throw e;
+  }
 }
