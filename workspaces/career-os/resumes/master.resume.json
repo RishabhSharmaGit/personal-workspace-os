@@ -1,0 +1,148 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "_comment": "Master resume — JSON Resume v1 schema. Pre-seeded from Profile.pdf. Fields marked TODO need user input from intake/02-experience.md. Per-role variants live in resumes/variants/.",
+  "basics": {
+    "name": "Rishabh Sharma",
+    "label": "Founding Software Engineer — Voice AI / Healthcare",
+    "image": "",
+    "email": "rishabh.sharma26@gmail.com",
+    "phone": "+91 9004310441",
+    "url": "",
+    "summary": "Software developer with ~10 years of experience blending logic with creativity — architecting scalable backends, designing intuitive UI/UX, and shipping seamless features. Currently building industry-leading voice AI to free up clinical staff time at Confido Health.",
+    "location": {
+      "city": "Pune",
+      "region": "Maharashtra",
+      "countryCode": "IN"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "rishabhz",
+        "url": "https://www.linkedin.com/in/rishabhz"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Confido Health",
+      "position": "Founding Software Engineer",
+      "url": "",
+      "startDate": "2024-10",
+      "endDate": "",
+      "location": "Pune, India (remote for NY-based employer)",
+      "summary": "Building industry-leading voice AI to free up clinical staff time. Domain: healthcare. Primary cloud: GCP.",
+      "highlights": [
+        "TODO: VERIFY — fill from intake/02-experience.md (3-6 XYZ bullets)"
+      ]
+    },
+    {
+      "name": "Nova Benefits",
+      "position": "Software Development Engineer III",
+      "url": "",
+      "startDate": "2022-07",
+      "endDate": "2024-09",
+      "location": "Bengaluru, India",
+      "summary": "Led core engineering team owning endorsement and onboarding modules. Built integrations with third-party HRMS, ICICI/CARE insurers, and payment processing gateways.",
+      "highlights": [
+        "TODO: VERIFY — fill from intake/02-experience.md (3-6 XYZ bullets)"
+      ]
+    },
+    {
+      "name": "YouGov",
+      "position": "Full Stack Engineer",
+      "url": "",
+      "startDate": "2020-06",
+      "endDate": "2022-07",
+      "location": "Mumbai, India",
+      "summary": "Built and maintained YouGov.Chat, its chat module integrations, and in-house CMS for managing content.",
+      "highlights": [
+        "TODO: VERIFY — fill from intake/02-experience.md"
+      ]
+    },
+    {
+      "name": "Cimpress India",
+      "position": "Senior Software Developer",
+      "url": "",
+      "startDate": "2019-12",
+      "endDate": "2020-06",
+      "location": "Mumbai, India",
+      "summary": "Full-stack developer building end-to-end enterprise applications. Promoted from Software Developer (Feb 2019).",
+      "highlights": [
+        "TODO: VERIFY — fill from intake/02-experience.md"
+      ]
+    },
+    {
+      "name": "Cimpress India",
+      "position": "Software Developer",
+      "url": "",
+      "startDate": "2019-02",
+      "endDate": "2019-12",
+      "location": "Mumbai, India",
+      "summary": "Full-stack development on enterprise applications.",
+      "highlights": [
+        "TODO: VERIFY — fill from intake/02-experience.md"
+      ]
+    },
+    {
+      "name": "Seclore",
+      "position": "Product Engineer",
+      "url": "",
+      "startDate": "2016-06",
+      "endDate": "2019-02",
+      "location": "Mumbai, India",
+      "summary": "Full-stack developer at a data-centric cyber-security organisation. Built Information Rights Management (IRM) product surfaces.",
+      "highlights": [
+        "TODO: VERIFY — fill from intake/02-experience.md"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "MIT Academy of Engineering, Alandi",
+      "url": "",
+      "area": "Electronics and Telecommunications Engineering",
+      "studyType": "Bachelor of Engineering",
+      "startDate": "2012",
+      "endDate": "2016",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Cloud & Infrastructure",
+      "level": "Advanced",
+      "keywords": ["Google Cloud Platform (GCP)"]
+    },
+    {
+      "name": "AI / Voice AI",
+      "level": "Advanced",
+      "keywords": ["Voice AI", "LLM application development"]
+    },
+    {
+      "name": "Domains",
+      "level": "Advanced",
+      "keywords": ["Healthcare", "Insurance", "Cybersecurity (IRM)"]
+    },
+    {
+      "_comment": "TODO: expand with full skill matrix once intake/03-skills-matrix.md is filled."
+    }
+  ],
+  "projects": [
+    {
+      "_comment": "TODO: populate from intake/06-portfolio-projects.md once filled. Projects worth listing: Confido voice agent, Nova endorsement module, Nova HRMS/insurer/payment integrations, YouGov.Chat."
+    }
+  ],
+  "languages": [
+    {
+      "_comment": "TODO: fill (English fluency level for global remote roles is important to state)"
+    }
+  ],
+  "meta": {
+    "canonical": "workspaces/career-os/resumes/master.resume.json",
+    "version": "0.1.0",
+    "lastModified": "2026-05-14",
+    "schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+    "_notes": "When you fill highlights[], use XYZ format. Each highlight should be derivable from one atomic note in achievements/."
+  }
+}
