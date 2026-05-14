@@ -28,3 +28,8 @@ scripts/.cache/
 # Obsidian vault state (per-user, volatile)
 .obsidian/
 **/.obsidian/
+
+# Personal source artifacts ingested into career-os (do not commit)
+InstagramDump/
+Profile.pdf
+

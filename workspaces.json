@@ -6,6 +6,12 @@
       "name": "Second Brain",
       "path": "workspaces/second-brain",
       "description": "General knowledge capture, retrieval, and distillation. Articles, ideas, chat distillations, source references."
+    },
+    {
+      "slug": "career-os",
+      "name": "Career OS",
+      "path": "workspaces/career-os",
+      "description": "Job applications, resume/CV bank, achievement bank, target-role tracking, interview prep, visa/relocation research. Primary track: remote-from-India for global companies; secondary: relocation."
     }
   ]
 }
