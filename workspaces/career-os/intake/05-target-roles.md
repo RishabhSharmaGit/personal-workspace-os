@@ -62,17 +62,9 @@ Check all that apply. Be picky.
 
 ## Compensation floors
 
-(Private — only used for filtering applications, never inserted into resumes / outbound.)
+**Private — never inserted into resumes / outbound.** All TC floors, walkaway numbers, and per-region targets live in `private/comp-targets.md` (gitignored, local-only).
 
-| Track | Floor | Currency | Notes |
-|---|---|---|---|
-| Remote-from-India full-time | `[FILL]` | USD or INR | |
-| Relocation to US (TC) | `[FILL]` | USD | |
-| Relocation to EU (Berlin/Amsterdam) | `[FILL]` | EUR | |
-| Relocation to UK | `[FILL]` | GBP | |
-| Ireland | `[FILL]` | EUR | |
-| Japan | `[FILL]` | JPY or USD | |
-| Toptal-style contract | `[FILL]` | USD/hour | |
+See `private/_CONVENTIONS.md` for why this is separated, and `workspaces/career-os/CLAUDE.md` § "Personal-data conventions" for the broader rule.
 
 ## Industries / domains — hard yes / hard no
 

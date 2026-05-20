@@ -25,6 +25,15 @@ Job hunt and career-development workspace. Owner is a senior software engineer b
 4. **Do not export, push, publish, or share** anything from this workspace (resume PDFs, cover letters, contact lists) without explicit user approval per artifact.
 5. **Markdown is the source of truth.** Postgres (`career_*` tables) is a derived index, populated by the workspace indexer. If they disagree, run `bun run index:rebuild`.
 
+## Personal-data conventions
+
+Two folders hold sensitive material — neither ever reaches the repo:
+
+- **`workspaces/career-os/private/`** — gitignored at the repo level (rule: `workspaces/*/private/`). Holds sensitive *structured* data: current salary, ESOP grants, vesting schedules, comp targets per region, personal contact supplements, family/relocation specifics. See `private/_CONVENTIONS.md`. Committed markdown files (e.g. `intake/01-profile.md`, `intake/05-target-roles.md`) reference these via `→ private/<file>.md (gitignored)` instead of inlining values.
+- **`personal/`** at the repo root — holds raw source artifacts (resume PDFs, LinkedIn exports, IG dumps, chat exports). Content is gitignored; structure is committed via `personal/README.md` + `.gitkeep` files. See `personal/README.md` for layout + naming.
+
+**Hard rule for Claude**: never quote, paste, render, summarize, or otherwise expose values that live under `private/` or `personal/` in any committed file. If the user explicitly asks for a private value to land in a public file (e.g. salary in a written negotiation script), confirm twice before doing so.
+
 ## Naming conventions
 
 - **Achievements**: concept-named, no date prefix. `achievements/voice-ai-p95-latency-reduction.md`. Slug = filename minus `.md`.

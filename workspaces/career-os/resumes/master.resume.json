@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
-  "_comment": "Master resume — JSON Resume v1 schema. Pre-seeded from Profile.pdf. Fields marked TODO need user input from intake/02-experience.md. Per-role variants live in resumes/variants/.",
+  "_comment": "Master resume — JSON Resume v1 schema. Roles 2-5 populated from personal/resumes/2024-09-rishabh-sharma-sde3.pdf. Role 1 (Confido) has placeholder highlights since user is filling those manually. Per-role variants will live in resumes/variants/.",
   "basics": {
     "name": "Rishabh Sharma",
     "label": "Founding Software Engineer — Voice AI / Healthcare",
@@ -8,10 +8,10 @@
     "email": "rishabh.sharma26@gmail.com",
     "phone": "+91 9004310441",
     "url": "",
-    "summary": "Software developer with ~10 years of experience blending logic with creativity — architecting scalable backends, designing intuitive UI/UX, and shipping seamless features. Currently building industry-leading voice AI to free up clinical staff time at Confido Health.",
+    "summary": "Software developer with ~10 years of experience blending logic with creativity — architecting scalable backends, designing intuitive UI/UX, and shipping seamless features. Currently building industry-leading voice AI at Confido Health to free up clinical staff time for patient care.",
     "location": {
-      "city": "Pune",
-      "region": "Maharashtra",
+      "city": "Pune / Bangalore",
+      "region": "Maharashtra / Karnataka",
       "countryCode": "IN"
     },
     "profiles": [
@@ -19,6 +19,11 @@
         "network": "LinkedIn",
         "username": "rishabhz",
         "url": "https://www.linkedin.com/in/rishabhz"
+      },
+      {
+        "network": "GitHub",
+        "username": "RishabhSharmaGit",
+        "url": "https://github.com/RishabhSharmaGit"
       }
     ]
   },
@@ -29,70 +34,95 @@
       "url": "",
       "startDate": "2024-10",
       "endDate": "",
-      "location": "Pune, India (remote for NY-based employer)",
+      "location": "Bangalore + New York (employer in both)",
       "summary": "Building industry-leading voice AI to free up clinical staff time. Domain: healthcare. Primary cloud: GCP.",
       "highlights": [
-        "TODO: VERIFY — fill from intake/02-experience.md (3-6 XYZ bullets)"
+        "TODO: USER-FILL — see intake/02-experience.md Role 1 (3-6 XYZ bullets, Confido details left for manual fill)"
       ]
     },
     {
-      "name": "Nova Benefits",
-      "position": "Software Development Engineer III",
+      "name": "Nova Benefits Pvt. Ltd.",
+      "position": "Tech Lead / SDE3",
       "url": "",
       "startDate": "2022-07",
       "endDate": "2024-09",
-      "location": "Bengaluru, India",
-      "summary": "Led core engineering team owning endorsement and onboarding modules. Built integrations with third-party HRMS, ICICI/CARE insurers, and payment processing gateways.",
+      "location": "Remote — Bangalore",
+      "summary": "Led one of three engineering teams (5 developers); collaborated with PM/QA/CTO on roadmap. Owned the endorsement + onboarding modules of Nova's platform (250K active employees + 3K HR admins).",
       "highlights": [
-        "TODO: VERIFY — fill from intake/02-experience.md (3-6 XYZ bullets)"
+        "Consolidated dispersed endorsement + onboarding logic into a unified central module — 90% reduction in legit issues reported in core modules",
+        "Built a scalable HRMS integration framework — any new HRMS platform integrable in 3-4 days (Google Workspace, Zoho People, Darwinbox, etc.)",
+        "Integrated ICICI + CARE insurer APIs for automated endorsement data submission and batch tracking — reduced endorsement TAT from 14 days to a few hours",
+        "Led one of three engineering teams; managed 5 developers; collaborated with PM, QA, and CTO on requirements + roadmap alignment",
+        "Owned endorsements module for 250,000 active employees + 3,000 HR admins (insertion/deletion of employees to group + retail policies)",
+        "Integrated Razorpay SDK for standard web checkout on retail product purchases",
+        "Built additional platform modules: self-served mental/financial health assessment, CD Account management (client wallet), rater-based premium calculation + refund framework",
+        "Integrated Mailmodo for email automation and WATI for WhatsApp communications across CX surfaces"
       ]
     },
     {
-      "name": "YouGov",
+      "name": "YouGov Research Pvt. Ltd.",
       "position": "Full Stack Engineer",
       "url": "",
       "startDate": "2020-06",
       "endDate": "2022-07",
-      "location": "Mumbai, India",
-      "summary": "Built and maintained YouGov.Chat, its chat module integrations, and in-house CMS for managing content.",
+      "location": "Remote — UK",
+      "summary": "Owned end-to-end development, maintenance, and operations for YouGov.Chat — a chat-based user engagement platform with a 1,200,000-user panel — and the in-house CMS that powers content across YouGov platforms.",
       "highlights": [
-        "TODO: VERIFY — fill from intake/02-experience.md"
+        "Built and maintained YouGov.Chat — chat-based engagement platform with a 1.2M-user panel — owning enhancements + complex problem-solving as IC",
+        "Built and maintained the in-house CMS providing a standard way of creating, editing, and publishing content across YouGov platforms",
+        "Set up Feature Flags via Unleash, enabling controlled rollouts of new platform features",
+        "Integrated AWS Cognito for social login across the panel",
+        "Integrated StoryBlok as a headless CMS for content management",
+        "Built user comments + rating with AWS Comprehend for opinion analysis + foul-language filtering",
+        "Integrated a bank API for automated reward distribution to panel users",
+        "Set up the platform's infrastructure via Terraform and implemented push notifications"
       ]
     },
     {
-      "name": "Cimpress India",
+      "name": "Cimpress Technology Pvt. Ltd.",
       "position": "Senior Software Developer",
       "url": "",
       "startDate": "2019-12",
       "endDate": "2020-06",
       "location": "Mumbai, India",
-      "summary": "Full-stack developer building end-to-end enterprise applications. Promoted from Software Developer (Feb 2019).",
+      "summary": "Senior IC on Cimpress's embroidery software product family. Promoted from Software Developer within 8 months due to project impact.",
       "highlights": [
-        "TODO: VERIFY — fill from intake/02-experience.md"
+        "Acted as primary contributor and proprietor of Cimpress's embroidery software products",
+        "Implemented asynchronous thread-pool-based embroidery core running in client's browser via WebWorkers + WebAssembly — offloading heavy stitch computation client-side",
+        "Drove requirement-gathering from production artists, feasibility analysis, and delivery of features on StitchX (automated image/artwork → machine-specific embroidery instructions)",
+        "Designed a dedicated JMeter-based API testing project from scratch",
+        "Maintained and continuously upgraded automated test suites (unit + integration + UI) and CI/CD pipelines",
+        "Promoted to Senior Software Developer within 8 months based on project impact"
       ]
     },
     {
-      "name": "Cimpress India",
+      "name": "Cimpress Technology Pvt. Ltd.",
       "position": "Software Developer",
       "url": "",
       "startDate": "2019-02",
       "endDate": "2019-12",
       "location": "Mumbai, India",
-      "summary": "Full-stack development on enterprise applications.",
+      "summary": "Full-stack development on StitchX — Cimpress's automated embroidery design tool (AI-driven conversion of image/artwork into machine-specific stitch instructions).",
       "highlights": [
-        "TODO: VERIFY — fill from intake/02-experience.md"
+        "Contributed to StitchX — Cimpress's automated embroidery designing tool that converts image/artwork into machine-specific sewing instructions",
+        "Gained hands-on experience with mathematical tools and techniques required for image-to-stitch-vector transformation"
       ]
     },
     {
-      "name": "Seclore",
+      "name": "Seclore Technology Pvt. Ltd.",
       "position": "Product Engineer",
       "url": "",
       "startDate": "2016-06",
       "endDate": "2019-02",
       "location": "Mumbai, India",
-      "summary": "Full-stack developer at a data-centric cyber-security organisation. Built Information Rights Management (IRM) product surfaces.",
+      "summary": "Full-stack engineer at a data-centric cyber-security organisation. Built back-end and front-end across Seclore's flagship Information Rights Management product, FileSecure — owning entire development lifecycle from requirements analysis to QA release.",
       "highlights": [
-        "TODO: VERIFY — fill from intake/02-experience.md"
+        "Built back-end (server) + front-end for Seclore's flagship product FileSecure, owning the full development lifecycle from requirements analysis to QA release",
+        "Co-authored and maintained the OU Admin dashboard — monitored protected files, active users, and crucial data per Organizational Unit",
+        "Designed a centralized initialization + update mechanism for PolicyServer configuration — eliminated config-drift across distributed client deployments",
+        "Built installer + patch upload/validate/ready-to-fetch mechanism for product rollouts across all client deployments",
+        "Designed a License + privileges framework for end-user access control",
+        "Authored multiple responsive product pages + their backends; gained hands-on experience with many JavaScript frameworks + JQuery plug-ins"
       ]
     }
   ],
@@ -100,49 +130,177 @@
     {
       "institution": "MIT Academy of Engineering, Alandi",
       "url": "",
-      "area": "Electronics and Telecommunications Engineering",
+      "area": "Electronics and Telecommunication Engineering",
       "studyType": "Bachelor of Engineering",
-      "startDate": "2012",
-      "endDate": "2016",
-      "score": "",
+      "startDate": "2012-06",
+      "endDate": "2016-05",
+      "score": "First Class with Distinction (66%)",
+      "location": "Pune, India",
       "courses": []
+    },
+    {
+      "institution": "Air Force School, Viman Nagar",
+      "url": "",
+      "area": "CBSE-AISSCE (Class 12)",
+      "studyType": "Higher Secondary",
+      "startDate": "2010-08",
+      "endDate": "2012-03",
+      "score": "71.80%",
+      "location": "Pune, India"
+    },
+    {
+      "institution": "Air Force School, 9BRD",
+      "url": "",
+      "area": "CBSE-AISSE (Class 10)",
+      "studyType": "Secondary",
+      "startDate": "2008-04",
+      "endDate": "2010-03",
+      "score": "89.30%",
+      "location": "Pune, India"
     }
   ],
   "skills": [
     {
+      "name": "Programming Languages (Proficient)",
+      "level": "Advanced",
+      "keywords": ["JavaScript", "TypeScript", "Java", "HTML5", "CSS3"]
+    },
+    {
+      "name": "Programming Languages (Working knowledge)",
+      "level": "Intermediate",
+      "keywords": ["C", "C++", "C#", "GoLang", "Python (TODO: VERIFY for Confido AI work)"]
+    },
+    {
+      "name": "Frontend frameworks",
+      "level": "Advanced",
+      "keywords": ["React", "Redux", "Vue", "VueX", "Nuxt.js", "JQuery", "JQueryUI", "Knockout", "chart.js", "Bootstrap"]
+    },
+    {
+      "name": "Backend frameworks",
+      "level": "Advanced",
+      "keywords": ["Node.js", "NestJs", "GraphQL (Apollo, Relay)", "REST APIs", "J2EE", "Servlets", "Struts"]
+    },
+    {
+      "name": "AI / ML",
+      "level": "Advanced",
+      "keywords": ["Voice AI (ASR/TTS/VAD)", "LLM application development", "AWS Comprehend (NLP)", "Image-to-stitch-vector ML (Cimpress StitchX)"]
+    },
+    {
       "name": "Cloud & Infrastructure",
       "level": "Advanced",
-      "keywords": ["Google Cloud Platform (GCP)"]
+      "keywords": ["Google Cloud Platform (GCP)", "AWS (Cognito, Comprehend, Kinesis, SNS, SQS)", "Cloudflare", "Heroku", "Tomcat", "Docker", "Terraform"]
     },
     {
-      "name": "AI / Voice AI",
+      "name": "Databases",
       "level": "Advanced",
-      "keywords": ["Voice AI", "LLM application development"]
+      "keywords": ["PostgreSQL", "MySQL", "MS-SQL", "Oracle", "DynamoDB", "Redis"]
     },
     {
-      "name": "Domains",
+      "name": "Queues / Streaming",
+      "level": "Intermediate",
+      "keywords": ["Kafka", "RabbitMQ", "Kinesis", "SNS", "SQS"]
+    },
+    {
+      "name": "Observability",
+      "level": "Intermediate",
+      "keywords": ["Prometheus", "Loki", "Grafana", "Elasticsearch", "Kibana"]
+    },
+    {
+      "name": "Testing & QA",
       "level": "Advanced",
-      "keywords": ["Healthcare", "Insurance", "Cybersecurity (IRM)"]
+      "keywords": ["Jest", "Selenium", "JMeter (custom API testing project)", "automated unit/integration/UI suites"]
     },
     {
-      "_comment": "TODO: expand with full skill matrix once intake/03-skills-matrix.md is filled."
+      "name": "Browser performance",
+      "level": "Advanced",
+      "keywords": ["WebWorkers", "WebAssembly (Wasm)"]
+    },
+    {
+      "name": "Dev tooling",
+      "level": "Advanced",
+      "keywords": ["Git", "Subversion", "Unleash (feature flags)", "Postman", "Fiddler", "Retool"]
+    },
+    {
+      "name": "Domains shipped to production",
+      "level": "Advanced",
+      "keywords": ["Healthcare / Voice AI (Confido)", "Insurance / HR-tech (Nova)", "Market research (YouGov)", "Mass customization (Cimpress)", "Cybersecurity / IRM (Seclore)", "Payments (Razorpay, insurer APIs)"]
     }
   ],
   "projects": [
     {
-      "_comment": "TODO: populate from intake/06-portfolio-projects.md once filled. Projects worth listing: Confido voice agent, Nova endorsement module, Nova HRMS/insurer/payment integrations, YouGov.Chat."
+      "name": "Nova central endorsement + onboarding consolidation",
+      "description": "Consolidated dispersed endorsement + onboarding logic into a unified central module across the Nova Benefits platform. Required major structural changes and a robust new architecture.",
+      "highlights": ["90% reduction of legit issues reported in core modules after stabilization"],
+      "keywords": ["architecture", "consolidation", "insurance", "hr-tech"],
+      "startDate": "2022-07",
+      "endDate": "2024-09",
+      "type": "work"
+    },
+    {
+      "name": "Nova HRMS / Insurer / Payment integrations framework",
+      "description": "Highly scalable + resilient core framework for integrating HRMS platforms (Google Workspace, Zoho People, Darwinbox), insurer APIs (ICICI, CARE), and payment gateways (Razorpay SDK).",
+      "highlights": [
+        "New HRMS integrable in 3-4 days vs prior bespoke baseline",
+        "Endorsement TAT reduced from 14 days to a few hours via insurer API automation"
+      ],
+      "keywords": ["integrations", "abstraction", "razorpay", "hrms"],
+      "startDate": "2022-07",
+      "endDate": "2024-09",
+      "type": "work"
+    },
+    {
+      "name": "Cimpress StitchX — browser-side embroidery core",
+      "description": "Implemented asynchronous thread-pool-based embroidery core running in the client's browser via WebWorkers + WebAssembly. Offloaded heavy stitch computation client-side.",
+      "highlights": ["Rare technical depth — Wasm + WebWorkers for non-trivial CPU workload in browser"],
+      "keywords": ["webassembly", "webworkers", "browser-performance", "ml"],
+      "startDate": "2019-02",
+      "endDate": "2020-06",
+      "type": "work"
+    },
+    {
+      "name": "Seclore FileSecure — IRM platform contributions",
+      "description": "Built back-end + front-end across Seclore's flagship IRM product. Sub-projects include PolicyServer centralized configuration mechanism, installer/patch upload-validate-fetch system, and License + privileges framework.",
+      "highlights": ["Rare cybersecurity / IRM domain depth", "Owned full lifecycle from requirements to QA release"],
+      "keywords": ["cybersecurity", "irm", "java", "enterprise"],
+      "startDate": "2016-06",
+      "endDate": "2019-02",
+      "type": "work"
+    },
+    {
+      "name": "YouGov.Chat — chat-based engagement platform",
+      "description": "End-to-end development of YouGov.Chat (1.2M-user panel) with Unleash feature flags, AWS Cognito social login, StoryBlok headless CMS, AWS Comprehend opinion+language filtering, bank API for reward distribution, and Terraform infrastructure.",
+      "highlights": ["Production AWS Comprehend use case for opinion + foul-language filtering at scale"],
+      "keywords": ["aws", "nlp", "feature-flags", "infra"],
+      "startDate": "2020-06",
+      "endDate": "2022-07",
+      "type": "work"
+    },
+    {
+      "name": "Personal Workspace OS",
+      "description": "Local-first, LLM-mediated personal knowledge OS. Markdown source-of-truth + local Postgres (Supabase) index. Includes custom skills (capture, research, distill-chat, query, triage-inbox, weekly-review), Karpathy-style atomic note pattern, Claude Code hooks + subagents integration.",
+      "highlights": ["Self-directed engineering with modern stack (Bun, TypeScript, Zod, pgvector, gray-matter, Claude Code)"],
+      "keywords": ["personal-os", "claude-code", "rag", "knowledge-graph"],
+      "type": "side-project"
     }
   ],
   "languages": [
     {
-      "_comment": "TODO: fill (English fluency level for global remote roles is important to state)"
+      "_comment": "TODO: USER-FILL — at minimum: English (fluency level critical for global remote roles), Hindi, Marathi"
     }
+  ],
+  "interests": [
+    { "name": "Travel", "keywords": ["road trips", "exotic destinations", "local cuisines"] },
+    { "name": "Hiking", "keywords": ["Maharashtra treks"] },
+    { "name": "Cooking", "keywords": ["culinary enthusiast"] },
+    { "name": "Sports", "keywords": ["Table-Tennis", "Basketball", "Badminton", "Football"] },
+    { "name": "Dance", "keywords": ["school + college events"] },
+    { "name": "Event organisation", "keywords": [] }
   ],
   "meta": {
     "canonical": "workspaces/career-os/resumes/master.resume.json",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "lastModified": "2026-05-14",
     "schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
-    "_notes": "When you fill highlights[], use XYZ format. Each highlight should be derivable from one atomic note in achievements/."
+    "_notes": "v0.2 populated work[1..5] highlights + education + skills + projects + interests from personal/resumes/2024-09-rishabh-sharma-sde3.pdf. Work[0] (Confido) still placeholder per user request. Verify metrics + claim ownership before rendering any PDF resume from this."
   }
 }

@@ -30,6 +30,9 @@ Local-first, LLM-mediated career-management workspace for a software developer.
 - `decisions/` — career decision log
 - `research/` — visa-research notes + job-platforms catalog
 - `inbox/` — raw captures (job posts, recruiter DMs, IG-saved-reels)
+- `private/` — **gitignored** — sensitive structured data (current comp, ESOPs, vesting, comp targets per region, personal contact supplements). See `private/_CONVENTIONS.md` after you set up the folder locally.
+
+Source artifacts (raw resume PDFs, LinkedIn exports, IG dumps) live outside this workspace under the repo-root `personal/` folder (also gitignored). See `personal/README.md` for the layout and naming convention.
 
 ## Where to start
 

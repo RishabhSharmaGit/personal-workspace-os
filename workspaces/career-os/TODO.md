@@ -17,9 +17,11 @@ Last updated: 2026-05-14
 In this order (highest ROI first):
 
 - [ ] **`intake/04-achievement-prompts.md`** — 15 XYZ prompts → seeds your bank (30–60 min). The single most valuable input — everything else compiles from here.
-- [ ] **`intake/02-experience.md`** — expand the `[FILL]` bullets under each of your 5 PDF-sourced roles. Aim for 3–6 atomic bullets per role (20–30 min)
-- [ ] **`intake/05-target-roles.md`** — seniority bands you'd say yes to; compensation floors per region; hard yes / hard no companies (15 min)
-- [ ] **`intake/07-relocation-preferences.md`** — verify region order, fill salary floors, fill family/dependent constraints (10 min)
+- [ ] **`intake/02-experience.md`** — Role 1 (Confido) only; Roles 2–5 + Education pre-filled from your SDE3 resume on 2026-05-14. Verify the metrics and add anything missed (15 min).
+- [ ] **`intake/05-target-roles.md`** — seniority bands you'd say yes to; hard yes / hard no companies (5 min). Compensation floors moved to `private/comp-targets.md` (gitignored).
+- [ ] **`private/comp-targets.md`** — fill TC floors + walkaway numbers per region/track (5 min, gitignored — never committed)
+- [ ] **`private/comp-current.md`** — fill your current Confido cash + ESOP + vesting state (10 min, gitignored)
+- [ ] **`intake/07-relocation-preferences.md`** — verify region order, fill family/dependent constraints (5 min)
 
 ## 🟡 Important — secondary fills
 
@@ -90,8 +92,8 @@ Don't do these until you have an offer pending or want optionality.
 
 - [ ] **NDA / stealth posture on resume** — confirm with Confido leadership whether the role/company/voice-AI domain can be listed publicly on resumes and LinkedIn. Decide per artifact whether `Confido Health` appears or is anonymized as "early-stage healthcare AI startup."
 - [ ] **L-1 visa eligibility** — does Confido qualify as L-1 sponsor (US entity + India entity + you employed in India arm for 1+ year continuously)? Ask leadership; this opens a clean US path if you complete your first year (Oct 2025).
-- [ ] **ESOP / vesting status** — confirm cliff and vesting; this affects how aggressively you can start interviewing without losing equity
-- [ ] **Notice period** — fill into `intake/01-profile.md`
+- [ ] **ESOP / vesting status** — record cliff date, vesting schedule, refresh policy, and exercise window in `private/comp-current.md` (gitignored). This affects how aggressively you can start interviewing without losing equity.
+- [x] **Notice period** — already filled in `intake/01-profile.md` (1 month, immediate joining negotiable)
 
 ## 🌐 Public-presence repair (lift your inbound signal)
 
