@@ -29,7 +29,14 @@ scripts/.cache/
 .obsidian/
 **/.obsidian/
 
-# Personal source artifacts ingested into career-os (do not commit)
-InstagramDump/
-Profile.pdf
+# Personal source artifacts — content gitignored, structure committed.
+# See personal/README.md for the layout contract.
+personal/**
+!personal/README.md
+!personal/*/
+!personal/*/.gitkeep
+
+# Sensitive workspace content (salary, ESOPs, vesting, family, medical, etc.)
+# Any folder named "private/" inside any workspace is fully gitignored.
+workspaces/*/private/
 
