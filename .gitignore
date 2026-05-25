@@ -40,3 +40,7 @@ personal/**
 # Any folder named "private/" inside any workspace is fully gitignored.
 workspaces/*/private/
 
+# Generated resume PDFs — regenerate from .html / .md sources via
+# workspaces/career-os/resumes/variants/README.md instructions.
+workspaces/career-os/resumes/**/*.pdf
+
