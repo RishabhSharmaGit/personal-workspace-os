@@ -12,6 +12,15 @@ A local-first, LLM-mediated personal knowledge OS. Markdown files (with YAML fro
 - Notes (durable, atomic) are concept-named, no date prefix: `notes/llm-wiki-pattern.md`.
 - Inbox / sources / decisions / archive items are date-prefixed: `inbox/2026-05-12-some-url.md`.
 
+## Date conventions
+
+Two contexts, two formats:
+
+- **System dates** — frontmatter `created:` / `updated:`, file-name prefixes (`inbox/2026-05-12-…`, `research/2026-05-14-…`), slug prefixes, DB columns — always ISO `YYYY-MM-DD`. Sortable, validated by the frontmatter Zod schema, queryable in Postgres.
+- **Human-entered body-text dates** — application timeline entries, decision dates, comp grant dates, recruiter touch logs, "last updated" footers users edit by hand — prefer **`DD-MMM-YYYY`** (e.g. `23-Oct-2024`); fall back to **`DD-MM-YYYY`** (e.g. `23-10-2024`) only when typing the month abbreviation is awkward.
+
+When asking the user for a date in a `[FILL]` placeholder or interactive prompt, write the format in the cue (e.g. `[FILL — DD-MMM-YYYY]`). Never force users into ISO for body fields they read often.
+
 ## Wikilinks
 
 - Syntax: `[[slug]]` or `[[slug|display text]]`.

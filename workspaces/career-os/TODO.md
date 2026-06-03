@@ -69,8 +69,8 @@ Senior/executive search (submit CV, no signup wall — they headhunt):
 ## 🌍 External evaluations & registrations
 
 - [ ] **EU Legal Gateway Office (India)** — https://eu-legal-gateway.eu — register if EU is a serious track; free, official, employer leads + visa guidance
-- [ ] **Topmate Ireland Masterclass (Nidhi Nagori)** — ₹1,396, **May 23 2026, 1:00–2:30 PM UTC** — decide YES/NO/WAIT
-  - If yes: register before May 22
+- [ ] **Topmate Ireland Masterclass (Nidhi Nagori)** — ₹1,396, **23-May-2026, 1:00–2:30 PM UTC** — decide YES/NO/WAIT
+  - If yes: register before 22-May-2026
   - 8,300+ sponsor companies DB is the value proposition; verify against DETE's public Trusted Partner Initiative list
 - [ ] **`topmate.io/nidhiabroad`** (Nidhi Abroad — different person, appeared in your IG saves) — 5-min skim; book session only if relocation accelerates
 - [ ] **h1bagent.pages.dev** — free, no signup needed; use it to research specific US employers (LCA data, salary patterns) once you have target companies

@@ -46,6 +46,7 @@ Two folders hold sensitive material — neither ever reaches the repo:
 - **Interview prep**: per-company `interview-prep/vercel/notes.md`; generic in `interview-prep/common.md`.
 - **Decisions**: date-prefixed. `decisions/2026-05-20-prioritize-remote-tracks.md`.
 - **Research / Inbox**: date-prefixed.
+- **Date format in body text**: see root `CLAUDE.md` § "Date conventions". Body-text dates the user reads/writes (application timeline entries, decision logs, comp dates, recruiter touchpoints) use **`DD-MMM-YYYY`** (e.g. `23-Oct-2024`). Frontmatter fields (`created:`, `updated:`, `applied_at:`, `next_action_date:`) and file-name prefixes stay ISO `YYYY-MM-DD` — the Zod schema enforces this.
 
 ## Application status lifecycle
 

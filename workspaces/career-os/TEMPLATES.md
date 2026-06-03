@@ -28,7 +28,7 @@ next_action_date: '2026-05-27'
 ---
 
 ## Timeline
-- 2026-05-20 — applied via referral [[jane-doe]]
+- 20-May-2026 — applied via referral [[jane-doe]]
 
 ## JD highlights
 (paste 3-5 line summary of the role)
@@ -64,7 +64,7 @@ company: vercel
 (referral / inbound / cold / event)
 
 ## History
-- 2026-05-20 — first message
+- 20-May-2026 — first message
 ```
 
 ## Target role
