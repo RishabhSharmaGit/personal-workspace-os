@@ -10,7 +10,7 @@ confidence: high
 created: '2026-06-03'
 updated: '2026-06-03'
 xyz:
-  x: "Leading evaluation between Pipecat 1.0 and LiveKit for Confido's next-gen voice runtime, replacing the current Retell-based production stack"
+  x: "Leading evaluation between Pipecat and LiveKit for Confido's next-gen voice runtime, replacing the current Retell-based production stack"
   y: "Built end-to-end STT+LLM+TTS pipelines in both frameworks for comparison; authored multi-phase platform-replacement plan with success metrics (≤2,500 tokens/call vs ~8,500-10,000 baseline; <800ms P50 voice-to-voice latency; ≤50% cost; 99.5% EHR write success)"
   z: "by running a structured technical evaluation with Deepgram STT + LiteLLM multi-provider LLM routing (OpenAI / Anthropic / Gemini) + ElevenLabs TTS + Upstash semantic cache; designing the Redis-as-source-of-truth architecture with Jinja2 prompt rendering from frozen state snapshots; and planning shadow-mode A/B validation for the final framework decision"
 tech_tags: [pipecat, livekit, retell, deepgram, elevenlabs, openai, anthropic, gemini, litellm, redis, jinja2, supabase, rls, gcp, cloud-run, workload-identity-federation]
@@ -23,13 +23,13 @@ evidence_url: ""
 
 ## One-line bullet (resume-ready)
 
-Leading the technical evaluation between Pipecat 1.0 and LiveKit to replace Confido's current Retell-based voice runtime for larger clients — built end-to-end STT+LLM+TTS pipelines in both frameworks, authored the multi-phase platform-replacement plan with target metrics (≤2,500 tokens/call vs ~8,500-10,000 baseline; <800ms P50 voice-to-voice latency).
+Leading the technical evaluation between Pipecat and LiveKit to replace Confido's current Retell-based voice runtime for larger clients — built end-to-end STT+LLM+TTS pipelines in both frameworks, authored the multi-phase platform-replacement plan with target metrics (≤2,500 tokens/call vs ~8,500-10,000 baseline; <800ms P50 voice-to-voice latency).
 
 ## Long form (STAR — interview-ready)
 
 **Situation**: Confido's current voice agents run on Retell — a managed platform that's been fast to ship but limits PHI handling, observability depth, and architectural control. As we move toward larger healthcare clients with stricter compliance + observability requirements, the platform decision needed to be made deliberately.
 
-**Task**: Lead a technical evaluation comparing Pipecat 1.0 and LiveKit as the next-gen voice runtime; produce a decision-ready recommendation with build evidence, not vendor brochures.
+**Task**: Lead a technical evaluation comparing Pipecat and LiveKit as the next-gen voice runtime; produce a decision-ready recommendation with build evidence, not vendor brochures.
 
 **Action**:
 - **Built end-to-end STT+LLM+TTS pipelines in both Pipecat and LiveKit**, using a consistent provider matrix: Deepgram (STT), ElevenLabs (TTS), LiteLLM multi-provider routing across OpenAI / Anthropic / Gemini.
