@@ -98,7 +98,7 @@ Don't do these until you have an offer pending or want optionality.
 ## 🌐 Public-presence repair (lift your inbound signal)
 
 - [ ] **GitHub profile README** — pin 3–5 best repos, brief bio, contact link. Recruiters glance at contribution graph.
-- [ ] **Personal site / portfolio** — if none exists, decide build-or-skip. Reference: `abhishek.build` (from your IG saves) is a good solo-shipper portfolio model.
+- [ ] **Personal site / portfolio** — DECIDED: build a free-hosted site. Recommended stack: **Next.js + Vercel free tier** (matches your Confido stack, re-uses existing skill set, zero hosting cost). Aim for: pinned 3–5 project case studies (Confido voice-AI architecture, EHR integration platform, Cimpress WebAssembly story), live demos where feasible. Reference style: `abhishek.build` (solo-shipper portfolio). Alt hosts if you want non-Next: GitHub Pages, Cloudflare Pages, Netlify.
 - [ ] **LinkedIn headline + about** — sync with `master.resume.md` summary; add "Open to remote roles" if comfortable
 - [ ] **About blurb consistency** — same 2-line bio everywhere (LinkedIn, GitHub, personal site, Wellfound). Helps recruiters pattern-match.
 
