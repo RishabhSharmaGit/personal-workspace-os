@@ -32,9 +32,13 @@ Software developer with ~10 years building production systems across voice AI, h
 ### Founding Software Engineer, Confido Health
 *Oct 2024 — Present · Bangalore / New York*
 
-Building industry-leading voice AI to free up clinical staff time at scale. Domain: healthcare; primary cloud: GCP.
+Building industry-leading voice AI for clinical staff workflows. Healthcare; primary cloud: GCP. Series A ($10M, 50+ team, 90+ clinics live).
 
-> ⚠️ **Edit before sending**: add 3–5 concrete accomplishments for Confido here (voice-AI latency / scale / architecture decisions). Pull from `intake/02-experience.md` once filled.
+- **Architected appointment-manager from day one** — Confido's central appointment-sync service. Scaled from **3 pilot clinics at launch to 90+ live clinics** across **40+ EHR systems**; platform serves hundreds of thousands of voice-AI calls/day at peak.
+- **Built the pluggable EHR factory pattern** (NestJS) + an isolated browser-automation sister service (Firebase Functions + Puppeteer) — cut new-EHR integration time from **~10-15 days to 2-4 days**; team now ships 4-5 EHR integrations per 2-week sprint.
+- **Drove VM → GCP Cloud Run migration** with explicit sync-worker / API service split at ~30 clinics — eliminated 5-10s deploy windows, removed sync-vs-API noisy-neighbor contention; foundation for 3x subsequent clinic growth. GitLab CI + Workload Identity Federation for keyless CI/CD.
+- **Leading next-gen voice runtime evaluation** (Pipecat 1.0 vs LiveKit, replacing Retell). Built end-to-end STT+LLM+TTS pipelines in both (Deepgram · LiteLLM-routed OpenAI/Anthropic/Gemini · ElevenLabs · Upstash semantic cache); authored platform-replacement plan with target metrics (≤2,500 tokens/call vs ~8,500-10,000 baseline; <800ms P50 voice-to-voice latency).
+- **Designed Confido's senior-engineer interview framework** (solo authored) — 6 problems × 75-min phased-refactor format testing structured LLM-tool discipline rather than syntax memory. Multiple internal appraisals.
 
 ### Tech Lead — SDE3, Nova Benefits Pvt. Ltd.
 *Jul 2022 — Sep 2024 · Remote · Bangalore*

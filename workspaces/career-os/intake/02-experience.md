@@ -23,28 +23,72 @@ Total tenure as of 2026-05: **~10 years** (Jun 2016 → present).
 
 `[FROM-PDF]` ✅
 
-- **Period**: Oct 2024 – Present (1 year 7 months as of 2026-05)
-- **Location**: Bangalore and New York (employer in both)
+- **Period**: Oct 2024 – Present (1 year 8 months as of 2026-06)
+- **Location**: Bangalore and New York (employer in both), need to constantly juggle between these 2 locations
 - **Domain**: Healthcare, Voice AI
 - **Headline (from PDF)**: "Building Industry leading voice AI. Freeing up staff time to focus on patient care."
 
-### Stack / tech (`[FILL]` — expand from your work)
-- Languages: `[FILL]`
-- Frameworks: `[FILL]`
-- Infra/cloud: GCP (per top-skills on PDF), `[FILL the rest]`
-- Voice AI specifics: `[FILL]` (e.g. ASR provider, TTS, VAD, LLM)
-- Database: `[FILL]`
+### Stack / tech (populated from repo digests on 03-Jun-2026)
+- Languages: **TypeScript** (primary — appointment-manager, ehr-connector-service, careOS-Real backend, sara-frontend), **Go 1.25** (sara-backend, Gin web framework), **Python 3.12** (voice-agent runtime in careOS-Real, FastAPI)
+- Backend frameworks: NestJS 10 (appointment-manager), Fastify 5 (careOS-Real backend + admin-api), Gin (sara-backend), Firebase Cloud Functions (ehr-connector-service), Prisma 6 ORM, pgx v5 driver, Bun 1.3 monorepo (Turbo coordination)
+- Frontend: Next.js 16 App Router · React 19 · Radix UI primitives (12+) + Tailwind 4 · TanStack Query 5 (with localStorage persist) + Zustand · custom SSE client with reconnect logic · Clerk auth v6 · TanStack Table · FullCalendar 6 · react-pdf
+- **Voice AI runtime**: Retell (current production, including for bigger clients) → leading evaluation between **Pipecat 1.0** and **LiveKit** for next-gen (careOS-Real). End-to-end STT+LLM+TTS pipelines built in both frameworks for comparison; final choice pending shadow-mode validation.
+- **Voice AI stack components**: Deepgram (STT) · ElevenLabs (TTS) · OpenAI + Anthropic + Google Gemini (LLMs) · LiteLLM (multi-provider routing + failover) · Upstash Redis (semantic cache) · Cekura (voice eval metrics + scenario generation) · Langfuse (LLM trace + eval) · Twilio (SIP, phone-number provisioning, voice webhooks, Svix signature verification)
+- **Orchestration**: Temporal Cloud (sara-backend outreach workflows — make_call · send_sms · http_request · wait · conditional nodes · backfill/retry); planned Python deterministic rules engine (careOS-Real per my-careos-plan ADRs)
+- **Infra / cloud**: GCP primary — Cloud Run (runtime services), GKE planned for voice agents (rejected Cloud Run for voice — cold starts + 60-min timeout), Cloud Tasks (async sync dispatch), Secret Manager + Workload Identity Federation (keyless CI/CD), GCS (fax/document storage), Cloud Logging + OTLP exporters, Memorystore Redis (call lifecycle). Firebase Cloud Functions for ehr-connector. Vercel for sara-frontend.
+- **Databases**: PostgreSQL primary (Prisma in appointment-manager · pgx v5 in sara-backend · Supabase with RLS in careOS-Real), MongoDB (sara-backend conversation state + change streams), Upstash Redis (semantic cache + careOS-Real state as source of truth), GCP Memorystore Redis (call lifecycle).
+- **Queues / streaming**: GCP Cloud Tasks (sync dispatch decoupling scheduling from execution), Kafka with Avro/Schema Registry (sara-backend CDC for Postgres + Mongo change events), RabbitMQ (AMQP), MQTT via EMQX (device signaling), MongoDB change streams (real-time event propagation to frontend), SSE (low-latency transcript streaming).
+- **Browser automation**: Puppeteer + stealth plugin in ehr-connector-service for legacy EHRs without proper API auth (CareStack, eCW-style — scheduled session/cookie refresh jobs).
+- **Auth + tenancy**: Clerk JWTs (multi-axis RBAC) · Supabase RLS on every table · multi-tenant org+location+agent hierarchy · custom PHI-scrubbing middleware in observability layer.
+- **Observability**: OpenTelemetry (OTLP traces + metrics + logs across services with resource semantics + cardinality awareness — rare for Node backends at this stage) · Sentry (custom PHI redaction) · PostHog (feature flags + product analytics) · Langfuse (LLM eval traces) · Winston + zap structured logs.
+- **CI/CD**: GitLab CI (Kaniko build cache, dev/prod templates, multi-stage pipelines, Cloud Run targets), GitHub Actions (Workload Identity Federation — no long-lived keys), semantic versioning, Helm-ready pipelines.
 
-### Accomplishments (XYZ — `[FILL]` 3-6 bullets)
-1. `[FILL — e.g. "Built X production feature serving Y customers/users, by Z"]`
-2. `[FILL]`
-3. `[FILL]`
-4. `[FILL]`
-5. `[FILL]`
-6. `[FILL]`
+### Accomplishments (XYZ — top 7; pick 4-5 for any given resume variant)
+
+1. **Architected appointment-manager from day one** — Confido's central appointment-sync platform across 40+ live EHR systems. Drove growth from **3 pilot clinics at launch to 90+ live clinics in ~18 months**; each clinic processes **hundreds to 5,000+ voice-AI calls/day** (rough platform-wide order-of-magnitude: hundreds of thousands of calls/day). Built the pluggable EHR factory pattern that now supports **14+ direct-API integrations** (Kolla, Athena, NextGen, ModMed, Nextech, Tebra, Dentrix Ascend, MDSynergy, Greyfinch, Raintree, CompuLink, etc.) plus **20+ browser-automation integrations** via ehr-connector-service (CareStack, eCW, eClinicalWorks-style legacy systems). Stack: NestJS · Prisma · PostgreSQL · GCP Cloud Tasks · OpenTelemetry-first observability.
+
+2. **Cut new-EHR integration time from ~10-15 days → 2-4 days per integration** by designing a factory + abstract-base-service contract that cleanly separates protocol concerns (REST · SOAP/XML · Puppeteer browser-automation) from business logic. Result: team now ships **4-5 new EHR integrations per 2-week sprint** alongside feature work. Direct-API integrations land in 2 days end-to-end; browser-based in 3-4 days depending on supported workflow scope. See `[[ehr-integration-platform-40-vendors]]`.
+
+3. **Built Confido's "EHR-agnostic" abstraction layer** — voice-AI agents and FDE systems consume a single standardized API (`cascade-search-patient`, `find-free-slots`, `post-appointment`, `get-changes-since`, `sync-operatory-schedules`, etc.) without knowing the underlying EHR vendor. Backed by the self-serve CareOS dashboard (sara-frontend + sara-backend) that makes new-clinic onboarding self-service for operatory schedules, holidays, blocked-slot scheduling, event/appointment types, sync-filter rules, free-slot calculation logic, patient detail changes, appointment-change requests, and patient queries. See `[[ehr-agnostic-abstraction-layer]]`.
+
+4. **Drove the appointment-manager scale-out migration** — at ~30 clinics, recognized that VM-based deployment (PM2) was producing user-visible **5-10s deploy downtimes** and noisy-neighbor contention between heavy EHR-sync batches and real-time voice-AI API requests. Designed and executed migration to **GCP Cloud Run with explicit service split: sync-worker (background EHR pulls) vs. API service (CareOS + voice-AI-facing)**. Required new GitLab CI → Cloud Run pipeline, Workload Identity Federation for keyless CI/CD, request-scoped telemetry context propagation, helm-ready deploy templates. **Outcome**: zero-downtime deploys, independent horizontal scale per tier, no more sync-vs-API contention. Platform now serves **90+ live clinics** vs. the ~30-clinic VM ceiling. See `[[appointment-manager-vm-to-cloudrun-migration]]`.
+
+5. **Production reliability + cost engineering for EHR sync** — for READS: built a change-detection layer using EHR delta endpoints where available, **hash-based diffing where not** — drastically reduced API-call cost given EHR rate limits and made near-real-time sync feasible on direct APIs (15-30 min cadence on rate-limited browser-based). For WRITES: real-time push with exponential backoff, idempotency keys, partial-sync recovery (restart from last-successful checkpoint), dashboard + Slack + email alerts on failure. Integrated a **HITL review queue** for failed auto-posts so clinic FDEs can intervene without code changes.
+
+6. **Leading the next-gen voice-AI runtime evaluation** (careOS-Real, Apr-2026 → present) — running production evaluation between **Pipecat 1.0** and **LiveKit** to replace Retell for larger clients. **Built end-to-end STT+LLM+TTS pipelines in both frameworks** (Deepgram STT · OpenAI/Anthropic/Gemini via LiteLLM multi-provider routing · ElevenLabs TTS · Upstash semantic cache · per-tenant Supabase RLS · PHI-scrubbing in Sentry/PostHog/Langfuse · GCP Workload Identity Federation for keyless deploys · Vercel + Cloud Run hosting · per-tenant agent fleet promotion via pointer-flip for zero-downtime rollback). Authored the **multi-phase platform-replacement plan** (my-careos-plan: 6 ADRs, risk matrix, success metrics — target ≤2,500 tokens/call vs ~8,500-10,000 baseline, <800ms P50 voice-to-voice latency, ≤50% cost, 99.5% EHR write success — and shadow-mode validation strategy). Architectural innovation: **Redis as source of truth + Jinja2 prompt rendering from frozen state snapshots** — constant token usage regardless of call length. See `[[voice-runtime-pipecat-livekit-evaluation]]` and `[[2026-06-03-voice-ai-platforms-comparison]]`.
+
+7. **Designed and solo-authored Confido's senior-engineer technical interview framework** (interview-generator) — **6 problems × 75-min phased-refactor format** that tests structured LLM-tool discipline (prompt clarity, output verification, refactor resilience) rather than syntax memory. Operationalizes the "AI as syntax helper, not architect" hiring philosophy via a guardrail rules document (`ai-rules.md`) that restricts AI from design-pattern selection / architecture / core-logic generation — forcing candidates to drive design and verify AI output. Problems mirror real Confido voice-AI / backend patterns: command + state machines (RPA Engine), event sourcing + idempotency (Voice Agent Reconciler), token-bucket + priority queues (Rate Limiter), strategy + DLQ (Webhook Router), async workflows + concurrency (EHR Sync), stream processing + dedup (Vitals Pipeline). **Received multiple internal appraisals** + positive candidate feedback for problem authenticity. See `[[confido-engineer-interview-framework]]`.
 
 ### Trade-offs / decisions worth interview stories
-- `[FILL]`
+
+**1. Module boundary vs. separate repo for the EHR adapter layer** (architectural judgment) ⭐⭐⭐⭐
+
+Instinct at 5+ EHR integrations was to split the adapter layer into its own repo for "clean abstraction." I deliberately kept it inside appointment-manager as a clearly-bounded NestJS module instead. Reasoning: a separate repo doubles the deploy pipeline, doubles release coordination, and adds a 2-stage rollout for every adapter change (which is high-frequency feature work). The module is designed so extraction stays a 1-week task whenever the trigger event arrives — a non-appointment consumer of the EHR layer, team scale beyond what cross-cutting reviews can handle, or deploy contention. **18 months in, 40+ EHRs later, the bet has held**; we ship 2-3x faster than the polyrepo split would have allowed.
+
+**2. VM → Cloud Run migration with sync/API service split at ~30 clinics** (operational maturity) ⭐⭐⭐⭐
+
+At ~30 clinics, VM-based deployment was hitting user-visible 5-10s deploy windows and a noisy-neighbor cliff where heavy EHR-sync batches starved real-time voice-AI API requests. I drove the migration to GCP Cloud Run with an explicit split: sync-worker (background EHR pulls) and API service (CareOS + voice-AI-facing). Required rebuilding the deploy pipeline (GitLab CI → Cloud Run, Workload Identity Federation for keyless CI/CD, request-scoped telemetry propagation). Outcome: **zero-downtime deploys, independent horizontal scale per tier**. We had ~3 months of headroom left on VMs at our growth rate — the replatform was decisive, not reactive.
+
+**3. Pipecat vs. LiveKit evaluation for the next-gen voice runtime** (current strategic call) ⭐⭐⭐
+
+We're at a decision point. Retell (current production for bigger clients) is fastest to ship but limits PHI handling and observability; Pipecat gives tighter pipeline control + better eval hooks; LiveKit has stronger WebRTC + room semantics out of the box. I built end-to-end STT+LLM+TTS pipelines in both Pipecat and LiveKit to compare latency-budget allocation, fail-mode handling, observability integration, and pluggability cost. **Final framework choice requires shadow-mode A/B in production — not yet shipped at scale.** Honest framing matters more than fake "we already migrated" claim.
+
+**4. 80/20 on per-clinic workflow asks** (product judgment) ⭐⭐⭐
+
+FDE/product team brings clinic-specific or EHR-specific workflow requests constantly — "this hospital wants the patient lookup to also pull X custom field from their EHR." I gate these against an 80/20 rule: if a workflow generalizes to 5+ clinics, build it; otherwise push back to a configuration-based workaround or the HITL queue. Result: integration code stays predictable; we haven't forked per customer; new clinics onboard fast.
+
+**5. Sized every architecture choice to "next 6 months" of growth, not imagined 5-year load** (anti-premature-optimization) ⭐⭐⭐⭐
+
+Could have introduced Kafka + Redis streams + event sourcing early in appointment-manager. Chose Cloud Tasks + PostgreSQL change-detection + REST instead. **Result**: shipped faster, never ripped out an over-engineered system. When we do need Kafka (careOS-Real has it for CDC), it'll be a planned migration not a panic.
+
+**6. Partial self-serve + extensible-schema design** (product + infra judgment) ⭐⭐⭐
+
+Pure self-serve is a years-long investment. Made the call to self-serve only the high-frequency clinic configurations (operatory schedules, blocked slots, event/appointment types, sync filters, free-slot calculation overrides) and leave the long-tail config admin-driven. To keep this safe long-term, invested in a database schema designed for forward extension — adding a new sync filter type or operatory attribute is a schema migration, not a data revamp. **Code is easier to change than data.**
+
+### Notable mention (for behavioral interviews)
+
+- **Solo design + authorship of the interview-generator** — multiple internal appraisals + positive candidate feedback. Demonstrates pedagogical judgment + thinking about how senior engineers should work with AI tools in production. See bullet 7 above.
+- **Solo authorship of the my-careos-plan** — comprehensive multi-phase platform-replacement roadmap with 6 ADRs, risk matrix, success metrics, shadow-mode validation strategy. Demonstrates staff-eng-level forward-looking ownership.
 
 ---
 
@@ -57,15 +101,15 @@ Total tenure as of 2026-05: **~10 years** (Jun 2016 → present).
 - **Title at resume time**: Tech lead - SDE3
 - **Domain**: Insurance / employee benefits / HR-tech
 - **Scale of product**: 250,000 active employees + 3,000 HR admins served
-- **Team owned**: 5 developers (one of three engineering teams in Nova)
+- **Team owned**: 5 developers (one of three engineering teams in Nova) + one QA + one PM
 
 ### Stack / tech
 - Languages: JavaScript, TypeScript (from overall resume skills)
 - Frameworks: React, Redux, Node.js, NestJs, GraphQL Apollo, REST APIs (from overall resume)
 - Integration tools used explicitly: Retool app builder (custom onboarding), Razorpay SDK (web checkout), Mailmodo (email automation), WATI (WhatsApp)
 - HRMS integrations shipped: Google Workspace, Zoho People, Darwinbox (resume mentions "etc.")
-- Insurer integrations shipped: ICICI, CARE (via their API kit)
-- Infra likely involved: AWS / Terraform / Docker (overall resume skills) — `[VERIFY which specifically at Nova]`
+- Insurer integrations shipped: ICICI, CARE, GoDigit, etc (via their API kit)
+- Infra likely involved: AWS and Docker
 - Database: `[VERIFY — PostgreSQL most likely]`
 
 ### Accomplishments (XYZ — pulled from resume; verify metrics + claim ownership)

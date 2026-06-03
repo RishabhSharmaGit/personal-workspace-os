@@ -197,11 +197,15 @@
         <div class="role-meta">Oct 2024 — Present  ·  Bangalore / New York</div>
       </div>
       <p class="role-summary">
-        Building industry-leading voice AI to free up clinical staff time at scale. Domain: healthcare; primary cloud: GCP.
+        Building industry-leading voice AI for clinical staff workflows. Healthcare; primary cloud: GCP. Series A ($10M, 50+ team, 90+ clinics live).
       </p>
-      <div class="placeholder">
-        Edit before sending: add 3–5 concrete accomplishments for Confido here (voice-AI latency / scale / architecture decisions). Pull from <code>intake/02-experience.md</code> once filled.
-      </div>
+      <ul class="bullets">
+        <li><b>Architected appointment-manager from day one</b> — Confido's central appointment-sync service. Scaled from <b>3 pilot clinics at launch to 90+ live clinics</b> across <b>40+ EHR systems</b>; platform serves hundreds of thousands of voice-AI calls/day at peak.</li>
+        <li><b>Built the pluggable EHR factory pattern</b> (NestJS) + an isolated browser-automation sister service (Firebase Functions + Puppeteer) — cut new-EHR integration time from <b>~10-15 days to 2-4 days</b>; team now ships 4-5 EHR integrations per 2-week sprint.</li>
+        <li><b>Drove VM → GCP Cloud Run migration</b> with explicit sync-worker / API service split at ~30 clinics — eliminated 5-10s deploy windows, removed sync-vs-API noisy-neighbor contention; foundation for 3x subsequent clinic growth. GitLab CI + Workload Identity Federation for keyless CI/CD.</li>
+        <li><b>Leading next-gen voice runtime evaluation</b> (Pipecat 1.0 vs LiveKit, replacing Retell). Built end-to-end STT+LLM+TTS pipelines in both (Deepgram · LiteLLM-routed OpenAI/Anthropic/Gemini · ElevenLabs · Upstash semantic cache); authored platform-replacement plan with target metrics (≤2,500 tokens/call vs ~8,500-10,000 baseline; &lt;800ms P50 voice-to-voice latency).</li>
+        <li><b>Designed Confido's senior-engineer interview framework</b> (solo authored) — 6 problems × 75-min phased-refactor format testing structured LLM-tool discipline rather than syntax memory. Multiple internal appraisals.</li>
+      </ul>
     </div>
 
     <!-- Nova -->
