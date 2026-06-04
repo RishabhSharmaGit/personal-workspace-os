@@ -3,12 +3,12 @@
   "_comment": "Master resume — JSON Resume v1 schema. Roles 2-5 populated from personal/resumes/2024-09-rishabh-sharma-sde3.pdf. Role 1 (Confido) has placeholder highlights since user is filling those manually. Per-role variants will live in resumes/variants/.",
   "basics": {
     "name": "Rishabh Sharma",
-    "label": "Founding Software Engineer — Voice AI / Healthcare",
+    "label": "Founding / Staff Software Engineer — Healthcare AI & Voice",
     "image": "",
     "email": "rishabh.sharma26@gmail.com",
     "phone": "+91 9004310441",
     "url": "",
-    "summary": "Software developer with ~10 years of experience blending logic with creativity — architecting scalable backends, designing intuitive UI/UX, and shipping seamless features. Currently building industry-leading voice AI at Confido Health to free up clinical staff time for patient care.",
+    "summary": "Founding software engineer with ~10 years building production systems end-to-end. Took a Series A healthcare voice-AI product from 0→1 — architecting the EHR-agnostic patient-access platform that powers AI agents across 90+ clinics and 40+ EHR systems. Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.",
     "location": {
       "city": "Pune / Bangalore",
       "region": "Maharashtra / Karnataka",
@@ -35,14 +35,14 @@
       "startDate": "2024-10",
       "endDate": "",
       "location": "Bangalore + New York (employer in both)",
-      "summary": "Building industry-leading voice AI to free up clinical staff time. Domain: healthcare. Primary cloud: GCP.",
+      "summary": "Founding engineer at a Series A ($10M) healthcare voice-AI company automating clinic front-office operations (1M+ patients enabled, >80% call automation). Architected the EHR-agnostic patient-access platform behind the voice agents. Primary cloud: GCP; HIPAA-regulated.",
       "highlights": [
-        "Architected appointment-manager from day one — Confido's central appointment-sync service. Scaled from 3 pilot clinics at launch to 90+ live clinics over ~18 months across 40+ EHR systems; platform serves hundreds of thousands of voice-AI calls/day at peak (hundreds to 5,000+ calls/day per clinic).",
-        "Built the pluggable EHR factory pattern in NestJS + an isolated browser-automation sister service (Firebase Functions + Puppeteer) — cut new-EHR integration time from ~10-15 days to 2-4 days. Team now ships 4-5 EHR integrations per 2-week sprint (direct API: 2 days; browser-based: 3-4 days).",
-        "Drove appointment-manager migration from VM-based deploy to GCP Cloud Run with explicit sync-worker / API service split at ~30 clinics — eliminated user-visible 5-10s deploy windows, removed sync-vs-API noisy-neighbor contention, foundation for 3x subsequent clinic growth. GitLab CI + Workload Identity Federation for keyless CI/CD.",
-        "Leading the technical evaluation between Pipecat and LiveKit to replace Confido's current Retell-based voice runtime. Built end-to-end STT+LLM+TTS pipelines (Deepgram + LiteLLM-routed OpenAI/Anthropic/Gemini + ElevenLabs + Upstash semantic cache) in both frameworks; authored multi-phase platform-replacement plan with target metrics (≤2,500 tokens/call vs ~8,500-10,000 baseline; <800ms P50 voice-to-voice latency; 99.5% EHR write success).",
-        "Built Confido's EHR-agnostic abstraction layer over 40+ EHR vendors — voice-AI agents and FDE systems consume a single standardized API (cascade-search-patient, find-free-slots, post-appointment, get-changes-since) without knowing the underlying vendor; new-clinic onboarding self-serve via the CareOS dashboard.",
-        "Designed and solo-authored Confido's senior-engineer technical interview framework — 6 problems × 75-min phased-refactor format testing structured LLM-tool discipline (prompt clarity, output verification, refactor resilience) rather than syntax memory. Multiple internal appraisals + positive candidate feedback."
+        "Architected the EHR-agnostic patient-access / clinical-workflow platform from day one — the data + action layer every voice-AI agent and forward-deployed engineer (FDE) calls to run the full front-office workload against a clinic's systems: scheduling, patient identity + demographics, insurance eligibility + verification + prior-auth, payments / balance collection (RCM), medication & prescription refills, patient documents + clinical timeline + notes retrieval, and EHR read/write sync with warm-transfer / human-in-the-loop fallback. Spans 40+ live EHR / practice-management systems; scaled from 3 pilot clinics to 90+ live clinics in ~18 months.",
+        "Built the pluggable EHR factory pattern (NestJS) + an isolated browser-automation service (Puppeteer) for legacy EHRs without API auth — cut new-EHR integration from ~10-15 days to 2-4 days, so the team now ships 4-5 integrations per 2-week sprint. 14+ direct-API + 20+ browser-automation connectors (eClinicalWorks, Athenahealth, NextGen, ModMed, Nextech, Tebra, Dentrix Ascend, Kolla, CareStack, …).",
+        "Designed the EHR-agnostic abstraction so voice agents and FDE systems call one standardized API (cascade-search-patient, find-free-slots, post-appointment, get-changes-since, eligibility, refill) regardless of the underlying vendor — with self-serve clinic onboarding via the CareOS dashboard for operatory schedules, sync filters, event types, and free-slot logic.",
+        "Owned reliability + cost engineering at 3x scale: hash-based change-detection to cut EHR API cost under rate limits, idempotent writes with exponential backoff + partial-sync recovery + HITL review queue. Removed a scaling ceiling at ~30 clinics by re-architecting the compute topology — split background EHR-sync from the real-time voice-AI request path into independently-scaling GCP Cloud Run services (eliminated 5-10s deploy downtimes + resource contention; keyless CI/CD via Workload Identity Federation). Now 90+ clinics, zero deploy downtime.",
+        "Leading the next-gen voice runtime evaluation (Pipecat vs LiveKit) to replace Retell for larger clients — built end-to-end STT+LLM+TTS pipelines in both (Deepgram · LiteLLM-routed OpenAI/Anthropic/Gemini · ElevenLabs · Upstash semantic cache); authored the multi-phase replacement plan (6 ADRs, risk matrix, target ≤2,500 tokens/call vs ~8,500-10,000 baseline, <800ms P50 voice-to-voice latency). Key design: Redis as source-of-truth + Jinja2 prompts rendered from frozen state each turn — constant token usage regardless of call length.",
+        "Additionally: designed Confido's senior-engineer technical interview framework (6 problems, 75-min phased-refactor format testing structured LLM-tool discipline; multiple internal appraisals); contributed across the Go/Temporal voice-agent backend and the Next.js clinician dashboard (SSE streaming transcripts, Clerk multi-tenant RBAC)."
       ]
     },
     {
@@ -52,12 +52,12 @@
       "startDate": "2022-07",
       "endDate": "2024-09",
       "location": "Remote — Bangalore",
-      "summary": "Led one of three engineering teams (5 developers); collaborated with PM/QA/CTO on roadmap. Owned the endorsement + onboarding modules of Nova's platform (250K active employees + 3K HR admins).",
+      "summary": "Led one of three engineering teams (5-8 developers + a dedicated QA); collaborated with PM/CTO on roadmap. Owned the endorsement + onboarding modules of Nova's platform (250K active employees + 3K HR admins).",
       "highlights": [
         "Consolidated dispersed endorsement + onboarding logic into a unified central module — 90% reduction in legit issues reported in core modules",
         "Built a scalable HRMS integration framework — any new HRMS platform integrable in 3-4 days (Google Workspace, Zoho People, Darwinbox, etc.)",
         "Integrated ICICI + CARE insurer APIs for automated endorsement data submission and batch tracking — reduced endorsement TAT from 14 days to a few hours",
-        "Led one of three engineering teams; managed 5 developers; collaborated with PM, QA, and CTO on requirements + roadmap alignment",
+        "Led one of three engineering teams; managed 5-8 developers + a dedicated QA; collaborated with PM and CTO on requirements + roadmap alignment",
         "Owned endorsements module for 250,000 active employees + 3,000 HR admins (insertion/deletion of employees to group + retail policies)",
         "Integrated Razorpay SDK for standard web checkout on retail product purchases",
         "Built additional platform modules: self-served mental/financial health assessment, CD Account management (client wallet), rater-based premium calculation + refund framework",
@@ -90,14 +90,12 @@
       "startDate": "2019-12",
       "endDate": "2020-06",
       "location": "Mumbai, India",
-      "summary": "Senior IC on Cimpress's embroidery software product family. Promoted from Software Developer within 8 months due to project impact.",
+      "summary": "Primary contributor on Cimpress's embroidery product (StitchX) — an ML / computer-vision pipeline converting customer artwork into machine-specific embroidery instructions. Promoted to Senior within 8 months; subsequently moved to a US-based team building a higher-vertical artwork design-editor product.",
       "highlights": [
-        "Acted as primary contributor and proprietor of Cimpress's embroidery software products",
-        "Implemented asynchronous thread-pool-based embroidery core running in client's browser via WebWorkers + WebAssembly — offloading heavy stitch computation client-side",
-        "Drove requirement-gathering from production artists, feasibility analysis, and delivery of features on StitchX (automated image/artwork → machine-specific embroidery instructions)",
-        "Designed a dedicated JMeter-based API testing project from scratch",
-        "Maintained and continuously upgraded automated test suites (unit + integration + UI) and CI/CD pipelines",
-        "Promoted to Senior Software Developer within 8 months based on project impact"
+        "Re-architected StitchX's compute-heavy ML image-processing core (artwork → stitch-vector conversion: vectorization, stitch-path planning, color segmentation) to run client-side in the browser via WebAssembly + an async WebWorkers thread pool — cut conversion latency from ~4-5s server round-trip to <800ms and eliminated the dedicated high-compute server fleet (~60% infra cost reduction), enabling real-time interactive preview for production artists",
+        "Owned the StitchX image-processing / computer-vision pipeline end-to-end — requirement-gathering with production artists, feasibility analysis, and delivery",
+        "Promoted to Senior Software Developer within 8 months on project impact; subsequently moved to a US-based team on a higher-vertical artwork design-editor product",
+        "Designed a dedicated JMeter-based API load/functional testing project from scratch; maintained and upgraded unit/integration/UI test suites + CI/CD pipelines"
       ]
     },
     {
@@ -107,10 +105,9 @@
       "startDate": "2019-02",
       "endDate": "2019-12",
       "location": "Mumbai, India",
-      "summary": "Full-stack development on StitchX — Cimpress's automated embroidery design tool (AI-driven conversion of image/artwork into machine-specific stitch instructions).",
+      "summary": "Full-stack development on StitchX — Cimpress's ML-driven artwork-to-embroidery design tool. Entry point before promotion to Senior.",
       "highlights": [
-        "Contributed to StitchX — Cimpress's automated embroidery designing tool that converts image/artwork into machine-specific sewing instructions",
-        "Gained hands-on experience with mathematical tools and techniques required for image-to-stitch-vector transformation"
+        "Built StitchX features applying image-processing / computer-vision techniques for artwork-to-stitch-vector transformation"
       ]
     },
     {
@@ -133,7 +130,7 @@
   ],
   "education": [
     {
-      "institution": "MIT Academy of Engineering, Alandi",
+      "institution": "MIT Academy of Engineering",
       "url": "",
       "area": "Electronics and Telecommunication Engineering",
       "studyType": "Bachelor of Engineering",

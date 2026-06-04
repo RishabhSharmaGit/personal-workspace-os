@@ -10,12 +10,12 @@ confidence: medium
 created: '2026-06-03'
 updated: '2026-06-03'
 xyz:
-  x: "Moved Cimpress StitchX's heavy embroidery core (image/artwork → machine-specific stitch-vector conversion) from server compute to client's browser via WebWorkers + WebAssembly"
-  y: "Cut end-to-end conversion latency from ~4-5s server round-trip to <800ms on commodity hardware (quad-core+ browsers, scales linearly with the user's available cores via the WebWorkers thread pool); eliminated the dedicated server-side stitch-conversion compute and cut associated server costs by ~60%; enabled real-time interactive preview during artwork editing"
-  z: "by designing an async thread-pool architecture in JavaScript that orchestrates WebWorker-based WebAssembly modules — partitioning the embroidery vector computation across worker threads and streaming results back to the main thread for progressive UI rendering"
-tech_tags: [webassembly, webworkers, javascript, browser-performance, async-architecture, client-side-compute]
+  x: "Re-architected StitchX's compute-heavy ML image-processing core (artwork → machine-specific embroidery stitch-vector conversion) to run client-side in the browser via WebWorkers + WebAssembly, eliminating the server round-trip"
+  y: "Cut end-to-end conversion latency from ~4-5s server round-trip to <800ms on commodity hardware (scales linearly with the user's CPU cores via the WebWorkers thread pool); eliminated the dedicated GPU/high-compute server fleet and cut associated infra cost ~60%; enabled real-time interactive preview during artwork editing"
+  z: "by porting the image-processing + computer-vision pipeline (vectorization, stitch-path planning, color segmentation) to WebAssembly and designing an async thread-pool that partitions the computation across worker threads and streams partial results back for progressive UI rendering"
+tech_tags: [webassembly, webworkers, javascript, image-processing, computer-vision, ml, browser-performance, async-architecture, client-side-compute]
 role_slug: cimpress-sr-dev
-metric: "~4-5s server round-trip → <800ms client-side; ~60% server compute cost reduction; real-time interactive preview"
+metric: "~4-5s server round-trip → <800ms client-side; ~60% infra cost reduction; real-time interactive preview"
 evidence_url: ""
 ---
 
@@ -23,7 +23,13 @@ evidence_url: ""
 
 ## One-line bullet (resume-ready)
 
-Moved Cimpress StitchX's heavy embroidery core (image/artwork → machine-specific stitch-vector conversion) from server compute to client's browser via **WebWorkers + WebAssembly** — cut end-to-end conversion latency from **~4-5s server round-trip to <800ms client-side**, eliminated the dedicated server-side compute (**~60% server cost reduction**), and enabled production artists to iterate with real-time interactive preview.
+Re-architected StitchX's compute-heavy **ML image-processing core** (artwork → machine-specific embroidery stitch-vector conversion) to run **client-side in the browser via WebWorkers + WebAssembly** — cut conversion latency from **~4-5s server round-trip to <800ms**, eliminated the dedicated high-compute server fleet (**~60% infra cost reduction**), and gave production artists real-time interactive preview.
+
+## Context — the Cimpress embroidery / artwork team
+
+Worked on the **embroidery product team** building **StitchX**, where the core technical challenge was the **image-processing + computer-vision pipeline** that converts customer artwork into machine-specific embroidery instructions: image vectorization, stitch-path planning, color segmentation, and machine-format encoding — compute-heavy ML/CV work that originally ran on a dedicated server fleet. This is the workload that was moved to the browser (below).
+
+**Recognition / progression**: high-quality contributions on this team led to a **promotion to a US-based team working on a higher-vertical product in the artwork design-editor space** (a more advanced design-tooling product) — a cross-geo move that signalled trust in technical depth and product judgment.
 
 ## Long form (STAR — interview-ready)
 

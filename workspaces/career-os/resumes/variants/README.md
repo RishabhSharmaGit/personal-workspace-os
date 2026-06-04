@@ -1,14 +1,38 @@
 # `resumes/variants/`
 
-Tailored / draft resume files. Naming: `YYYY-MM-DD-<purpose>.{html,md,resume.json,pdf}`.
+Tailored resume cuts, one per job posting. Naming: `YYYY-MM-DD-<company>-<role>.{html,md,pdf}`.
 
 ## What's in here right now
 
-- `2026-05-14-temp-general.html` — visually-styled HTML resume, print-ready. Open in any browser.
-- `2026-05-14-temp-general.md` — same content as Markdown for text-editor edits.
-- `2026-05-14-temp-general.pdf` — generated from the HTML (if PDF generation succeeded; if not, render it yourself, see below).
+- `2026-06-04-therxassistant-tech-lead.{html,md,pdf}` — **TheRxAssistant — Tech Lead** (founding team, healthcare AI). Tailored, JD-keyword-mirrored, 2-page.
+- `2026-05-14-temp-general.{html,md,pdf}` — general baseline (not JD-specific).
 
-The master canonical is one level up: `resumes/master.resume.json` (structured) + `resumes/master.resume.md` (mirror). Variants are derived from the master.
+The master canonical is one level up: `resumes/master.resume.json` (structured reservoir) + `resumes/master.resume.md` (human master, exhaustive). **Variants are tight 2-page cuts derived from the master** — pick the 4-6 highlights + bullets matching the JD, mirror the JD's exact keywords, drop the rest.
+
+---
+
+## ⭐ How to apply to a new job (the JD workflow)
+
+**Where to drop a new JD**: put the raw JD file (PDF / screenshot / text) in
+`personal/references/jds/` — name it `YYYY-MM-DD-<company>-<role>.<ext>`. That folder is **gitignored** (JDs can carry identifying detail), so it never gets committed.
+
+Then ask me ("build a resume for the <company> JD") and I will:
+
+1. **Read + distill** the JD → create `roles/<company>-<role>.md` (committed) with a full **requirement-by-requirement match analysis**, extracted keywords, and a tailoring strategy.
+2. **Create the application tracker** → `applications/YYYY-MM-DD-<company>-<role>.md` (committed) with `application_status: wishlist`, timeline, why-I-want-it, concerns, next actions.
+3. **Build the tailored resume** → `resumes/variants/YYYY-MM-DD-<company>-<role>.{html,md,pdf}` — derived from the master, mirroring the JD's exact tech + domain keywords, with the strongest 4-6 achievements surfaced and weaker/older roles compressed.
+4. **Generate the PDF** (gitignored — sources committed, PDF regenerates on demand).
+
+You stay in control: I'll surface gaps (e.g. "this JD wants AWS, you're GCP-primary — here's the framing") and any open questions (salary band, remote acceptability) before you send.
+
+### The four files per application
+
+| File | Committed? | Purpose |
+|---|---|---|
+| `personal/references/jds/<date>-<co>-<role>.pdf` | no (gitignored) | raw JD source |
+| `roles/<co>-<role>.md` | yes | distilled JD + keyword + match analysis |
+| `applications/<date>-<co>-<role>.md` | yes | status tracker (wishlist→applied→…) |
+| `resumes/variants/<date>-<co>-<role>.{html,md,pdf}` | html+md yes, pdf no | the tailored resume |
 
 ## Getting a PDF — three options
 

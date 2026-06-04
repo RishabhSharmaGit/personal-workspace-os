@@ -16,43 +16,50 @@ resume_kind: master
 
 The canonical resume is `master.resume.json` (JSON Resume v1 schema). This `.md` is the human mirror for quick scanning and a stable `[[master-resume]]` wikilink target.
 
-**Roles 2–5 populated from `personal/resumes/2024-09-rishabh-sharma-sde3.pdf`. Role 1 (Confido) is left for manual fill per user instruction.**
+**This is the MASTER reservoir — exhaustive. JD-specific cuts are derived from it under `resumes/variants/`.** Roles populated from repo digests + `personal/resumes/2024-09-rishabh-sharma-sde3.pdf`.
 
 ---
 
 ## Rishabh Sharma
 
-Founding Software Engineer — Voice AI / Healthcare
-Pune / Bangalore, India · +91 9004310441 · rishabh.sharma26@gmail.com
+**Founding / Staff Software Engineer — Healthcare AI & Voice**
+Pune / Bangalore, India · Open to remote-from-India & US/EU relocation · +91 9004310441 · rishabh.sharma26@gmail.com
 [linkedin.com/in/rishabhz](https://www.linkedin.com/in/rishabhz) · [github.com/RishabhSharmaGit](https://github.com/RishabhSharmaGit)
 
-> Software developer with ~10 years of experience blending logic with creativity — architecting scalable backends, designing intuitive UI/UX, and shipping seamless features. Currently building industry-leading voice AI at Confido Health to free up clinical staff time for patient care.
+> Founding software engineer with ~10 years building production systems end-to-end. Took a Series A healthcare voice-AI product from 0→1 — architecting the EHR-agnostic patient-access platform that powers AI agents across 90+ clinics and 40+ EHR systems. Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project.
+
+## Selected Impact
+
+- Architected and scaled a healthcare **patient-access platform from 3 → 90+ clinics** integrating **40+ EHR / practice-management systems** behind one standardized RESTful API — the backbone for AI agents serving 1M+ patients.
+- Shipped **production generative-AI / voice systems** (LLM orchestration across OpenAI/Anthropic/Gemini; real-time STT+LLM+TTS) with a design that holds **token cost constant regardless of call length**.
+- Turned multi-vendor healthcare integration into a **2-4 day commodity (from ~10-15 days)** via a pluggable adapter architecture — 4-5 new integrations per 2-week sprint.
+- Re-architected a compute-heavy **ML/computer-vision pipeline to run client-side (WebAssembly)** — cut latency ~4-5s → <800ms and infra cost ~60%.
 
 ---
 
 ## Experience
 
 ### Founding Software Engineer — Confido Health
-*Oct 2024 – Present · Bangalore + New York (employer in both)*
+*Oct 2024 – Present · Bangalore / New York*
+> Series A ($10M, Blume Ventures) healthcare voice-AI · 1M+ patients enabled, >80% call automation · founding engineer · TypeScript/Node.js · Python · Go · PostgreSQL · GCP · HIPAA
 
-Building industry-leading voice AI to free up clinical staff time. Domain: healthcare. Primary cloud: GCP. Series A ($10M, 50+ team, 90+ clinics live).
-
-- **Architected appointment-manager from day one** — Confido's central appointment-sync service. Scaled from **3 pilot clinics at launch to 90+ live clinics** over ~18 months across **40+ EHR systems**; platform serves hundreds of thousands of voice-AI calls/day at peak (hundreds to 5,000+ calls/day per clinic).
-- **Built the pluggable EHR factory pattern** in NestJS + an isolated browser-automation sister service (Firebase Functions + Puppeteer) — cut new-EHR integration time from **~10-15 days to 2-4 days**. Team now ships **4-5 EHR integrations per 2-week sprint** (direct API: 2 days; browser-based: 3-4 days).
-- **Drove appointment-manager migration from VM-based deploy to GCP Cloud Run** with explicit sync-worker / API service split at ~30 clinics — eliminated user-visible **5-10s deploy windows**, removed sync-vs-API noisy-neighbor contention, foundation for 3x subsequent clinic growth. GitLab CI + Workload Identity Federation for keyless CI/CD.
-- **Leading the technical evaluation between Pipecat and LiveKit** to replace Confido's current Retell-based voice runtime. Built end-to-end STT+LLM+TTS pipelines (Deepgram + LiteLLM-routed OpenAI/Anthropic/Gemini + ElevenLabs + Upstash semantic cache) in both frameworks; authored multi-phase platform-replacement plan with target metrics (**≤2,500 tokens/call vs ~8,500-10,000 baseline**; **<800ms P50 voice-to-voice latency**; **99.5% EHR write success**).
-- **Built the EHR-agnostic abstraction layer** over 40+ EHR vendors — voice-AI agents and FDE systems consume a single standardized API (cascade-search-patient, find-free-slots, post-appointment, get-changes-since) without knowing the underlying vendor; new-clinic onboarding self-serve via the CareOS dashboard.
-- **Designed and solo-authored Confido's senior-engineer technical interview framework** — 6 problems × 75-min phased-refactor format testing structured LLM-tool discipline (prompt clarity, output verification, refactor resilience). Multiple internal appraisals + positive candidate feedback.
+- **Architected the EHR-agnostic patient-access / clinical-workflow platform from day one** — the data + action layer every voice-AI agent and forward-deployed engineer (FDE) calls to run the full front-office workload against a clinic's systems: scheduling, patient identity + demographics, **insurance eligibility + verification + prior-auth**, **payments / balance collection (RCM)**, **medication & prescription refills**, patient documents + clinical timeline + notes retrieval, and EHR read/write sync with warm-transfer / human-in-the-loop fallback. Spans **40+ live EHR / practice-management systems**; scaled from **3 pilot clinics to 90+ live clinics** in ~18 months.
+- **Built the pluggable EHR integration framework** (NestJS, RESTful microservices) + an isolated browser-automation service (Puppeteer) for legacy EHRs without API auth — cut new-EHR integration from **~10-15 days to 2-4 days**; team ships 4-5 integrations per 2-week sprint. 14+ direct-API + 20+ browser-automation connectors (eClinicalWorks, Athenahealth, NextGen, ModMed, Nextech, Tebra, Dentrix Ascend, Kolla, CareStack, …).
+- **Designed the EHR-agnostic abstraction** so agents + FDE systems call one standardized API (cascade-search-patient, find-free-slots, post-appointment, get-changes-since, eligibility, refill) regardless of vendor — with self-serve clinic onboarding via the CareOS dashboard.
+- **Built production generative-AI / voice pipelines** — LLM orchestration across OpenAI, Anthropic, Gemini (multi-provider routing + semantic caching), real-time STT+LLM+TTS on Twilio telephony; **leading the Pipecat-vs-LiveKit runtime evaluation** to replace Retell for larger clients. Key design: **Redis source-of-truth + Jinja2 prompts rendered from frozen state each turn** — constant token usage regardless of call length. Plan targets ≤2,500 tokens/call (vs ~8,500-10,000), <800ms P50 voice-to-voice latency.
+- **Owned reliability + cost engineering at 3x scale** — advanced PostgreSQL schema/indexing, hash-based change-detection to cut EHR API cost under rate limits, idempotent writes + backoff + partial-sync recovery + HITL review queue. Removed a scaling ceiling at ~30 clinics by **re-architecting the compute topology** — split background EHR-sync from the real-time voice request path into independently-scaling **GCP Cloud Run** services (eliminated 5-10s deploy downtimes + contention; keyless CI/CD via Workload Identity Federation). Now 90+ clinics, zero deploy downtime.
+- Workflow orchestration with **Temporal** (outbound campaigns, retries, backfill); real-time clinician dashboard with **Server-Sent Events** streaming live transcripts + multi-tenant RBAC.
+- **Additional**: designed the senior-engineer technical interview framework (LLM-tool-discipline format; multiple internal appraisals); contributed across the Go/Temporal voice-agent backend and the Next.js clinician dashboard.
 
 ### Tech Lead / SDE3 — Nova Benefits Pvt. Ltd.
 *Jul 2022 – Sep 2024 · Remote — Bangalore*
 
-Led one of three engineering teams (5 developers); collaborated with PM/QA/CTO on roadmap. Owned the endorsement + onboarding modules of Nova's platform (250K active employees + 3K HR admins).
+Led one of three engineering teams (5-8 developers + a dedicated QA); collaborated with PM/CTO on roadmap. Owned the endorsement + onboarding modules of Nova's platform (250K active employees + 3K HR admins).
 
 - Consolidated dispersed endorsement + onboarding logic into a unified central module — **90% reduction in legit issues reported in core modules**
 - Built a scalable HRMS integration framework — any new HRMS platform integrable in **3-4 days** (Google Workspace, Zoho People, Darwinbox, etc.)
 - Integrated ICICI + CARE insurer APIs for automated endorsement data submission and batch tracking — **reduced endorsement TAT from 14 days to a few hours**
-- Led one of three engineering teams; managed 5 developers; collaborated with PM, QA, and CTO on requirements + roadmap alignment
+- Led one of three engineering teams; managed 5-8 developers + a dedicated QA; collaborated with PM and CTO on requirements + roadmap alignment
 - Owned endorsements module for 250,000 active employees + 3,000 HR admins (insertion/deletion of employees to group + retail policies)
 - Integrated Razorpay SDK for standard web checkout on retail product purchases
 - Built additional platform modules: self-served mental/financial health assessment, CD Account management (client wallet), rater-based premium calculation + refund framework
@@ -75,13 +82,12 @@ Owned end-to-end development, maintenance, and operations for YouGov.Chat — a 
 ### Senior Software Developer / Software Developer — Cimpress Technology Pvt. Ltd.
 *Feb 2019 – Jun 2020 · Mumbai, India · Promoted to Senior within 8 months*
 
-Primary contributor + proprietor of Cimpress's embroidery software product family (StitchX — automated conversion of image/artwork into machine-specific embroidery instructions).
+Primary contributor on StitchX — an **ML / computer-vision** pipeline converting customer artwork into machine-specific embroidery instructions (image vectorization, stitch-path planning, color segmentation).
 
-- Implemented **asynchronous thread-pool-based embroidery core running in client's browser via WebWorkers + WebAssembly** — offloaded heavy stitch computation client-side
-- Drove requirement-gathering from production artists, feasibility analysis, and delivery of features on StitchX
-- Designed a dedicated **JMeter-based API testing project from scratch**
-- Maintained and continuously upgraded automated test suites (unit + integration + UI) and CI/CD pipelines
-- **Promoted to Senior in ~8 months** based on project impact
+- **Re-architected the compute-heavy ML image-processing core to run client-side in the browser via WebAssembly + an async WebWorkers thread pool** — cut conversion latency from ~4-5s server round-trip to **<800ms** and eliminated the dedicated high-compute server fleet (**~60% infra cost reduction**), enabling real-time interactive preview for production artists
+- Owned the StitchX image-processing / computer-vision pipeline end-to-end — requirement-gathering with production artists, feasibility analysis, delivery
+- **Promoted to Senior in ~8 months** on project impact; subsequently moved to a **US-based team building a higher-vertical artwork design-editor product**
+- Designed a dedicated JMeter-based API load/functional testing project from scratch; maintained unit/integration/UI suites + CI/CD pipelines
 
 ### Product Engineer — Seclore Technology Pvt. Ltd.
 *Jun 2016 – Feb 2019 · Mumbai, India · First full-time role*
@@ -100,7 +106,7 @@ Full-stack engineer at a data-centric cyber-security organisation. Built back-en
 ## Education
 
 **Bachelor of Engineering — Electronics and Telecommunication Engineering**
-MIT Academy of Engineering, Alandi · 2012 – 2016 · **First Class with Distinction (66%)**
+MIT Academy of Engineering, Pune · 2012 – 2016 · **First Class with Distinction (66%)**
 
 **CBSE-AISSCE (Class 12)** — Air Force School, Viman Nagar, Pune · 2010 – 2012 · 71.80%
 **CBSE-AISSE (Class 10)** — Air Force School, 9BRD, Pune · 2008 – 2010 · 89.30%
@@ -109,17 +115,16 @@ MIT Academy of Engineering, Alandi · 2012 – 2016 · **First Class with Distin
 
 ## Skills
 
-**Proficient languages**: JavaScript · TypeScript · Java · HTML5 · CSS3
-**Working knowledge**: C · C++ · C# · GoLang
-**Frontend**: React · Redux · Vue / VueX · Nuxt.js · JQuery (+ JQueryUI / Knockout / chart.js / Bootstrap)
-**Backend**: Node.js · NestJs · GraphQL (Apollo, Relay) · REST APIs · J2EE / Servlets / Struts
-**AI / ML**: Voice AI (ASR/TTS/VAD) · LLM application development · AWS Comprehend (NLP)
-**Cloud**: **Google Cloud Platform** · AWS (Cognito, Comprehend, Kinesis, SNS, SQS) · Cloudflare · Heroku · Tomcat
-**Infra**: Docker · Terraform · Kafka · RabbitMQ
-**Databases**: PostgreSQL · MySQL · MS-SQL · Oracle · DynamoDB · Redis
-**Observability**: Prometheus · Loki · Grafana · Elasticsearch / Kibana
-**Testing**: Jest · Selenium · JMeter · WebWorkers + WebAssembly (browser performance)
-**Dev tooling**: Git · Subversion · Unleash · Postman · Fiddler · Retool
+**Languages**: TypeScript · JavaScript · Python · Go · Java · SQL · (working: C · C++ · C#)
+**Backend & APIs**: Node.js · NestJS · Fastify · RESTful APIs · microservices · GraphQL (Apollo, Relay) · event-driven / queues · J2EE/Servlets/Struts (legacy)
+**AI / ML**: LLM orchestration (OpenAI · Anthropic · Gemini) · multi-provider routing (LiteLLM) · RAG & semantic caching · real-time voice (STT/TTS/VAD; Pipecat · LiveKit · Retell · Deepgram · ElevenLabs) · LLM evals (Langfuse · Cekura) · AWS Comprehend (NLP) · image-processing / computer-vision
+**Cloud & DevOps**: Google Cloud Platform · AWS (Cognito · Comprehend · Kinesis · SNS · SQS) · Docker · Kubernetes / GKE · Terraform · GitLab CI / GitHub Actions · Cloud Run · Workload Identity Federation
+**Databases**: PostgreSQL (query optimization · indexing · schema design) · Redis · MongoDB · MySQL · DynamoDB · Oracle · vector / pgvector
+**Orchestration & Real-time**: Temporal · Cloud Tasks · Kafka (CDC, Avro) · RabbitMQ · WebSockets · Server-Sent Events
+**Healthcare**: EHR / PMS integration (FHIR · HL7 · proprietary · browser-automation) · eligibility & prior-auth · RCM / payments · HIPAA · multi-EHR abstraction · patient-access automation
+**Frontend**: React · Next.js · Redux · Zustand · TanStack Query · Vue / Nuxt · Tailwind · Radix UI
+**Observability**: OpenTelemetry · Sentry · Prometheus · Loki · Grafana · Elasticsearch / Kibana
+**Testing & perf**: Jest · Vitest · Selenium · JMeter · WebAssembly + WebWorkers (browser performance)
 
 ---
 
@@ -137,4 +142,8 @@ Travel + road trips · Hiking (Maharashtra treks) · Cooking · Table-Tennis / B
 
 ## Variants live under
 
-`resumes/variants/{target-role-slug}.resume.json` — one per role you apply to. Use the `tailor-resume` skill (Phase 3, not yet built) once you have 10+ achievements in `achievements/`.
+`resumes/variants/{date}-{company}-{role}.{html,md,pdf}` — one tailored cut per JD. See `resumes/variants/README.md` for the JD-tailoring workflow and where to drop new JDs.
+
+Existing variants:
+- `2026-06-04-therxassistant-tech-lead.{html,md,pdf}` — TheRxAssistant Tech Lead (founding team, healthcare AI)
+- `2026-05-14-temp-general.{html,md,pdf}` — general baseline
