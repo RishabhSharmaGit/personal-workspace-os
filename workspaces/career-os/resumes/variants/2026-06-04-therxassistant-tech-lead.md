@@ -17,7 +17,7 @@ target_role: therxassistant-tech-lead
 
 **Founding Engineer / Tech Lead — Healthcare AI & Voice**
 
-Pune / Bangalore, India · Open to remote & US relocation · +91 9004310441 · rishabh.sharma26@gmail.com · [linkedin.com/in/rishabhz](https://www.linkedin.com/in/rishabhz) · [github.com/RishabhSharmaGit](https://github.com/RishabhSharmaGit)
+Pune / Bangalore, India · +91 9004310441 · rishabh.sharma26@gmail.com · [linkedin.com/in/rishabhz](https://www.linkedin.com/in/rishabhz) · [github.com/RishabhSharmaGit](https://github.com/RishabhSharmaGit)
 
 > Readable mirror of the rendered resume (`2026-06-04-therxassistant-tech-lead.html` → `.pdf`). Render via the compact template; see `../RENDERING.md`. Score with `score.ts`.
 
