@@ -11,7 +11,9 @@
     "db:reset": "npx supabase --workdir db db reset",
     "db:migrate": "npx supabase --workdir db migration up",
     "db:types": "npx supabase --workdir db gen types typescript --local --output scripts/lib/db-types.ts",
-    "index:rebuild": "bun run scripts/index-rebuild.ts"
+    "index:rebuild": "bun run scripts/index-rebuild.ts",
+    "resume:render": "bunx resumed render --theme jsonresume-theme-even",
+    "resume:score": "bun run workspaces/career-os/resumes/score.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -21,6 +23,8 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/bun": "^1.1.10",
+    "jsonresume-theme-even": "^0.26.1",
+    "resumed": "^6.1.0",
     "typescript": "^5.5.4"
   },
   "trustedDependencies": ["@biomejs/biome"]

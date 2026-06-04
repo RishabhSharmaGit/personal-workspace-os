@@ -8,7 +8,7 @@
     "email": "rishabh.sharma26@gmail.com",
     "phone": "+91 9004310441",
     "url": "",
-    "summary": "Founding software engineer with ~10 years building production systems end-to-end. Took a Series A healthcare voice-AI product from 0→1 — architecting the EHR-agnostic patient-access platform that powers AI agents across 90+ clinics and 40+ EHR systems. Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.",
+    "summary": "Founding software engineer with ~10 years building production systems end-to-end. Architected the EHR-agnostic patient-access platform behind a Series A healthcare voice-AI product — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, >80% call automation). Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.",
     "location": {
       "city": "Pune / Bangalore",
       "region": "Maharashtra / Karnataka",
@@ -163,69 +163,59 @@
   ],
   "skills": [
     {
-      "name": "Programming Languages (Proficient)",
+      "name": "Languages",
       "level": "Advanced",
-      "keywords": ["JavaScript", "TypeScript", "Java", "HTML5", "CSS3"]
+      "keywords": ["TypeScript", "JavaScript", "Python", "Go", "Java", "SQL", "HTML5", "CSS3", "C / C++ / C# (working)"]
     },
     {
-      "name": "Programming Languages (Working knowledge)",
-      "level": "Intermediate",
-      "keywords": ["C", "C++", "C#", "GoLang", "Python (TODO: VERIFY for Confido AI work)"]
-    },
-    {
-      "name": "Frontend frameworks",
+      "name": "Backend & APIs",
       "level": "Advanced",
-      "keywords": ["React", "Redux", "Vue", "VueX", "Nuxt.js", "JQuery", "JQueryUI", "Knockout", "chart.js", "Bootstrap"]
-    },
-    {
-      "name": "Backend frameworks",
-      "level": "Advanced",
-      "keywords": ["Node.js", "NestJs", "GraphQL (Apollo, Relay)", "REST APIs", "J2EE", "Servlets", "Struts"]
+      "keywords": ["Node.js", "NestJS", "Fastify", "RESTful APIs", "microservices", "GraphQL (Apollo, Relay)", "FastAPI", "event-driven architecture", "J2EE / Servlets / Struts (legacy)", "Bun", "Turborepo monorepo"]
     },
     {
       "name": "AI / ML",
       "level": "Advanced",
-      "keywords": ["Voice AI (ASR/TTS/VAD)", "LLM application development", "AWS Comprehend (NLP)", "Image-to-stitch-vector ML (Cimpress StitchX)"]
+      "keywords": ["LLM orchestration (OpenAI, Anthropic, Gemini)", "multi-provider routing (LiteLLM)", "RAG", "semantic caching", "real-time voice AI (STT/TTS/VAD)", "Pipecat", "LiveKit", "Retell", "Deepgram", "ElevenLabs", "LLM evals (Langfuse, Cekura)", "prompt engineering", "AWS Comprehend (NLP)", "image-processing / computer-vision"]
     },
     {
-      "name": "Cloud & Infrastructure",
+      "name": "Databases & data",
       "level": "Advanced",
-      "keywords": ["Google Cloud Platform (GCP)", "AWS (Cognito, Comprehend, Kinesis, SNS, SQS)", "Cloudflare", "Heroku", "Tomcat", "Docker", "Terraform"]
+      "keywords": ["PostgreSQL (query optimization, indexing, schema design)", "Supabase (Postgres + RLS)", "MongoDB (change streams)", "Redis", "MySQL", "MS-SQL", "Oracle", "DynamoDB", "vector DB / pgvector", "Prisma", "pgx"]
     },
     {
-      "name": "Databases",
+      "name": "Cloud & DevOps",
       "level": "Advanced",
-      "keywords": ["PostgreSQL", "MySQL", "MS-SQL", "Oracle", "DynamoDB", "Redis"]
+      "keywords": ["Google Cloud Platform (Cloud Run, GKE, Cloud Tasks, GCS, Secret Manager, Memorystore)", "AWS (Cognito, Comprehend, Kinesis, SNS, SQS)", "Docker", "Kubernetes / GKE", "Terraform", "GitLab CI", "GitHub Actions", "Workload Identity Federation", "Firebase Functions", "Vercel", "Cloudflare", "Helm", "Kaniko"]
     },
     {
-      "name": "Queues / Streaming",
-      "level": "Intermediate",
-      "keywords": ["Kafka", "RabbitMQ", "Kinesis", "SNS", "SQS"]
-    },
-    {
-      "name": "Observability",
-      "level": "Intermediate",
-      "keywords": ["Prometheus", "Loki", "Grafana", "Elasticsearch", "Kibana"]
-    },
-    {
-      "name": "Testing & QA",
+      "name": "Orchestration, queues & real-time",
       "level": "Advanced",
-      "keywords": ["Jest", "Selenium", "JMeter (custom API testing project)", "automated unit/integration/UI suites"]
+      "keywords": ["Temporal", "GCP Cloud Tasks", "Kafka (CDC, Avro/Schema Registry)", "RabbitMQ", "MQTT (EMQX)", "WebSockets", "Server-Sent Events (SSE)", "Twilio (SIP, voice/SMS)", "Svix webhooks"]
     },
     {
-      "name": "Browser performance",
+      "name": "Healthcare & integration",
       "level": "Advanced",
-      "keywords": ["WebWorkers", "WebAssembly (Wasm)"]
+      "keywords": ["EHR / PMS integration (FHIR, HL7, proprietary APIs, browser-automation)", "multi-EHR abstraction layer", "eligibility verification & prior-auth", "RCM / payments", "HIPAA / PHI handling", "patient-access automation", "Razorpay / payment gateways", "Puppeteer (legacy-system automation)"]
     },
     {
-      "name": "Dev tooling",
+      "name": "Frontend",
       "level": "Advanced",
-      "keywords": ["Git", "Subversion", "Unleash (feature flags)", "Postman", "Fiddler", "Retool"]
+      "keywords": ["React", "Next.js", "Redux", "Zustand", "TanStack Query", "Vue / Nuxt", "Radix UI", "Tailwind CSS", "JQuery / Knockout / chart.js (legacy)"]
+    },
+    {
+      "name": "Auth & multi-tenancy",
+      "level": "Advanced",
+      "keywords": ["Clerk", "AWS Cognito", "Supabase RLS", "JWT", "multi-tenant org/location/agent hierarchy", "RBAC"]
+    },
+    {
+      "name": "Observability, testing & tooling",
+      "level": "Advanced",
+      "keywords": ["OpenTelemetry (OTLP)", "Sentry", "PostHog", "Prometheus", "Loki", "Grafana", "Elasticsearch / Kibana", "Jest", "Vitest", "Selenium", "JMeter", "WebAssembly + WebWorkers", "Git", "Zod", "Biome", "Postman"]
     },
     {
       "name": "Domains shipped to production",
       "level": "Advanced",
-      "keywords": ["Healthcare / Voice AI (Confido)", "Insurance / HR-tech (Nova)", "Market research (YouGov)", "Mass customization (Cimpress)", "Cybersecurity / IRM (Seclore)", "Payments (Razorpay, insurer APIs)"]
+      "keywords": ["Healthcare / Voice AI (Confido)", "Insurance / HR-tech (Nova)", "Market research (YouGov)", "Mass customization / CV (Cimpress)", "Cybersecurity / IRM (Seclore)", "Payments"]
     }
   ],
   "projects": [
@@ -286,9 +276,9 @@
     }
   ],
   "languages": [
-    {
-      "_comment": "English (high fluency), Hindi, Marathi"
-    }
+    { "language": "English", "fluency": "Full professional" },
+    { "language": "Hindi", "fluency": "Native" },
+    { "language": "Marathi", "fluency": "Native" }
   ],
   "interests": [
     { "name": "Travel", "keywords": ["road trips", "exotic destinations", "local cuisines"] },
@@ -300,9 +290,8 @@
   ],
   "meta": {
     "canonical": "workspaces/career-os/resumes/master.resume.json",
-    "version": "0.2.0",
-    "lastModified": "2026-05-14",
-    "schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
-    "_notes": "v0.2 populated work[1..5] highlights + education + skills + projects + interests from personal/resumes/2024-09-rishabh-sharma-sde3.pdf. Work[0] (Confido) still placeholder per user request. Verify metrics + claim ownership before rendering any PDF resume from this."
+    "version": "0.3.0",
+    "lastModified": "2026-06-04",
+    "schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json"
   }
 }

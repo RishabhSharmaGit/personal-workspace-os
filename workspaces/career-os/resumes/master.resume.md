@@ -26,7 +26,7 @@ The canonical resume is `master.resume.json` (JSON Resume v1 schema). This `.md`
 Pune / Bangalore, India · Open to remote-from-India & US/EU relocation · +91 9004310441 · rishabh.sharma26@gmail.com
 [linkedin.com/in/rishabhz](https://www.linkedin.com/in/rishabhz) · [github.com/RishabhSharmaGit](https://github.com/RishabhSharmaGit)
 
-> Founding software engineer with ~10 years building production systems end-to-end. Took a Series A healthcare voice-AI product from 0→1 — architecting the EHR-agnostic patient-access platform that powers AI agents across 90+ clinics and 40+ EHR systems. Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project.
+> Founding software engineer with ~10 years building production systems end-to-end. Architected the EHR-agnostic patient-access platform behind a Series A healthcare voice-AI product — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, >80% call automation). Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.
 
 ## Selected Impact
 
@@ -119,7 +119,7 @@ MIT Academy of Engineering, Pune · 2012 – 2016 · **First Class with Distinct
 **Backend & APIs**: Node.js · NestJS · Fastify · RESTful APIs · microservices · GraphQL (Apollo, Relay) · event-driven / queues · J2EE/Servlets/Struts (legacy)
 **AI / ML**: LLM orchestration (OpenAI · Anthropic · Gemini) · multi-provider routing (LiteLLM) · RAG & semantic caching · real-time voice (STT/TTS/VAD; Pipecat · LiveKit · Retell · Deepgram · ElevenLabs) · LLM evals (Langfuse · Cekura) · AWS Comprehend (NLP) · image-processing / computer-vision
 **Cloud & DevOps**: Google Cloud Platform · AWS (Cognito · Comprehend · Kinesis · SNS · SQS) · Docker · Kubernetes / GKE · Terraform · GitLab CI / GitHub Actions · Cloud Run · Workload Identity Federation
-**Databases**: PostgreSQL (query optimization · indexing · schema design) · Redis · MongoDB · MySQL · DynamoDB · Oracle · vector / pgvector
+**Databases**: PostgreSQL (query optimization · indexing · schema design) · Supabase (Postgres + RLS) · MongoDB (change streams) · Redis · MySQL · DynamoDB · Oracle · vector / pgvector · Prisma · pgx
 **Orchestration & Real-time**: Temporal · Cloud Tasks · Kafka (CDC, Avro) · RabbitMQ · WebSockets · Server-Sent Events
 **Healthcare**: EHR / PMS integration (FHIR · HL7 · proprietary · browser-automation) · eligibility & prior-auth · RCM / payments · HIPAA · multi-EHR abstraction · patient-access automation
 **Frontend**: React · Next.js · Redux · Zustand · TanStack Query · Vue / Nuxt · Tailwind · Radix UI
