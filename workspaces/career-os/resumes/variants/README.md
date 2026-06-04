@@ -33,13 +33,14 @@ You stay in control: I'll surface gaps (e.g. "this JD wants AWS, you're GCP-prim
 | `roles/<co>-<role>.md` | yes | distilled JD + keyword + match analysis |
 | `roles/<co>-<role>.keywords.json` | yes | curated JD keywords for `score.ts` |
 | `applications/<date>-<co>-<role>.md` | yes | status tracker (wishlist→applied→…) |
-| `resumes/variants/<date>-<co>-<role>.resume.json` | yes | **render source** (JSON Resume) |
+| `resumes/variants/<date>-<co>-<role>.html` | yes | **render source** (compact ATS template) |
 | `resumes/variants/<date>-<co>-<role>.md` | yes | human mirror + scorer input |
-| `resumes/variants/<date>-<co>-<role>.{rendered.html,pdf}` | no (gitignored) | generated |
+| `resumes/variants/<date>-<co>-<role>.pdf` | no (gitignored) | generated |
 
-**Rendering + scoring**: see [`../RENDERING.md`](../RENDERING.md). PDFs come from the JSON via
-`resumed` + `jsonresume-theme-even` (clean, ATS-safe). Each variant is scored against its JD with
-`score.ts` and iterated until keyword coverage is strong (the RX cut went 68 → 100).
+**Rendering + scoring**: see [`../RENDERING.md`](../RENDERING.md). PDFs come from the compact `.html`
+template via headless Edge (dense, single-column, ATS-safe; tailored cut ≤ 2 pages). Each variant is
+scored against its JD with `score.ts` and iterated until keyword coverage is strong (the RX cut went
+68 → 100). Check length with `pagecount.ts`.
 
 ## Getting a PDF — three options
 

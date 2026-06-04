@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Rishabh Sharma — Master Resume</title>
+<style>
+  :root{--ink:#1a202c;--soft:#3d4757;--mute:#6b7686;--accent:#16466e;--rule:#c4ccd6;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#e9edf2;color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+    font-size:9.5pt;line-height:1.29;-webkit-font-smoothing:antialiased;}
+  .page{background:#fff;max-width:8.27in;margin:18px auto;padding:0.4in 0.5in;box-shadow:0 2px 10px rgba(0,0,0,.07);}
+  .name{font-size:21pt;font-weight:700;color:var(--accent);letter-spacing:-.4px;margin:0;}
+  .title{font-size:10pt;font-weight:600;color:var(--soft);margin:1px 0 3px;}
+  .contact{font-size:8.7pt;color:var(--mute);line-height:1.45;}
+  .contact a{color:var(--mute);text-decoration:none;}
+  h2{font-size:8.7pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);
+    margin:8px 0 3px;padding-bottom:2px;border-bottom:1px solid var(--rule);}
+  .summary{font-size:9.4pt;color:var(--soft);line-height:1.38;margin:0;}
+  ul{margin:2px 0 0;padding-left:14px;}
+  li{font-size:9.2pt;margin-bottom:1.5px;line-height:1.3;}
+  .impact li{font-size:9.3pt;}
+  .role{margin:5px 0 0;page-break-inside:avoid;}
+  .rhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+  .rt{font-size:9.8pt;font-weight:600;}
+  .rc{font-style:italic;color:var(--soft);}
+  .rm{font-size:8.6pt;color:var(--mute);white-space:nowrap;flex-shrink:0;}
+  .scope{font-size:8.5pt;color:var(--mute);font-style:italic;margin:1px 0 2px;}
+  .srow{font-size:9.1pt;line-height:1.4;margin:1.5px 0;}
+  .srow b{color:var(--accent);display:inline-block;min-width:118px;vertical-align:top;}
+  .srow span{display:inline-block;width:calc(100% - 122px);}
+  .edu{font-size:9.3pt;}
+  .edu b{font-weight:600;}
+  .oneline{font-size:9.2pt;color:var(--soft);margin:3px 0 0;}
+  @media print{html,body{background:#fff;}.page{margin:0;max-width:none;box-shadow:none;padding:0.34in 0.46in;}@page{size:A4;margin:0;}}
+</style>
+</head>
+<body>
+<article class="page">
+  <div class="name">Rishabh Sharma</div>
+  <div class="title">Founding / Staff Software Engineer — Healthcare AI &amp; Voice</div>
+  <div class="contact">
+    Pune / Bangalore, India · Open to remote-from-India &amp; US/EU relocation · +91&nbsp;9004310441 · <a href="mailto:rishabh.sharma26@gmail.com">rishabh.sharma26@gmail.com</a> · <a href="https://www.linkedin.com/in/rishabhz">linkedin.com/in/rishabhz</a> · <a href="https://github.com/RishabhSharmaGit">github.com/RishabhSharmaGit</a>
+  </div>
+
+  <h2>Summary</h2>
+  <p class="summary">Founding software engineer with ~10 years building production systems end-to-end. Architected the <b>EHR-agnostic patient-access platform</b> underpinning a fast-scaling Series&nbsp;A healthcare voice-AI business — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, &gt;80% call automation). Known for shipping production <b>LLM and real-time voice systems</b> in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project.</p>
+
+  <h2>Selected Impact</h2>
+  <ul class="impact">
+    <li>Architected &amp; scaled a healthcare <b>patient-access platform from 3 → 90+ clinics</b> integrating <b>40+ EHR / practice-management systems</b> behind one standardized RESTful API — backbone for AI agents serving 1M+ patients.</li>
+    <li>Shipped <b>production generative-AI / voice systems</b> (LLM orchestration across OpenAI/Anthropic/Gemini; real-time STT+LLM+TTS) with a design holding <b>token cost constant regardless of call length</b>.</li>
+    <li>Turned multi-vendor healthcare integration into a <b>2-4 day commodity (from ~10-15 days)</b> — 4-5 new integrations per 2-week sprint.</li>
+    <li>Re-architected a compute-heavy <b>ML / computer-vision pipeline to run client-side (WebAssembly)</b> — latency ~4-5s → &lt;800ms, ~60% infra cost.</li>
+  </ul>
+
+  <h2>Experience</h2>
+  <div class="role">
+    <div class="rhead"><div><span class="rt">Founding Software Engineer</span>, <span class="rc">Confido Health</span></div><div class="rm">Oct 2024 — Present · Bangalore / New York</div></div>
+    <div class="scope">Fast-scaling Series A ($10M) healthcare voice-AI · 1M+ patients, &gt;80% call automation · founding engineer · TypeScript/Node.js · Python · Go · PostgreSQL · GCP · HIPAA</div>
+    <ul>
+      <li>Architected the <b>EHR-agnostic patient-access / clinical-workflow platform</b> from day one — the data + action layer every voice-AI agent and forward-deployed engineer calls to run the full front-office workload: scheduling, patient identity, <b>insurance eligibility/verification + prior-auth</b>, <b>payments / balance collection (RCM)</b>, <b>medication &amp; prescription refills</b>, documents + clinical timeline + notes, EHR read/write sync with human-in-the-loop fallback. Scaled <b>3 → 90+ clinics</b> across <b>40+ EHR/PMS systems</b>.</li>
+      <li>Built a pluggable <b>EHR integration framework (NestJS, RESTful microservices)</b> + an isolated <b>Puppeteer browser-automation</b> service for legacy EHRs without API auth — cut new-EHR integration from <b>~10-15 days to 2-4 days</b>; 14+ direct-API + 20+ browser connectors (eClinicalWorks, Athenahealth, NextGen, ModMed, Dentrix, Kolla, …).</li>
+      <li>Designed the <b>EHR-agnostic abstraction</b> so agents + FDE systems call one standardized API (cascade-search-patient, find-free-slots, post-appointment, get-changes-since, eligibility, refill) regardless of vendor — with self-serve clinic onboarding via the CareOS dashboard.</li>
+      <li>Built <b>production generative-AI / voice pipelines</b> — LLM orchestration across OpenAI, Anthropic &amp; Gemini (multi-provider routing + semantic caching), real-time <b>STT+LLM+TTS</b> on <b>Twilio</b>; leading the Pipecat-vs-LiveKit runtime evaluation. Key design: <b>Redis source-of-truth + dynamic prompts</b> rendered from frozen state each turn — constant token usage regardless of call length.</li>
+      <li>Owned <b>reliability + cost engineering at 3x scale</b> — advanced <b>PostgreSQL</b> schema/indexing, hash-based change detection to cut EHR API cost under rate limits, idempotent writes + backoff + partial-sync recovery + HITL review queue. Re-architected the compute topology into independently-scaling <b>GCP Cloud Run</b> services (eliminated deploy downtime + sync-vs-API contention; keyless CI/CD).</li>
+      <li>Workflow orchestration with <b>Temporal</b>; real-time clinician dashboard with <b>Server-Sent Events</b> + multi-tenant RBAC. <b>Additionally</b>: designed the senior-engineer interview framework (multiple internal appraisals); contributed across the Go/Temporal voice-agent backend and the Next.js dashboard.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="rhead"><div><span class="rt">Tech Lead — SDE3</span>, <span class="rc">Nova Benefits</span></div><div class="rm">Jul 2022 — Sep 2024 · Remote · Bangalore</div></div>
+    <div class="scope">Insurance / HR-tech platform · 250K active employees + 3K HR admins · led 5-8 engineers + dedicated QA</div>
+    <ul>
+      <li>Built a scalable <b>third-party integration framework</b> (HRMS + insurer + payment APIs) — new partner integrable in 3-4 days (Google Workspace, Zoho People, Darwinbox); integrated ICICI/CARE insurer APIs to cut endorsement TAT from <b>14 days to a few hours</b>.</li>
+      <li>Consolidated dispersed endorsement + onboarding logic into a unified central module — <b>90% reduction</b> in core-module production issues.</li>
+      <li>Led a team of 5-8 engineers + a dedicated QA, collaborating with PM/CTO on the roadmap.</li>
+      <li>Integrated Razorpay SDK checkout; built self-served mental/financial health assessment, CD-Account wallet management, rater-based premium calculation, and Mailmodo/WATI CX automation.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="rhead"><div><span class="rt">Full Stack Engineer</span>, <span class="rc">YouGov</span></div><div class="rm">Jun 2020 — Jul 2022 · Remote · UK</div></div>
+    <div class="scope">Chat-based engagement platform · 1.2M-user panel · AWS</div>
+    <ul>
+      <li>Owned YouGov.Chat (1.2M-user panel) end-to-end; shipped production <b>NLP on AWS (Comprehend)</b> for opinion analysis + content moderation.</li>
+      <li>Built an in-house <b>headless CMS</b> (StoryBlok); integrated <b>AWS Cognito</b> social login, Unleash feature flags, and Terraform-managed <b>AWS</b> infrastructure.</li>
+      <li>Integrated a bank API for automated reward payouts and platform-wide push notifications.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="rhead"><div><span class="rt">Senior Software Developer</span>, <span class="rc">Cimpress Technology</span></div><div class="rm">Feb 2019 — Jun 2020 · Mumbai</div></div>
+    <ul>
+      <li>Re-architected StitchX's compute-heavy <b>ML / computer-vision</b> image-processing core (vectorization, stitch-path planning, color segmentation) to run client-side via <b>WebAssembly + WebWorkers</b>: latency ~4-5s → &lt;800ms, ~60% infra cost reduction, real-time interactive preview. Promoted to Senior in 8 months, then to a <b>US-based artwork design-editor team</b>.</li>
+      <li>Designed a dedicated JMeter-based API load/functional testing project from scratch; maintained unit/integration/UI suites + CI/CD pipelines.</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="rhead"><div><span class="rt">Product Engineer</span>, <span class="rc">Seclore Technology</span></div><div class="rm">Jun 2016 — Feb 2019 · Mumbai</div></div>
+    <ul>
+      <li>Full-stack engineer on the flagship data-security (Information Rights Management) product, <b>FileSecure</b> — owned the full development lifecycle from requirements to QA release; co-built the OU Admin monitoring dashboard.</li>
+      <li>Designed a centralized <b>PolicyServer</b> configuration init/update mechanism, an installer + patch upload/validate/fetch system, and an end-user license + privileges framework.</li>
+    </ul>
+  </div>
+
+  <h2>Skills</h2>
+  <div class="srow"><b>Languages</b><span>TypeScript · JavaScript · Python · Go · Java · SQL · (working: C / C++ / C#)</span></div>
+  <div class="srow"><b>Backend &amp; APIs</b><span>Node.js · NestJS · Fastify · RESTful APIs · microservices · GraphQL · FastAPI · event-driven · Bun / Turborepo</span></div>
+  <div class="srow"><b>AI / ML</b><span>LLM orchestration (OpenAI, Anthropic, Gemini) · LiteLLM routing · RAG &amp; semantic caching · real-time voice (Pipecat, LiveKit, Retell, Deepgram, ElevenLabs) · LLM evals (Langfuse, Cekura) · AWS Comprehend · image-processing / CV</span></div>
+  <div class="srow"><b>Databases</b><span>PostgreSQL (query opt · indexing · schema) · Supabase (RLS) · MongoDB · Redis · MySQL · DynamoDB · Oracle · vector / pgvector · Prisma · pgx</span></div>
+  <div class="srow"><b>Cloud &amp; DevOps</b><span>GCP (Cloud Run, GKE, Cloud Tasks, GCS, Secret Manager) · AWS (Cognito, Comprehend, Kinesis, SNS, SQS) · Docker · Kubernetes · Terraform · GitLab CI / GitHub Actions · Firebase Functions · Vercel</span></div>
+  <div class="srow"><b>Orchestration &amp; RT</b><span>Temporal · Cloud Tasks · Kafka (CDC, Avro) · RabbitMQ · MQTT · WebSockets · Server-Sent Events · Twilio</span></div>
+  <div class="srow"><b>Healthcare</b><span>EHR/PMS integration (FHIR · HL7 · proprietary · browser-automation) · multi-EHR abstraction · eligibility &amp; prior-auth · RCM / payments · HIPAA / PHI</span></div>
+  <div class="srow"><b>Frontend</b><span>React · Next.js · Redux · Zustand · TanStack Query · Vue / Nuxt · Radix UI · Tailwind</span></div>
+  <div class="srow"><b>Auth &amp; observability</b><span>Clerk · AWS Cognito · multi-tenant RBAC · OpenTelemetry · Sentry · PostHog · Grafana / Prometheus / Loki</span></div>
+
+  <h2>Education</h2>
+  <div class="edu"><b>B.E. Electronics &amp; Telecommunication Engineering</b> · <i>MIT Academy of Engineering, Pune</i> · First Class with Distinction · 2012–2016</div>
+
+  <p class="oneline"><b>Interests:</b> Avid hiker (Maharashtra treks) · culinary enthusiast · table-tennis, badminton &amp; football · travel &amp; road trips.</p>
+</article>
+</body>
+</html>

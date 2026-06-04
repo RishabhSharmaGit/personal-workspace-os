@@ -26,7 +26,7 @@ The canonical resume is `master.resume.json` (JSON Resume v1 schema). This `.md`
 Pune / Bangalore, India · Open to remote-from-India & US/EU relocation · +91 9004310441 · rishabh.sharma26@gmail.com
 [linkedin.com/in/rishabhz](https://www.linkedin.com/in/rishabhz) · [github.com/RishabhSharmaGit](https://github.com/RishabhSharmaGit)
 
-> Founding software engineer with ~10 years building production systems end-to-end. Architected the EHR-agnostic patient-access platform behind a Series A healthcare voice-AI product — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, >80% call automation). Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.
+> Founding software engineer with ~10 years building production systems end-to-end. Architected the EHR-agnostic patient-access platform underpinning a fast-scaling Series A healthcare voice-AI business — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, >80% call automation). Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.
 
 ## Selected Impact
 
@@ -108,8 +108,9 @@ Full-stack engineer at a data-centric cyber-security organisation. Built back-en
 **Bachelor of Engineering — Electronics and Telecommunication Engineering**
 MIT Academy of Engineering, Pune · 2012 – 2016 · **First Class with Distinction (66%)**
 
-**CBSE-AISSCE (Class 12)** — Air Force School, Viman Nagar, Pune · 2010 – 2012 · 71.80%
-**CBSE-AISSE (Class 10)** — Air Force School, 9BRD, Pune · 2008 – 2010 · 89.30%
+<!-- Schooling (kept for reference; not shown on rendered resumes per convention for senior roles):
+CBSE-AISSCE (Class 12) — Air Force School, Viman Nagar, Pune · 2010-2012 · 71.80%
+CBSE-AISSE (Class 10) — Air Force School, 9BRD, Pune · 2008-2010 · 89.30% -->
 
 ---
 
