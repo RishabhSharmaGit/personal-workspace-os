@@ -26,7 +26,7 @@ The canonical resume is `master.resume.json` (JSON Resume v1 schema). This `.md`
 Pune / Bangalore, India · Open to remote-from-India & US/EU relocation · +91 9004310441 · rishabh.sharma26@gmail.com
 [linkedin.com/in/rishabhz](https://www.linkedin.com/in/rishabhz) · [github.com/RishabhSharmaGit](https://github.com/RishabhSharmaGit)
 
-> Founding software engineer with ~10 years building production systems end-to-end. Architected the EHR-agnostic patient-access platform underpinning a fast-scaling Series A healthcare voice-AI business — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, >80% call automation). Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project. Open to remote-from-India and US/EU relocation.
+> Founding software engineer with ~10 years building production systems end-to-end. Architected the EHR-agnostic patient-access platform underpinning a fast-scaling Series A healthcare voice-AI business — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, >80% call automation). Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project.
 
 ## Selected Impact
 
@@ -117,15 +117,15 @@ CBSE-AISSE (Class 10) — Air Force School, 9BRD, Pune · 2008-2010 · 89.30% --
 ## Skills
 
 **Languages**: TypeScript · JavaScript · Python · Go · Java · SQL · (working: C · C++ · C#)
-**Backend & APIs**: Node.js · NestJS · Fastify · RESTful APIs · microservices · GraphQL (Apollo, Relay) · event-driven / queues · J2EE/Servlets/Struts (legacy)
+**Backend & APIs**: Node.js · NestJS · Fastify · RESTful APIs · microservices · GraphQL (Apollo, Relay) · event-driven / queues · repository / strategy patterns · batch & stream ingestion · J2EE/Servlets/Struts (legacy)
 **AI / ML**: LLM orchestration (OpenAI · Anthropic · Gemini) · multi-provider routing (LiteLLM) · RAG & semantic caching · real-time voice (STT/TTS/VAD; Pipecat · LiveKit · Retell · Deepgram · ElevenLabs) · LLM evals (Langfuse · Cekura) · AWS Comprehend (NLP) · image-processing / computer-vision
-**Cloud & DevOps**: Google Cloud Platform · AWS (Cognito · Comprehend · Kinesis · SNS · SQS) · Docker · Kubernetes / GKE · Terraform · GitLab CI / GitHub Actions · Cloud Run · Workload Identity Federation
+**Cloud & DevOps**: Google Cloud Platform (Cloud Run · GKE · Cloud Tasks · GCS · Secret Manager · Artifact Registry) · AWS (Cognito · Comprehend · Kinesis · SNS · SQS) · Docker · Kubernetes · Terraform · GitLab CI / GitHub Actions · Workload Identity Federation · PM2
 **Databases**: PostgreSQL (query optimization · indexing · schema design) · Supabase (Postgres + RLS) · MongoDB (change streams) · Redis · MySQL · DynamoDB · Oracle · vector / pgvector · Prisma · pgx
 **Orchestration & Real-time**: Temporal · Cloud Tasks · Kafka (CDC, Avro) · RabbitMQ · WebSockets · Server-Sent Events
 **Healthcare**: EHR / PMS integration (FHIR · HL7 · proprietary · browser-automation) · eligibility & prior-auth · RCM / payments · HIPAA · multi-EHR abstraction · patient-access automation
 **Frontend**: React · Next.js · Redux · Zustand · TanStack Query · Vue / Nuxt · Tailwind · Radix UI
-**Observability**: OpenTelemetry · Sentry · Prometheus · Loki · Grafana · Elasticsearch / Kibana
-**Testing & perf**: Jest · Vitest · Selenium · JMeter · WebAssembly + WebWorkers (browser performance)
+**Observability**: OpenTelemetry (+ OTel Collector) · SigNoz · Sentry · PostHog · Prometheus · Loki · Grafana · Elasticsearch / Kibana · structured logging (Winston, zap)
+**Testing & quality**: Jest · Vitest · Supertest · Selenium · JMeter · Husky · dependency-cruiser / madge (architecture & circular-dep checks) · Biome / ESLint / Prettier · WebAssembly + WebWorkers (browser performance)
 
 ---
 
@@ -137,7 +137,7 @@ Healthcare / Voice AI · Insurance / HR-tech · Market research · Mass customiz
 
 ## Interests
 
-Travel + road trips · Hiking (Maharashtra treks) · Cooking · Table-Tennis / Basketball / Badminton / Football · Dance · Event organisation
+Avid hiker · culinary enthusiast · table-tennis, badminton & football · **Dota 2 tactician** (a decade of 5-stack drafting, shot-calling & clutch comebacks — teamwork under pressure, gamified) · travel & road trips
 
 ---
 
