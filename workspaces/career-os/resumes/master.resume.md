@@ -147,4 +147,3 @@ Avid hiker · culinary enthusiast · table-tennis, badminton & football · **Dot
 
 Existing variants:
 - `2026-06-04-therxassistant-tech-lead.{html,md,pdf}` — TheRxAssistant Tech Lead (founding team, healthcare AI)
-- `2026-05-14-temp-general.{html,md,pdf}` — general baseline

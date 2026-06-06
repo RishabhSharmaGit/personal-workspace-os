@@ -1,0 +1,36 @@
+{
+  "_comment": "Generic scoring profile for a senior/staff backend + AI-platform engineer (the role class Rishabh targets). Use to sanity-check the MASTER resume's general coverage (not JD-specific). bun run score.ts --resume master.html --jd _generic-senior-swe.keywords.json",
+  "required": [
+    ["backend", "server-side"],
+    ["TypeScript", "Node.js", "Python", "Go"],
+    ["PostgreSQL", "Postgres", "SQL"],
+    ["microservices", "distributed systems"],
+    ["RESTful", "REST API", "API design"],
+    ["system design", "architecture", "architected"],
+    ["scalable", "scalability", "scale"],
+    ["cloud", "GCP", "AWS"],
+    ["CI/CD", "DevOps", "GitLab CI", "GitHub Actions"],
+    ["Docker", "containerization"],
+    ["leadership", "led", "mentored", "tech lead"],
+    ["testing", "test", "Jest"],
+    ["performance", "latency", "optimization"],
+    ["ownership", "owned", "end-to-end"]
+  ],
+  "bonus": [
+    ["LLM", "generative AI", "GenAI"],
+    ["RAG", "embeddings", "vector"],
+    ["Kubernetes", "K8s", "GKE"],
+    ["Terraform", "infrastructure as code"],
+    ["observability", "OpenTelemetry", "monitoring"],
+    ["event-driven", "Kafka", "queue", "Temporal"],
+    ["real-time", "WebSockets", "streaming", "SSE"],
+    ["startup", "founding", "0 to 1", "early-stage"],
+    ["HIPAA", "compliance", "regulated"]
+  ],
+  "domain": [
+    ["healthcare", "clinical", "patient"],
+    ["EHR", "FHIR", "HL7"],
+    ["voice AI", "conversational AI", "speech"],
+    ["payments", "RCM", "fintech", "insurance"]
+  ]
+}
