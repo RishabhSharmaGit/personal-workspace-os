@@ -11,7 +11,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run scripts/lib/session-start.ts"
+            "command": "bun run R:/Development/Workspace/scripts/lib/session-start.ts"
           }
         ]
       }
@@ -23,7 +23,7 @@
           {
             "type": "command",
             "command": "bun",
-            "args": ["run", "scripts/indexer.ts"]
+            "args": ["run", "R:/Development/Workspace/scripts/indexer.ts"]
           }
         ]
       }
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run scripts/lib/session-end.ts"
+            "command": "bun run R:/Development/Workspace/scripts/lib/session-end.ts"
           }
         ]
       }

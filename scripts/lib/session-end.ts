@@ -2,7 +2,9 @@ import { existsSync, appendFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { sql, isDbUnreachable } from './db.ts';
 
-const repoRoot = process.cwd();
+// Derive repo root from this file's location (scripts/lib/ → ../..), so the
+// hook is cwd-independent (Stop hooks may fire from another cwd).
+const repoRoot = join(import.meta.dir, '..', '..');
 const statePath = join(repoRoot, 'STATE.md');
 
 try {
