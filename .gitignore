@@ -40,8 +40,26 @@ personal/**
 # Any folder named "private/" inside any workspace is fully gitignored.
 workspaces/*/private/
 
+# Per-workspace "personal/" holds raw source artifacts — JDs (job postings = application
+# targeting detail), resume PDFs, LinkedIn/chat exports. Repo is public; never commit these.
+workspaces/*/personal/
+
 # Generated resume artifacts — regenerate from .resume.json via
-# workspaces/career-os/resumes/RENDERING.md. Sources (.json/.md) are tracked.
+# workspaces/career-os/resumes/RENDERING.md. The master sources (.json/.md) are tracked.
 workspaces/career-os/resumes/**/*.pdf
 workspaces/career-os/resumes/**/*.rendered.html
+
+# Job-application specifics stay LOCAL ONLY — this repo is PUBLIC and is reachable from the
+# GitHub profile linked on the resume. The companies/roles being targeted, tailored resume
+# variants, cover letters, and per-application trackers must never be committed. Only derived,
+# abstracted knowledge (skills to master, decisions, research, generic keyword sets) is tracked.
+# Folder structure is preserved via .gitkeep; the variants/ workflow README stays tracked.
+workspaces/career-os/applications/*
+!workspaces/career-os/applications/.gitkeep
+workspaces/career-os/cover-letters/*
+!workspaces/career-os/cover-letters/.gitkeep
+workspaces/career-os/roles/*
+!workspaces/career-os/roles/.gitkeep
+workspaces/career-os/resumes/variants/*
+!workspaces/career-os/resumes/variants/README.md
 

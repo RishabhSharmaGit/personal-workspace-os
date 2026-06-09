@@ -143,11 +143,4 @@ Avid hiker · culinary enthusiast · table-tennis, badminton & football · **Dot
 
 ## Variants live under
 
-`resumes/variants/{date}-{company}-{role}.{html,md,pdf}` — one tailored cut per JD. See `resumes/variants/README.md` for the JD-tailoring workflow and where to drop new JDs.
-
-Existing variants:
-- `2026-06-04-therxassistant-tech-lead.{html,md,pdf}` — TheRxAssistant Tech Lead (founding team, healthcare AI)
-- `2026-06-06-termgrid-engineering-manager.{html,md,pdf}` — Termgrid Engineering Manager (PE / capital-markets SaaS; leadership-forward)
-- `2026-06-09-infracloud-engineering-manager.{html,md,pdf}` — InfraCloud Engineering Manager (cloud-native consulting; delivery + cloud-native forward)
-- `2026-06-09-dbsync-engineering-manager-architect.{html,md,pdf}` — DBSync Engineering Manager / Architect (cloud data-integration; integration-architecture forward)
-- `2026-06-09-supersourcing-founding-engineer-healthcare.{html,md,pdf}` — Founding Engineer (Full Stack), Healthcare via Supersourcing (IC / full-stack forward; TypeScript + Supabase + HIPAA + EHR)
+`resumes/variants/{date}-{company}-{role}.{html,md,pdf}` — one tailored cut per JD, **gitignored / local-only** (this repo is public, so per-application materials and the companies being targeted are never committed). See `resumes/variants/README.md` for the JD-tailoring workflow and where to drop new JDs.

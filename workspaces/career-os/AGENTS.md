@@ -16,7 +16,9 @@ Help the user run a software-engineer job hunt with discipline: track applicatio
 
 ## Standard operations
 
-- New application → write `applications/{date}-{company}-{role}.md` with `type: application`, `application_status: wishlist|applied|...`.
+> **Privacy:** this repo is **public**. `applications/`, `roles/`, `cover-letters/`, and `resumes/variants/` are **gitignored / local-only** — never commit them, and never name a specific target company/role/recruiter in a tracked file (`STATE.md`, `master.resume.md`, etc.). Only derived/abstracted knowledge is committed. See [`CLAUDE.md`](CLAUDE.md) § "Git & privacy policy".
+
+- New application → write `applications/{date}-{company}-{role}.md` (local-only) with `type: application`, `application_status: wishlist|applied|...`.
 - New target role → write `roles/{slug}.md`, extract keywords, link company.
 - New contact → `contacts/{slug}.md`. Set `contact_relationship`.
 - New achievement → `achievements/{slug}.md`. Use the XYZ structure in frontmatter `xyz: {x, y, z}`.

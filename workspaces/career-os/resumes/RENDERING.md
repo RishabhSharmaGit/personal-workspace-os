@@ -9,14 +9,16 @@ sparse (master ballooned to ~9 pages), so it's deprecated in favour of the compa
 
 | File | Tracked? | Role |
 |---|---|---|
-| `*.html` | ✅ | **render source** — compact ATS-safe template |
-| `*.md` | ✅ | human-readable mirror + input to the scorer |
-| `*.pdf` | ❌ gitignored | final PDF (regenerate on demand) |
+| `master.html` | ✅ tracked | master **render source** — compact ATS-safe template |
+| `master.resume.md` / `.json` | ✅ tracked | human + structured master mirror / scorer input |
+| `master.pdf` | ❌ gitignored | generated |
+| `variants/*.{html,md,pdf}` | ❌ **local-only** | per-application cuts — gitignored (repo is public) |
 | `*.rendered.html` | ❌ gitignored | (legacy JSON-Resume output; unused) |
 
 - Master: `master.html` (+ `master.resume.json` = structured-data archive in JSON Resume schema, kept
-  for reference / the optional theme route; **not** the render source).
-- Tailored cuts: `variants/<date>-<company>-<role>.{html,md}`.
+  for reference / the optional theme route; **not** the render source). The master is **tracked**.
+- Tailored cuts: `variants/<date>-<company>-<role>.{html,md}` — **gitignored / local-only**; the
+  companies being targeted are never committed (see `variants/README.md`).
 
 ## Render to PDF (1 step, Windows headless Edge — no extra install)
 

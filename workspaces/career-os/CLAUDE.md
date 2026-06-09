@@ -34,6 +34,18 @@ Two folders hold sensitive material — neither ever reaches the repo:
 
 **Hard rule for Claude**: never quote, paste, render, summarize, or otherwise expose values that live under `private/` or `personal/` in any committed file. If the user explicitly asks for a private value to land in a public file (e.g. salary in a written negotiation script), confirm twice before doing so.
 
+## Git & privacy policy — application materials are LOCAL ONLY
+
+**This repo is public** (reachable from the GitHub profile linked on the résumé). The *specific job applications* — which companies/roles are being targeted, tailored resume variants, cover letters, and per-application trackers — are therefore **gitignored and never committed**. Local-only folders:
+
+- `applications/` · `roles/` · `cover-letters/` · `resumes/variants/`
+
+(`.gitkeep` files preserve the structure; `resumes/variants/README.md` keeps the workflow doc tracked. The git rule lives in the repo-root `.gitignore`.)
+
+**What IS committed**: the master résumé (`resumes/master.*`), abstracted/derived knowledge (`achievements/`, `research/`, `decisions/`, `intake/`, `interview-prep/common.md`), tooling, and docs. If a job application yields durable, *abstracted* knowledge (skills to master, a decision, a company-agnostic keyword set), distill it into `decisions/`, `research/`, `notes/`, or `intake/`.
+
+**Hard rule for tracked files**: never name a specific target company/role/recruiter in any *committed* file (e.g. `STATE.md`, `master.resume.md`). Keep targeting detail inside the local-only folders. STATE.md may carry aggregate counts only.
+
 ## Naming conventions
 
 - **Achievements**: concept-named, no date prefix. `achievements/voice-ai-p95-latency-reduction.md`. Slug = filename minus `.md`.

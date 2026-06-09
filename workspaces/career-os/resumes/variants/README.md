@@ -2,15 +2,9 @@
 
 Tailored resume cuts, one per job posting. Naming: `YYYY-MM-DD-<company>-<role>.{html,md,pdf}`.
 
-## What's in here right now
+> **Local-only / gitignored.** This repo is **public** (reachable from the GitHub profile linked on the resume), so the actual variant files — and the companies being targeted — are **never committed**. Only this README (the workflow) is tracked. The variant `.html`/`.md`/`.pdf` live on disk locally and are ignored by git. The same applies to `applications/`, `roles/`, and `cover-letters/`.
 
-- `2026-06-04-therxassistant-tech-lead.{html,md,pdf}` — **TheRxAssistant — Tech Lead** (founding team, healthcare AI). Tailored, JD-keyword-mirrored, 2-page.
-- `2026-06-06-termgrid-engineering-manager.{html,md,pdf}` — **Termgrid — Engineering Manager** (PE / capital-markets SaaS). Leadership-forward; Confido bullets carry full domain context (EHR-agnostic platform, EHR integrations, gen-AI/voice pipelines). 2-page, score 94.
-- `2026-06-09-infracloud-engineering-manager.{html,md,pdf}` — **InfraCloud Technologies — Engineering Manager** (cloud-native consulting/services). Delivery + cloud-native/platform-engineering forward. 2-page, score 100.
-- `2026-06-09-dbsync-engineering-manager-architect.{html,md,pdf}` — **DBSync Inc — Engineering Manager / Architect** (cloud data-integration, Salesforce-incubated; UK-hours). Integration-platform-architecture forward (multi-tenant, Java, AWS). 2-page, score 100. *Posting may be expired — verify before applying.*
-- `2026-06-09-supersourcing-founding-engineer-healthcare.{html,md,pdf}` — **Founding Engineer (Full Stack) — Healthcare** (US-market startup, via Supersourcing; remote). IC / full-stack forward (TypeScript, Supabase, HIPAA, EHR/EMR). 2-page, score 100. **Best-fit role in the pipeline.** Email: `cover-letters/2026-06-09-supersourcing-founding-engineer.md`.
-
-The master canonical is one level up: `resumes/master.resume.json` (structured reservoir) + `resumes/master.resume.md` (human master, exhaustive). **Variants are tight 2-page cuts derived from the master** — pick the 4-6 highlights + bullets matching the JD, mirror the JD's exact keywords, drop the rest.
+The master canonical is one level up: `resumes/master.resume.json` (structured reservoir) + `resumes/master.resume.md` (human master, exhaustive — tracked). **Variants are tight 2-page cuts derived from the master** — pick the 4-6 highlights + bullets matching the JD, mirror the JD's exact keywords, drop the rest.
 
 ---
 
@@ -21,24 +15,28 @@ The master canonical is one level up: `resumes/master.resume.json` (structured r
 
 Then ask me ("build a resume for the <company> JD") and I will:
 
-1. **Read + distill** the JD → create `roles/<company>-<role>.md` (committed) with a full **requirement-by-requirement match analysis**, extracted keywords, and a tailoring strategy.
-2. **Create the application tracker** → `applications/YYYY-MM-DD-<company>-<role>.md` (committed) with `application_status: wishlist`, timeline, why-I-want-it, concerns, next actions.
+1. **Read + distill** the JD → create `roles/<company>-<role>.md` (local-only) with a full **requirement-by-requirement match analysis**, extracted keywords, and a tailoring strategy.
+2. **Create the application tracker** → `applications/YYYY-MM-DD-<company>-<role>.md` (local-only) with `application_status: wishlist`, timeline, why-I-want-it, concerns, next actions.
 3. **Build the tailored resume** → `resumes/variants/YYYY-MM-DD-<company>-<role>.{html,md,pdf}` — derived from the master, mirroring the JD's exact tech + domain keywords, with the strongest 4-6 achievements surfaced and weaker/older roles compressed.
-4. **Generate the PDF** (gitignored — sources committed, PDF regenerates on demand).
+4. **Generate the PDF** (regenerates on demand).
 
 You stay in control: I'll surface gaps (e.g. "this JD wants AWS, you're GCP-primary — here's the framing") and any open questions (salary band, remote acceptability) before you send.
 
-### The four files per application
+### The files per application — all LOCAL-ONLY (gitignored)
 
-| File | Committed? | Purpose |
+None of these are committed (the repo is public). They live on disk locally; git ignores them.
+
+| File | Tracked? | Purpose |
 |---|---|---|
-| `personal/references/jds/<date>-<co>-<role>.pdf` | no (gitignored) | raw JD source |
-| `roles/<co>-<role>.md` | yes | distilled JD + keyword + match analysis |
-| `roles/<co>-<role>.keywords.json` | yes | curated JD keywords for `score.ts` |
-| `applications/<date>-<co>-<role>.md` | yes | status tracker (wishlist→applied→…) |
-| `resumes/variants/<date>-<co>-<role>.html` | yes | **render source** (compact ATS template) |
-| `resumes/variants/<date>-<co>-<role>.md` | yes | human mirror + scorer input |
-| `resumes/variants/<date>-<co>-<role>.pdf` | no (gitignored) | generated |
+| `personal/references/jds/<date>-<co>-<role>.pdf` | no | raw JD source |
+| `roles/<co>-<role>.md` | no | distilled JD + keyword + match analysis |
+| `roles/<co>-<role>.keywords.json` | no | curated JD keywords for `score.ts` |
+| `applications/<date>-<co>-<role>.md` | no | status tracker (wishlist→applied→…) |
+| `resumes/variants/<date>-<co>-<role>.html` | no | **render source** (compact ATS template) |
+| `resumes/variants/<date>-<co>-<role>.md` | no | human mirror + scorer input |
+| `resumes/variants/<date>-<co>-<role>.pdf` | no | generated |
+
+If you want a *committable* artifact out of an application, distill it into derived knowledge (skills to master, a decision note, a generic/company-agnostic keyword set) and place it outside these four folders — e.g. under `decisions/`, `research/`, or `intake/`.
 
 **Rendering + scoring**: see [`../RENDERING.md`](../RENDERING.md). PDFs come from the compact `.html`
 template via headless Edge (dense, single-column, ATS-safe; tailored cut ≤ 2 pages). Each variant is
