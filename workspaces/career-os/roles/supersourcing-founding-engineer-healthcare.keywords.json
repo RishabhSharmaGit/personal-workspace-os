@@ -1,0 +1,35 @@
+{
+  "_comment": "Curated keyword set from the Supersourcing Founding Engineer (Full Stack, Healthcare) JD. Founding-engineer IC role — TypeScript + Supabase + full-stack + HIPAA + healthcare weighted as required. Used by resumes/score.ts.",
+  "required": [
+    ["founding engineer", "founding", "founder"],
+    ["TypeScript", "TS"],
+    ["Supabase"],
+    ["full-stack", "full stack"],
+    ["HIPAA", "healthcare data privacy", "compliance"],
+    ["security", "security best practices", "secure"],
+    ["end-to-end", "ownership", "own features"],
+    ["startup", "early-stage", "fast-paced", "fast-moving"],
+    ["concept to production", "concept-to-production", "production", "product development"],
+    ["scalable", "scalability", "scale"],
+    ["API", "APIs", "RESTful", "REST"],
+    ["architecture", "architect", "technical decisions", "product decisions"],
+    ["healthcare", "health", "clinical", "clinic"],
+    ["web application", "web applications", "web apps"],
+    ["Node.js", "Node", "NodeJS"]
+  ],
+  "bonus": [
+    ["EHR", "EMR", "practice management", "PMS"],
+    ["US healthcare", "providers", "US market", "clinics"],
+    ["cloud", "cloud deployment", "DevOps", "CI/CD"],
+    ["PostgreSQL", "Postgres"],
+    ["React", "Next.js", "Next"],
+    ["Twilio", "voice", "real-time"],
+    ["independent", "independently"]
+  ],
+  "domain": [
+    ["patient", "patients"],
+    ["eligibility", "prior authorization", "prior-auth"],
+    ["RCM", "revenue cycle", "payments", "billing"],
+    ["FHIR", "HL7", "interoperability", "integration"]
+  ]
+}

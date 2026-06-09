@@ -36,12 +36,13 @@ Engineering leader with ~10 years building and shipping production systems — i
 
 ### Founding Software Engineer, Confido Health
 *Oct 2024 — Present · Remote · Bangalore / New York*
-> Series A startup · founding engineer, owns architecture & sets the hiring bar · TypeScript/Node.js, Java-family, Go, PostgreSQL, cloud-native (GCP)
+> Series A ($10M) healthcare voice-AI · founding engineer — owns architecture & sets the hiring bar · 1M+ patients, >80% call automation · TypeScript/Node.js, Java-family, Go, PostgreSQL, cloud-native GCP, HIPAA
 
-- Founding engineer — own the core platform end-to-end and set technical direction as the company scaled from **3 → 90+ customers (1M+ end users)**, shipping continuously under startup pressure.
-- Established the engineering **hiring bar** by designing the senior-engineer interview framework; **mentor engineers** and drive code-review, testing, and documentation standards across the team.
-- Architected a pluggable integration platform (**NestJS, RESTful microservices**, 40+ third-party systems) and re-architected the compute topology onto **cloud-native GCP Cloud Run** services with keyless CI/CD — eliminating deploy downtime through 3× growth.
-- Build production **AI/LLM + real-time systems** on a modern cloud-native stack — staying hands-on with cutting-edge tech while leading.
+- Founding engineer — **architected the EHR-agnostic patient-access platform** end-to-end and set technical direction as the company scaled **3 → 90+ clinics (1M+ patients, >80% call automation)**: the data + action layer every voice-AI agent runs against — scheduling, **insurance eligibility + prior-auth**, **payments / balance collection (RCM)**, **medication & prescription refills**, and EHR read/write sync with human-in-the-loop fallback.
+- Set the engineering **hiring bar** (designed the senior-engineer interview framework), **mentor engineers** across the stack, and own **code-review, testing & documentation** standards — shipping continuously under startup pressure.
+- Built the pluggable **EHR integration framework** (**NestJS, RESTful microservices**) + isolated browser-automation for legacy EHRs without API auth — cut new-EHR integration from **~10-15 days to 2-4 days**, so the team ships 4-5 integrations per 2-week sprint across **40+ EHR / practice-management systems**.
+- Built production **generative-AI / voice-agent pipelines** — LLM orchestration across OpenAI, Anthropic & Gemini (multi-provider routing + semantic caching) and real-time STT+LLM+TTS on Twilio telephony; led the Pipecat-vs-LiveKit runtime evaluation — staying hands-on with cutting-edge tech while leading.
+- Owned **reliability + cost at 3× scale** — re-architected the compute topology (background EHR-sync vs. real-time voice path) into independently-scaling **GCP Cloud Run** services with keyless CI/CD, eliminating deploy downtime through the growth to 90+ clinics.
 
 ### Tech Lead — SDE3, Nova Benefits
 *Jul 2022 — Sep 2024 · Remote · Bangalore*

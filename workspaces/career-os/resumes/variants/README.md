@@ -5,6 +5,10 @@ Tailored resume cuts, one per job posting. Naming: `YYYY-MM-DD-<company>-<role>.
 ## What's in here right now
 
 - `2026-06-04-therxassistant-tech-lead.{html,md,pdf}` — **TheRxAssistant — Tech Lead** (founding team, healthcare AI). Tailored, JD-keyword-mirrored, 2-page.
+- `2026-06-06-termgrid-engineering-manager.{html,md,pdf}` — **Termgrid — Engineering Manager** (PE / capital-markets SaaS). Leadership-forward; Confido bullets carry full domain context (EHR-agnostic platform, EHR integrations, gen-AI/voice pipelines). 2-page, score 94.
+- `2026-06-09-infracloud-engineering-manager.{html,md,pdf}` — **InfraCloud Technologies — Engineering Manager** (cloud-native consulting/services). Delivery + cloud-native/platform-engineering forward. 2-page, score 100.
+- `2026-06-09-dbsync-engineering-manager-architect.{html,md,pdf}` — **DBSync Inc — Engineering Manager / Architect** (cloud data-integration, Salesforce-incubated; UK-hours). Integration-platform-architecture forward (multi-tenant, Java, AWS). 2-page, score 100. *Posting may be expired — verify before applying.*
+- `2026-06-09-supersourcing-founding-engineer-healthcare.{html,md,pdf}` — **Founding Engineer (Full Stack) — Healthcare** (US-market startup, via Supersourcing; remote). IC / full-stack forward (TypeScript, Supabase, HIPAA, EHR/EMR). 2-page, score 100. **Best-fit role in the pipeline.** Email: `cover-letters/2026-06-09-supersourcing-founding-engineer.md`.
 
 The master canonical is one level up: `resumes/master.resume.json` (structured reservoir) + `resumes/master.resume.md` (human master, exhaustive). **Variants are tight 2-page cuts derived from the master** — pick the 4-6 highlights + bullets matching the JD, mirror the JD's exact keywords, drop the rest.
 
