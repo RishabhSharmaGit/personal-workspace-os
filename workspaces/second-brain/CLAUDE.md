@@ -29,6 +29,14 @@ General knowledge: articles, blog posts, repo references, ideas, chat distillati
 - Source items reference notes they spawned via `[[note-slug]]` in body.
 - Unresolved `[[slug]]` references are valid — the indexer records them, target may come later.
 
+## Shared language
+
+- [`CONTEXT.md`](CONTEXT.md) is this workspace's canonical glossary (Pocock-style: one
+  term, an `_Avoid_` synonym list, no implementation detail). Consult it before choosing a
+  slug, title, tag, type, or `[[wikilink]]` target so vocabulary stays consistent.
+- It is a skeleton/meta file (like `CLAUDE.md`/`README.md`) — not indexed as an item.
+- Resolve and add new terms inline as they come up; never batch.
+
 ## Skills active here
 
 - `capture`, `query`, `triage-inbox`, `weekly-review`, `distill-chat`, `index-rebuild`, `research`.

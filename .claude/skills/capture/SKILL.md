@@ -27,7 +27,7 @@ Trigger phrases: "save this", "capture", "add this", "remember this", "store thi
 
 3. **For files:** Read the file. For large PDFs, copy the binary to `R:\Development\Workspace-blobs\second-brain\sources\<date>-<slug>.<ext>` and keep only extracted text in the workspace markdown.
 
-4. **Summarize** the extracted content in 3–8 sentences. Pick:
+4. **Summarize** the extracted content in 3–8 sentences. First consult `workspaces/<ws>/CONTEXT.md` (the shared-language glossary) if present, and use its canonical terms when choosing the slug/title/tags. Pick:
    - `slug` (kebab-case, derived from title)
    - `title`
    - `type` — usually `source` for URLs/files, `note` for distilled insights, `decision` for explicit decisions, `inbox` for low-confidence

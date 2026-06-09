@@ -16,7 +16,8 @@ function workspaceSlugFromPath(absPath: string, repoRoot: string): string | null
 }
 
 // Workspace skeleton files live at workspaces/<ws>/ and are not items.
-const SKELETON_FILES = new Set(['CLAUDE.md', 'README.md', 'STATE.md']);
+// CONTEXT.md is the per-workspace shared-language glossary (Pocock-style) — meta, not a note.
+const SKELETON_FILES = new Set(['CLAUDE.md', 'README.md', 'STATE.md', 'CONTEXT.md']);
 
 export function isIndexableMd(absPath: string, repoRoot: string): boolean {
   const rel = relative(repoRoot, absPath).split(sep);

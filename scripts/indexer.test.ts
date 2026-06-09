@@ -161,10 +161,10 @@ Article body.
     expect(rows[0]!.blob_path).toBeNull();
   });
 
-  it('silently skips workspace skeleton files (CLAUDE/README/STATE.md at workspace root)', async () => {
+  it('silently skips workspace skeleton files (CLAUDE/README/STATE/CONTEXT.md at workspace root)', async () => {
     const wsRoot = join(tmpRoot, 'workspaces', 'second-brain');
     mkdirSync(wsRoot, { recursive: true });
-    for (const name of ['CLAUDE.md', 'README.md', 'STATE.md']) {
+    for (const name of ['CLAUDE.md', 'README.md', 'STATE.md', 'CONTEXT.md']) {
       const p = join(wsRoot, name);
       writeFileSync(p, '# Not an item — no frontmatter\n', 'utf8');
       // Should not throw, should not insert anything.

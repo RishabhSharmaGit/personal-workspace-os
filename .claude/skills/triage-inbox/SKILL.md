@@ -18,6 +18,7 @@ Trigger phrases: "triage inbox", "process inbox", "what's in my inbox", "clean u
 2. **For each item, propose a placement:**
    - Read the file (or capture raw_input) for context.
    - Decide: target folder (`notes`/`sources`/`decisions`/`archive`), new type, new status, any new tags or wikilinks to add.
+   - Consult `workspaces/<ws>/CONTEXT.md` (the shared-language glossary) if present, and use its canonical terms for type/status/tags/slugs.
    - Explain reasoning in 1–2 sentences.
 
 3. **Interactive mode (default):** present each proposal with options: `[Accept]`, `[Edit and accept]`, `[Skip]`, `[Archive]`, `[Reject]`. Default to one item at a time. If user says "auto" or "yolo", switch to auto mode.
