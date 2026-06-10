@@ -284,7 +284,7 @@
     { "name": "Hiking", "keywords": ["avid hiker"] },
     { "name": "Cooking", "keywords": ["culinary enthusiast"] },
     { "name": "Sports", "keywords": ["Table-Tennis", "Badminton", "Football", "Basketball"] },
-    { "name": "Dota 2", "keywords": ["10+ years of 5-stack drafting, shot-calling & clutch comebacks — teamwork under pressure, gamified"] },
+    { "name": "Dota 2", "keywords": ["team strategy & real-time decisions under pressure"] },
     { "name": "Travel", "keywords": ["road trips", "local cuisines"] }
   ],
   "meta": {

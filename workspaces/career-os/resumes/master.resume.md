@@ -137,7 +137,7 @@ Healthcare / Voice AI · Insurance / HR-tech · Market research · Mass customiz
 
 ## Interests
 
-Avid hiker · culinary enthusiast · table-tennis, badminton & football · **Dota 2 tactician** (a decade of 5-stack drafting, shot-calling & clutch comebacks — teamwork under pressure, gamified) · travel & road trips
+Avid hiker · culinary enthusiast · table-tennis, badminton & football · **Dota 2** — team strategy & real-time decisions under pressure · travel & road trips
 
 ---
 
