@@ -29,19 +29,22 @@ scripts/.cache/
 .obsidian/
 **/.obsidian/
 
-# Personal source artifacts — content gitignored, structure committed.
+# Personal input — the SINGLE canonical home for everything personal (gitignored content,
+# committed structure). Holds raw source artifacts (resumes, profile/IG/chat exports, JDs
+# under references/jds/) AND sensitive structured data under personal/private/ (comp,
+# contacts). Content is gitignored; only README.md + per-subfolder .gitkeep are tracked.
 # See personal/README.md for the layout contract.
 personal/**
 !personal/README.md
 !personal/*/
 !personal/*/.gitkeep
 
-# Sensitive workspace content (salary, ESOPs, vesting, family, medical, etc.)
-# Any folder named "private/" inside any workspace is fully gitignored.
+# Defensive safety nets — the canonical home is repo-root personal/ (above); do NOT create
+# per-workspace private/ or personal/ folders. These rules remain so that IF sensitive data
+# ever lands in a workspace by accident, git still refuses to track it.
+#   workspaces/*/private/  — salary, ESOPs, vesting, family, medical, contacts, etc.
+#   workspaces/*/personal/ — raw artifacts (JDs, resume PDFs, LinkedIn/chat exports)
 workspaces/*/private/
-
-# Per-workspace "personal/" holds raw source artifacts — JDs (job postings = application
-# targeting detail), resume PDFs, LinkedIn/chat exports. Repo is public; never commit these.
 workspaces/*/personal/
 
 # Generated resume artifacts — regenerate from .resume.json via
@@ -62,4 +65,8 @@ workspaces/career-os/roles/*
 !workspaces/career-os/roles/.gitkeep
 workspaces/career-os/resumes/variants/*
 !workspaces/career-os/resumes/variants/README.md
+
+# Per-company interview prep names a target company — keep LOCAL ONLY (repo is public).
+# The generic, company-agnostic interview-prep/common.md stays tracked.
+workspaces/career-os/interview-prep/*/
 

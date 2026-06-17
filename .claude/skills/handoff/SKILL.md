@@ -12,7 +12,7 @@ Include a "suggested skills" section in the document, which suggests skills the 
 
 Do not duplicate content already captured in other artifacts (notes, research sessions, decisions, ADRs, commits, diffs). Reference them by `[[slug]]` or path instead.
 
-Redact any sensitive information — API keys, passwords, the contents of `.env` or `.claude/settings.local.json`, or personal data from the `career-os` workspace's `private/` folder.
+Redact any sensitive information — API keys, passwords, the contents of `.env` or `.claude/settings.local.json`, or personal data from the repo-root `personal/` folder (including `personal/private/`).
 
 If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.
 

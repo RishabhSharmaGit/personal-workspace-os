@@ -66,7 +66,7 @@ This is the centerpiece plan for what to pull from Matt Pocock's `mattpocock/ski
 - **Grilling overlap** — does `superpowers:brainstorming` already cover pre-work alignment, and how do the two avoid double-prompting?
 - **`ts-reset` boundary** — confirm `scripts/` is never extracted into a published lib (global-scope mutation), and verify `ts-reset` v0.6.1 / `shoehorn` v0.1.2 against the current tsconfig target.
 - **Windows hook runtime** — every borrowed hook must be rewritten in PowerShell/Node; Pocock's are bash+jq.
-- **CONTEXT.md scope** — per-workspace vs a shared core at repo root; `career-os` already has `private/_CONVENTIONS.md` that may overlap.
+- **CONTEXT.md scope** — per-workspace vs a shared core at repo root; `career-os` already has `personal/private/_CONVENTIONS.md` that may overlap.
 - **Provenance mechanism** — `generated_by:` frontmatter (needs Zod schema + Postgres migration) vs a lighter body-banner (no schema change).
 
 ## Next steps

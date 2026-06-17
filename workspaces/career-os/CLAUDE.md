@@ -27,12 +27,14 @@ Job hunt and career-development workspace. Owner is a senior software engineer b
 
 ## Personal-data conventions
 
-Two folders hold sensitive material — neither ever reaches the repo:
+**All personal input lives in one place: the repo-root `personal/` folder** (content gitignored, structure committed via `personal/README.md` + `.gitkeep` files). It holds two kinds of material, neither of which ever reaches the repo:
 
-- **`workspaces/career-os/private/`** — gitignored at the repo level (rule: `workspaces/*/private/`). Holds sensitive *structured* data: current salary, ESOP grants, vesting schedules, comp targets per region, personal contact supplements, family/relocation specifics. See `private/_CONVENTIONS.md`. Committed markdown files (e.g. `intake/01-profile.md`, `intake/05-target-roles.md`) reference these via `→ private/<file>.md (gitignored)` instead of inlining values.
-- **`personal/`** at the repo root — holds raw source artifacts (resume PDFs, LinkedIn exports, IG dumps, chat exports). Content is gitignored; structure is committed via `personal/README.md` + `.gitkeep` files. See `personal/README.md` for layout + naming.
+- **`personal/`** subfolders (`resumes/`, `profile-exports/`, `references/jds/`, `ig-dumps/`, `chat-exports/`) — raw source artifacts: resume PDFs, LinkedIn exports, job descriptions, IG/chat dumps.
+- **`personal/private/`** — sensitive *structured* data: current salary, ESOP grants, vesting schedules, comp targets per region, personal contact supplements, family/relocation specifics. See `personal/private/_CONVENTIONS.md`. Committed markdown files (e.g. `intake/01-profile.md`, `intake/05-target-roles.md`) reference these via `→ personal/private/<file>.md (gitignored)` instead of inlining values.
 
-**Hard rule for Claude**: never quote, paste, render, summarize, or otherwise expose values that live under `private/` or `personal/` in any committed file. If the user explicitly asks for a private value to land in a public file (e.g. salary in a written negotiation script), confirm twice before doing so.
+See `personal/README.md` for the full layout + naming. (`personal/**` is gitignored except the README and per-subfolder `.gitkeep`. The defensive `workspaces/*/private/` and `workspaces/*/personal/` rules remain as safety nets, but the canonical home is `personal/` — do not re-create per-workspace `private/` or `personal/` folders.)
+
+**Hard rule for Claude**: never quote, paste, render, summarize, or otherwise expose values that live under `personal/` (including `personal/private/`) in any committed file. If the user explicitly asks for a private value to land in a public file (e.g. salary in a written negotiation script), confirm twice before doing so.
 
 ## Git & privacy policy — application materials are LOCAL ONLY
 

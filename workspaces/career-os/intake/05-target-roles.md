@@ -62,9 +62,9 @@ Check all that apply. Be picky.
 
 ## Compensation floors
 
-**Private — never inserted into resumes / outbound.** All TC floors, walkaway numbers, and per-region targets live in `private/comp-targets.md` (gitignored, local-only).
+**Private — never inserted into resumes / outbound.** All TC floors, walkaway numbers, and per-region targets live in `personal/private/comp-targets.md` (gitignored, local-only).
 
-See `private/_CONVENTIONS.md` for why this is separated, and `workspaces/career-os/CLAUDE.md` § "Personal-data conventions" for the broader rule.
+See `personal/private/_CONVENTIONS.md` for why this is separated, and `workspaces/career-os/CLAUDE.md` § "Personal-data conventions" for the broader rule.
 
 ## Industries / domains — hard yes / hard no
 

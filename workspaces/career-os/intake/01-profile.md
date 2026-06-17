@@ -22,7 +22,7 @@ Verify the `[FROM-PDF]` rows. Replace `[FILL]` rows. Don't trust anything blindl
 | Full name | Rishabh Sharma | `[FROM-PDF]` ✅ |
 | Preferred name on resume | Rishabh Sharma | `[VERIFY]` |
 | Mobile | +91 9004310441 | `[FROM-PDF]` ✅ |
-| Mobile (alt) | +91 8308524769 | `[FROM-SDE3-RESUME]` ✅ — see `private/contacts-personal.md` for usage guidance |
+| Mobile (alt) | +91 8308524769 | `[FROM-SDE3-RESUME]` ✅ — see `personal/private/contacts-personal.md` for usage guidance |
 | Primary email | rishabh.sharma26@gmail.com | `[FROM-PDF]` ✅ |
 | Public email for resume (if different) | NA | — |
 | LinkedIn | linkedin.com/in/rishabhz | `[FROM-PDF]` ✅ |
@@ -66,8 +66,8 @@ Verify the `[FROM-PDF]` rows. Replace `[FILL]` rows. Don't trust anything blindl
 | Tenure start | Oct 2024 | `[FROM-PDF]` ✅ |
 | Notice period | 1 month but immediate joininig | — |
 | Visibility (can you list publicly?) | `[VERIFY]` — see CLAUDE.md hard rule about stealth/NDA | — |
-| Current comp band (private) | → `private/comp-current.md` (gitignored) | — |
-| Equity / vesting status (private) | → `private/comp-current.md` (gitignored) | — |
+| Current comp band (private) | → `personal/private/comp-current.md` (gitignored) | — |
+| Equity / vesting status (private) | → `personal/private/comp-current.md` (gitignored) | — |
 
 ## Personal facts that affect job search
 
