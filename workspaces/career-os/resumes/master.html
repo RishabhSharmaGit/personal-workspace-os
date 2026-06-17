@@ -14,30 +14,34 @@
   .title{font-size:11pt;font-weight:600;color:var(--soft);margin:2px 0 4px;}
   .contact{font-size:9.2pt;color:var(--mute);line-height:1.5;}
   .contact a{color:var(--mute);text-decoration:none;}
+  .visa{font-size:9.2pt;color:var(--accent);font-weight:600;}
   h2{font-size:9.4pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);
-    margin:14px 0 5px;padding-bottom:3px;border-bottom:1px solid var(--rule);}
-  .summary{font-size:10pt;color:var(--soft);line-height:1.5;margin:0;}
+    margin:13px 0 5px;padding-bottom:3px;border-bottom:1px solid var(--rule);}
+  .summary{font-size:9.9pt;color:var(--soft);line-height:1.5;margin:0;}
   ul{margin:3px 0 0;padding-left:16px;}
-  li{font-size:9.9pt;margin-bottom:4px;line-height:1.45;}
-  .impact li{font-size:9.9pt;margin-bottom:4.5px;}
-  .role{margin:11px 0 0;}
+  li{font-size:9.7pt;margin-bottom:3.5px;line-height:1.43;}
+  .impact li{font-size:9.7pt;margin-bottom:4px;}
+  .role{margin:10px 0 0;}
   .rhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
-  .rt{font-size:10.6pt;font-weight:600;}
+  .rt{font-size:10.5pt;font-weight:600;}
   .rc{font-weight:700;color:var(--accent);}
   .rm{font-size:9.1pt;color:var(--mute);white-space:nowrap;flex-shrink:0;}
-  .scope{font-size:9.1pt;color:var(--mute);font-style:italic;margin:2px 0 3px;}
-  .srow{font-size:9.9pt;line-height:1.6;margin:3px 0;}
+  .scope{font-size:9pt;color:var(--mute);font-style:italic;margin:2px 0 3px;}
+  .srow{font-size:9.7pt;line-height:1.55;margin:2.5px 0;}
   .srow b{color:var(--accent);display:inline-block;min-width:128px;vertical-align:top;}
   .srow span{display:inline-block;width:calc(100% - 132px);}
-  .edu{font-size:10pt;}
+  .edu{font-size:9.9pt;}
   .edu b{font-weight:600;}
-  .oneline{font-size:10pt;color:var(--soft);margin:7px 0 0;}
+  .edu-block{margin-top:13px;break-inside:avoid;}
+  .edu-head{font-size:9.4pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin:0 0 5px;padding-bottom:3px;border-bottom:1px solid var(--rule);}
+  .project{font-size:9.7pt;color:var(--soft);margin:5px 0 0;line-height:1.5;}
+  .project b{color:var(--ink);font-weight:600;}
+  .project .pmeta{font-size:9pt;color:var(--mute);}
+  .oneline{font-size:9.7pt;color:var(--soft);margin:7px 0 0;}
   @media print{
     html,body{background:#fff;}
     .page{margin:0;max-width:none;box-shadow:none;padding:0;}
-    @page{size:A4;margin:15mm 15mm;}
-    h2{break-after:avoid;}
-    li{break-inside:avoid;}
+    @page{size:A4;margin:11mm 15mm;}
   }
 </style>
 </head>
@@ -46,88 +50,89 @@
   <div class="name">Rishabh Sharma</div>
   <div class="title">Founding / Staff Software Engineer — Healthcare AI &amp; Voice</div>
   <div class="contact">
-    Pune / Bangalore, India · +91&nbsp;9004310441 · <a href="mailto:rishabh.sharma26@gmail.com">rishabh.sharma26@gmail.com</a> · <a href="https://www.linkedin.com/in/rishabhz">linkedin.com/in/rishabhz</a> · <a href="https://github.com/RishabhSharmaGit">github.com/RishabhSharmaGit</a>
+    Pune, India · Open to remote-from-India &amp; US/EU relocation · +91&nbsp;9004310441 · <a href="mailto:rishabh.sharma26@gmail.com">rishabh.sharma26@gmail.com</a> · <a href="https://www.linkedin.com/in/rishabhz">linkedin.com/in/rishabhz</a> · <a href="https://github.com/RishabhSharmaGit">github.com/RishabhSharmaGit</a> · <span class="visa">US B-1/B-2 Visa · valid Jan 2035</span>
   </div>
 
   <h2>Summary</h2>
-  <p class="summary">Founding software engineer with ~10 years building production systems end-to-end. Architected the <b>EHR-agnostic patient-access platform</b> underpinning a fast-scaling Series&nbsp;A healthcare voice-AI business — scaling it from first pilots to 90+ clinics and 40+ EHR systems (1M+ patients, &gt;80% call automation). Known for shipping production <b>LLM and real-time voice systems</b> in HIPAA-regulated settings, and for turning multi-vendor integration into a 2-4 day commodity instead of a multi-week project.</p>
+  <p class="summary">Took a fragmented, legacy-software-bound industry — healthcare front-office across 40+ incompatible vendor systems — and made it <b>programmable behind one API</b>. Founding software engineer at Confido Health: scaled a patient-access + voice-AI platform from 3 pilot clinics to <b>90+, 1M+ patients, and &gt;80% call automation in 18 months</b>. Known for shipping production LLM and real-time voice systems in HIPAA-regulated settings, turning multi-vendor EHR integration into a <b>2-4 day commodity</b>, and catching scaling ceilings before they reach users.</p>
 
   <h2>Selected Impact</h2>
   <ul class="impact">
-    <li>Architected &amp; scaled a healthcare <b>patient-access platform from 3 → 90+ clinics</b> integrating <b>40+ EHR / practice-management systems</b> behind one standardized RESTful API — backbone for AI agents serving 1M+ patients.</li>
-    <li>Shipped <b>production generative-AI / voice systems</b> (LLM orchestration across OpenAI/Anthropic/Gemini; real-time STT+LLM+TTS) with a design holding <b>token cost constant regardless of call length</b>.</li>
-    <li>Turned multi-vendor healthcare integration into a <b>2-4 day commodity (from ~10-15 days)</b> — 4-5 new integrations per 2-week sprint.</li>
-    <li>Re-architected a compute-heavy <b>ML / computer-vision pipeline to run client-side (WebAssembly)</b> — latency ~4-5s → &lt;800ms, ~60% infra cost.</li>
+    <li><b>3 → 90+ clinics in 18 months</b> — architected and scaled the EHR-agnostic patient-access platform underpinning Confido's voice-AI agents (1M+ patients, &gt;80% call automation, 5,000+ calls/day peak).</li>
+    <li><b>10-15 days → 2-4 days per EHR integration</b> — pluggable adapter framework; team ships 4-5 integrations/sprint across 40+ live healthcare systems.</li>
+    <li><b>~70% token-cost reduction</b> — Redis-source-of-truth prompt architecture targets ≤2,500 tokens/call vs ~8,500-10,000 baseline; &lt;800ms P50 voice-to-voice latency.</li>
+    <li><b>~60% infra cost reduction</b> — re-architected an ML/computer-vision pipeline from server-side to client-side WebAssembly + WebWorkers, cutting latency from ~4-5s to &lt;800ms.</li>
   </ul>
 
   <h2>Experience</h2>
+
   <div class="role">
     <div class="rhead"><div><span class="rt">Founding Software Engineer</span>, <span class="rc">Confido Health</span></div><div class="rm">Oct 2024 — Present · Bangalore / New York</div></div>
-    <div class="scope">Fast-scaling Series A ($10M) healthcare voice-AI · 1M+ patients, &gt;80% call automation · founding engineer · TypeScript/Node.js · Python · Go · PostgreSQL · GCP · HIPAA</div>
+    <div class="scope">Series A ($10M) healthcare voice-AI · 1M+ patients, &gt;80% call automation · TypeScript · Python · Go · PostgreSQL · GCP · HIPAA</div>
     <ul>
-      <li>Architected the <b>EHR-agnostic patient-access / clinical-workflow platform</b> from day one — the data + action layer every voice-AI agent and forward-deployed engineer calls to run the full front-office workload: scheduling, patient identity, <b>insurance eligibility/verification + prior-auth</b>, <b>payments / balance collection (RCM)</b>, <b>medication &amp; prescription refills</b>, documents + clinical timeline + notes, EHR read/write sync with human-in-the-loop fallback. Scaled <b>3 → 90+ clinics</b> across <b>40+ EHR/PMS systems</b>.</li>
-      <li>Built a pluggable <b>EHR integration framework (NestJS, RESTful microservices)</b> + an isolated <b>Puppeteer browser-automation</b> service for legacy EHRs without API auth — cut new-EHR integration from <b>~10-15 days to 2-4 days</b>; 14+ direct-API + 20+ browser connectors (eClinicalWorks, Athenahealth, NextGen, ModMed, Dentrix, Kolla, …).</li>
-      <li>Designed the <b>EHR-agnostic abstraction</b> so agents + FDE systems call one standardized API (cascade-search-patient, find-free-slots, post-appointment, get-changes-since, eligibility, refill) regardless of vendor — with self-serve clinic onboarding via the CareOS dashboard.</li>
-      <li>Built <b>production generative-AI / voice pipelines</b> — LLM orchestration across OpenAI, Anthropic &amp; Gemini (multi-provider routing + semantic caching), real-time <b>STT+LLM+TTS</b> on <b>Twilio</b>; leading the Pipecat-vs-LiveKit runtime evaluation. Key design: <b>Redis source-of-truth + dynamic prompts</b> rendered from frozen state each turn — constant token usage regardless of call length.</li>
-      <li>Owned <b>reliability + cost engineering at 3x scale</b> — advanced <b>PostgreSQL</b> schema/indexing, hash-based change detection to cut EHR API cost under rate limits, idempotent writes + backoff + partial-sync recovery + HITL review queue. Re-architected the compute topology into independently-scaling <b>GCP Cloud Run</b> services (eliminated deploy downtime + sync-vs-API contention; keyless CI/CD).</li>
-      <li>Workflow orchestration with <b>Temporal</b>; real-time clinician dashboard with <b>Server-Sent Events</b> + multi-tenant RBAC. <b>Additionally</b>: designed the senior-engineer interview framework (multiple internal appraisals); contributed across the Go/Temporal voice-agent backend and the Next.js dashboard.</li>
+      <li>Architected the <b>EHR-agnostic patient-access platform from day one</b> — the data + action layer every voice-AI agent calls to run the full front-office (scheduling, eligibility + prior-auth, payments/RCM, refills, EHR read/write sync, HITL fallback). Scaled <b>3 → 90+ clinics</b> across <b>40+ EHR/PMS systems</b> in 18 months (1M+ patients, &gt;80% call automation).</li>
+      <li>Built the <b>pluggable EHR integration framework</b> (NestJS, factory + abstract-base-service contract) + isolated browser-automation service (Puppeteer) for legacy systems without API auth — cut new-EHR integration from <b>~10-15 days to 2-4 days</b>; team ships <b>4-5 integrations/sprint</b>. 14+ direct-API connectors (Athenahealth, NextGen, ModMed, Tebra, Dentrix, …) + 20+ browser-automation connectors (eClinicalWorks, CareStack, …).</li>
+      <li>Own the production <b>AI/LLM + voice layer</b> — multi-provider routing across OpenAI, Anthropic &amp; Gemini (LiteLLM + semantic cache), real-time <b>STT+LLM+TTS</b> on <b>Twilio</b> (&lt;800ms P50). Key design: <b>Redis source-of-truth + snapshot prompt rendering</b> keeps token cost flat regardless of call length (<b>≤2,500 vs ~8,500-10,000 tokens/call, ~70% reduction</b>).</li>
+      <li><b>Re-architected compute topology</b> at ~30 clinics — split background EHR-sync from the real-time voice path into independently-scaling <b>GCP Cloud Run</b> services (keyless CI/CD via Workload Identity Federation) — eliminated <b>5-10s deploy downtimes</b>, removed sync-vs-API contention; platform tripled to <b>90+ clinics with zero deploy downtime</b>. OpenTelemetry-first observability (OTLP traces + metrics + logs, PHI-scrubbing) across all services.</li>
+      <li><b>Designed the senior-engineer interview framework</b>; mentor engineers across the stack; own code-review, testing, and CI/CD standards. Stack also spans: Temporal (workflows), Next.js + SSE (clinician dashboard), Clerk + Supabase RLS (multi-tenant RBAC).</li>
     </ul>
   </div>
 
   <div class="role">
-    <div class="rhead"><div><span class="rt">Tech Lead — SDE3</span>, <span class="rc">Nova Benefits</span></div><div class="rm">Jul 2022 — Sep 2024 · Remote · Bangalore</div></div>
-    <div class="scope">Insurance / HR-tech platform · 250K active employees + 3K HR admins · led 5-8 engineers + dedicated QA</div>
+    <div class="rhead"><div><span class="rt">Tech Lead / SDE3</span>, <span class="rc">Nova Benefits</span></div><div class="rm">Jul 2022 — Sep 2024 · Remote · Bangalore</div></div>
+    <div class="scope">Insurance / HR-tech · 250K active employees + 3K HR admins · led 5-8 engineers + dedicated QA</div>
     <ul>
-      <li>Built a scalable <b>third-party integration framework</b> (HRMS + insurer + payment APIs) — new partner integrable in 3-4 days (Google Workspace, Zoho People, Darwinbox); integrated ICICI/CARE insurer APIs to cut endorsement TAT from <b>14 days to a few hours</b>.</li>
-      <li>Consolidated dispersed endorsement + onboarding logic into a unified central module — <b>90% reduction</b> in core-module production issues.</li>
-      <li>Led a team of 5-8 engineers + a dedicated QA, collaborating with PM/CTO on the roadmap.</li>
-      <li>Integrated Razorpay SDK checkout; built self-served mental/financial health assessment, CD-Account wallet management, rater-based premium calculation, and Mailmodo/WATI CX automation.</li>
+      <li><b>Led a 5-8 engineer team</b>; consolidated fragmented endorsement + onboarding logic into a unified <b>state-machine module</b> — <b>90% reduction in core-module production issues</b>; aligned roadmap with PM and CTO.</li>
+      <li>Built a scalable <b>third-party integration framework</b> — any HRMS integrable in 3-4 days (Google Workspace, Zoho People, Darwinbox); integrated ICICI + CARE insurer APIs for automated endorsement submission + batch tracking — cut <b>endorsement TAT from 14 days to a few hours</b>.</li>
+      <li>Integrated Razorpay for retail checkout; built self-served mental/financial health assessments, CD-account (client wallet), and rater-based premium-calculation + refund framework; Mailmodo + WATI for email/WhatsApp CX automation.</li>
     </ul>
   </div>
 
   <div class="role">
-    <div class="rhead"><div><span class="rt">Full Stack Engineer</span>, <span class="rc">YouGov</span></div><div class="rm">Jun 2020 — Jul 2022 · Remote · UK</div></div>
-    <div class="scope">Chat-based engagement platform · 1.2M-user panel · AWS</div>
+    <div class="rhead"><div><span class="rt">Full Stack Engineer</span>, <span class="rc">YouGov Research</span></div><div class="rm">Jun 2020 — Jul 2022 · Remote · UK</div></div>
+    <div class="scope">Market research · 1.2M-user engagement panel · Node.js · React · AWS</div>
     <ul>
-      <li>Owned YouGov.Chat (1.2M-user panel) end-to-end; shipped production <b>NLP on AWS (Comprehend)</b> for opinion analysis + content moderation.</li>
-      <li>Built an in-house <b>headless CMS</b> (StoryBlok); integrated <b>AWS Cognito</b> social login, Unleash feature flags, and Terraform-managed <b>AWS</b> infrastructure.</li>
-      <li>Integrated a bank API for automated reward payouts and platform-wide push notifications.</li>
+      <li>Owned <b>YouGov.Chat</b> end-to-end (1.2M-user panel) — features, reliability, and ops; built an in-house headless CMS, feature flags (Unleash), social login (AWS Cognito), Terraform infra, and bank API integration for automated reward payouts.</li>
+      <li>Shipped a production <b>NLP pipeline</b> (AWS Comprehend) for comment moderation + opinion extraction — <b>confidence-gated routing + HITL quarantine queue</b>; early production guardrails years before they became standard.</li>
     </ul>
   </div>
 
   <div class="role">
-    <div class="rhead"><div><span class="rt">Senior Software Developer</span>, <span class="rc">Cimpress Technology</span></div><div class="rm">Feb 2019 — Jun 2020 · Mumbai</div></div>
+    <div class="rhead"><div><span class="rt">Senior Software Developer</span> <span style="font-size:9pt;color:var(--mute)">(promoted in 8 months)</span>, <span class="rc">Cimpress Technology</span></div><div class="rm">Feb 2019 — Jun 2020 · Mumbai</div></div>
+    <div class="scope">Mass customization / print-on-demand · ML/computer-vision pipeline</div>
     <ul>
-      <li>Re-architected StitchX's compute-heavy <b>ML / computer-vision</b> image-processing core (vectorization, stitch-path planning, color segmentation) to run client-side via <b>WebAssembly + WebWorkers</b>: latency ~4-5s → &lt;800ms, ~60% infra cost reduction, real-time interactive preview. Promoted to Senior in 8 months, then to a <b>US-based artwork design-editor team</b>.</li>
-      <li>Designed a dedicated JMeter-based API load/functional testing project from scratch; maintained unit/integration/UI suites + CI/CD pipelines.</li>
+      <li>Re-architected the StitchX <b>ML/computer-vision</b> pipeline to run client-side via <b>WebAssembly + WebWorkers</b> — cut latency from ~4-5s to <b>&lt;800ms</b>, eliminated the dedicated compute fleet (<b>~60% infra cost reduction</b>), enabled real-time interactive preview. Promoted to Senior in 8 months; moved to a <b>US-based team</b> on a higher-vertical design-editor product.</li>
     </ul>
   </div>
 
   <div class="role">
     <div class="rhead"><div><span class="rt">Product Engineer</span>, <span class="rc">Seclore Technology</span></div><div class="rm">Jun 2016 — Feb 2019 · Mumbai</div></div>
+    <div class="scope">Enterprise data-security / IRM SaaS · Java / J2EE · first role</div>
     <ul>
-      <li>Full-stack engineer on the flagship data-security (Information Rights Management) product, <b>FileSecure</b> — owned the full development lifecycle from requirements to QA release; co-built the OU Admin monitoring dashboard.</li>
-      <li>Designed a centralized <b>PolicyServer</b> configuration init/update mechanism, an installer + patch upload/validate/fetch system, and an end-user license + privileges framework.</li>
+      <li>Full-stack engineer on <b>FileSecure</b> (enterprise IRM SaaS) — owned full development lifecycle; built a centralized PolicyServer config + update mechanism (eliminated config-drift across distributed deployments), a license + privileges framework, and the OU-Admin monitoring dashboard.</li>
     </ul>
   </div>
 
+  <h2>Personal Projects</h2>
+  <div class="project">
+    <b>Workspace OS</b> <span class="pmeta">· 2026 · TypeScript · Bun · PostgreSQL + pgvector · open-source</span><br>
+    An independent deep-dive into the modern AI stack: composable agent skills + lifecycle hooks, autonomous research agent (info-gain/gap-fill loop), multi-agent workflow orchestrator (parallel fan-out, adversarial verification) over pgvector. Covers RAG, structured outputs, LLM-as-judge evals, and Model Context Protocol (MCP).
+  </div>
+
   <h2>Skills</h2>
-  <div class="srow"><b>Languages</b><span>TypeScript · JavaScript · Python · Go · Java · SQL · (working: C / C++ / C#)</span></div>
-  <div class="srow"><b>Backend &amp; APIs</b><span>Node.js · NestJS · Fastify · RESTful APIs · microservices · GraphQL · FastAPI · event-driven · Bun / Turborepo · repository / strategy patterns · batch &amp; stream ingestion</span></div>
-  <div class="srow"><b>AI / ML</b><span>LLM orchestration (OpenAI, Anthropic, Gemini) · LiteLLM routing · RAG &amp; semantic caching · real-time voice (Pipecat, LiveKit, Retell, Deepgram, ElevenLabs) · LLM evals (Langfuse, Cekura) · AWS Comprehend · image-processing / CV</span></div>
-  <div class="srow"><b>Databases</b><span>PostgreSQL (query opt · indexing · schema) · Supabase (RLS) · MongoDB · Redis · MySQL · DynamoDB · Oracle · vector / pgvector · Prisma · pgx</span></div>
-  <div class="srow"><b>Cloud &amp; DevOps</b><span>GCP (Cloud Run, GKE, Cloud Tasks, GCS, Secret Manager, Artifact Registry) · AWS (Cognito, Comprehend, Kinesis, SNS, SQS) · Docker · Kubernetes · Terraform · GitLab CI / GitHub Actions · Workload Identity Federation · PM2 · Firebase Functions · Vercel</span></div>
-  <div class="srow"><b>Orchestration &amp; RT</b><span>Temporal · Cloud Tasks · Kafka (CDC, Avro) · RabbitMQ · MQTT · WebSockets · Server-Sent Events · Twilio</span></div>
-  <div class="srow"><b>Healthcare</b><span>EHR/PMS integration (FHIR · HL7 · proprietary · browser-automation) · multi-EHR abstraction · eligibility &amp; prior-auth · RCM / payments · HIPAA / PHI</span></div>
-  <div class="srow"><b>Frontend</b><span>React · Next.js · Redux · Zustand · TanStack Query · Vue / Nuxt · Radix UI · Tailwind</span></div>
-  <div class="srow"><b>Observability</b><span>OpenTelemetry (+ OTel Collector) · SigNoz · Sentry · PostHog · Grafana / Prometheus / Loki · structured logging (Winston, zap)</span></div>
-  <div class="srow"><b>Auth &amp; tenancy</b><span>Clerk · AWS Cognito · JWT · Supabase RLS · multi-tenant RBAC</span></div>
-  <div class="srow"><b>Testing &amp; quality</b><span>Jest · Vitest · Supertest · Husky · dependency-cruiser / madge (architecture checks) · Biome / ESLint / Prettier · JMeter · WebAssembly + WebWorkers</span></div>
+  <div class="srow"><b>Languages</b><span>TypeScript · JavaScript · Python · Go · Java · SQL</span></div>
+  <div class="srow"><b>Backend &amp; APIs</b><span>Node.js · NestJS · Fastify · RESTful microservices · GraphQL · FastAPI · event-driven · Temporal · Kafka · RabbitMQ · Cloud Tasks</span></div>
+  <div class="srow"><b>AI / ML</b><span>LLM orchestration (OpenAI · Anthropic · Gemini) · LiteLLM routing · RAG + semantic caching · real-time voice (Pipecat · LiveKit · Retell · Deepgram · ElevenLabs) · LLM evals (Langfuse · Cekura) · AWS Comprehend · WebAssembly + WebWorkers</span></div>
+  <div class="srow"><b>Cloud &amp; DevOps</b><span>GCP (Cloud Run · GKE · Cloud Tasks · GCS · Secret Manager) · AWS (Cognito · Comprehend · Kinesis · SNS/SQS) · Docker · Kubernetes · Terraform · GitLab CI / GitHub Actions · Workload Identity Federation</span></div>
+  <div class="srow"><b>Databases</b><span>PostgreSQL · Supabase (RLS) · MongoDB · Redis · DynamoDB · pgvector · Prisma · pgx</span></div>
+  <div class="srow"><b>Frontend</b><span>React · Next.js · Redux · Zustand · TanStack Query · Vue / Nuxt · Tailwind · Radix UI</span></div>
+  <div class="srow"><b>Observability</b><span>OpenTelemetry (+ OTel Collector) · SigNoz · Sentry · Langfuse · PostHog · Grafana · Elasticsearch/Kibana</span></div>
 
-  <h2>Education</h2>
-  <div class="edu"><b>B.E. Electronics &amp; Telecommunication Engineering</b> · <i>MIT Academy of Engineering, Pune</i> · First Class with Distinction · 2012–2016</div>
-
-  <p class="oneline"><b>Interests:</b> Avid hiker · culinary enthusiast · table-tennis, badminton &amp; football · Dota 2 — team strategy &amp; real-time decisions under pressure · travel &amp; road trips.</p>
+  <div class="edu-block">
+    <div class="edu-head">Education</div>
+    <div class="edu"><b>B.E. Electronics &amp; Telecommunication Engineering</b> · <i>MIT Academy of Engineering, Pune</i> · First Class with Distinction · 2012–2016</div>
+    <p class="oneline"><b>Interests:</b> Avid hiker · culinary enthusiast · table-tennis, badminton &amp; football · Dota 2 — team strategy &amp; real-time decisions under pressure · travel &amp; road trips</p>
+  </div>
 </article>
 </body>
 </html>

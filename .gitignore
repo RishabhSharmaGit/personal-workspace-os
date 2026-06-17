@@ -70,3 +70,5 @@ workspaces/career-os/resumes/variants/*
 # The generic, company-agnostic interview-prep/common.md stays tracked.
 workspaces/career-os/interview-prep/*/
 
+workspaces/career-os/interview-prep/gem.md
+
