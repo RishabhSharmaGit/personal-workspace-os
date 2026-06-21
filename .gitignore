@@ -52,6 +52,8 @@ workspaces/*/personal/
 workspaces/career-os/resumes/**/*.pdf
 workspaces/career-os/resumes/**/*.rendered.html
 
+workspaces/career-os/interview-prep/*/
+
 # Job-application specifics stay LOCAL ONLY — this repo is PUBLIC and is reachable from the
 # GitHub profile linked on the resume. The companies/roles being targeted, tailored resume
 # variants, cover letters, and per-application trackers must never be committed. Only derived,
@@ -65,10 +67,3 @@ workspaces/career-os/roles/*
 !workspaces/career-os/roles/.gitkeep
 workspaces/career-os/resumes/variants/*
 !workspaces/career-os/resumes/variants/README.md
-
-# Per-company interview prep names a target company — keep LOCAL ONLY (repo is public).
-# The generic, company-agnostic interview-prep/common.md stays tracked.
-workspaces/career-os/interview-prep/*/
-
-workspaces/career-os/interview-prep/gem.md
-

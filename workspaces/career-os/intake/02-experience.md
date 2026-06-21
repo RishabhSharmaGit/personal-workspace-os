@@ -37,7 +37,7 @@ Total tenure as of 2026-05: **~10 years** (Jun 2016 → present).
 - **Orchestration**: Temporal Cloud (sara-backend outreach workflows — make_call · send_sms · http_request · wait · conditional nodes · backfill/retry); planned Python deterministic rules engine (careOS-Real per my-careos-plan ADRs)
 - **Infra / cloud**: GCP primary — Cloud Run (runtime services), GKE planned for voice agents (rejected Cloud Run for voice — cold starts + 60-min timeout), Cloud Tasks (async sync dispatch), Secret Manager + Workload Identity Federation (keyless CI/CD), GCS (fax/document storage), Cloud Logging + OTLP exporters, Memorystore Redis (call lifecycle). Firebase Cloud Functions for ehr-connector. Vercel for sara-frontend.
 - **Databases**: PostgreSQL primary (Prisma in appointment-manager · pgx in sara-backend · Supabase with RLS in careOS-Real), MongoDB (sara-backend conversation state + change streams), Upstash Redis (semantic cache + careOS-Real state as source of truth), GCP Memorystore Redis (call lifecycle).
-- **Queues / streaming**: GCP Cloud Tasks (sync dispatch decoupling scheduling from execution), Kafka with Avro/Schema Registry (sara-backend CDC for Postgres + Mongo change events), RabbitMQ (AMQP), MQTT via EMQX (device signaling), MongoDB change streams (real-time event propagation to frontend), SSE (low-latency transcript streaming).
+- **Queues / streaming**: GCP Cloud Tasks (sync dispatch decoupling scheduling from execution), RabbitMQ (AMQP), MQTT via EMQX (device signaling), MongoDB change streams (real-time event propagation to frontend), SSE (low-latency transcript streaming).
 - **Browser automation**: Puppeteer + stealth plugin in ehr-connector-service for legacy EHRs without proper API auth (CareStack, eCW-style — scheduled session/cookie refresh jobs).
 - **Auth + tenancy**: Clerk JWTs (multi-axis RBAC) · Supabase RLS on every table · multi-tenant org+location+agent hierarchy · custom PHI-scrubbing middleware in observability layer.
 - **Observability**: OpenTelemetry (OTLP traces + metrics + logs across services with resource semantics + cardinality awareness — rare for Node backends at this stage) · Sentry (custom PHI redaction) · PostHog (feature flags + product analytics) · Langfuse (LLM eval traces) · Winston + zap structured logs.
@@ -58,7 +58,7 @@ Total tenure as of 2026-05: **~10 years** (Jun 2016 → present).
 ### Additional contributions (resume "Additional" line — not headline bullets)
 
 - **Designed Confido's senior-engineer technical interview framework** (interview-generator, solo-authored) — 6 problems × 75-min phased-refactor format testing structured LLM-tool discipline rather than syntax memory; multiple internal appraisals + positive candidate feedback. See `[[confido-engineer-interview-framework]]`.
-- Contributed across the voice-agent backend (sara-backend: Go/Gin, Temporal outreach workflows, Retell provisioning + call-analyzed webhook routing, MongoDB change streams, Kafka CDC) and the clinician-facing CareOS dashboard (sara-frontend: Next.js/React, SSE streaming transcripts, Clerk multi-tenant RBAC).
+- Contributed across the voice-agent backend (sara-backend: Go/Gin, Temporal outreach workflows, Retell provisioning + call-analyzed webhook routing, MongoDB change streams) and the clinician-facing CareOS dashboard (sara-frontend: Next.js/React, SSE streaming transcripts, Clerk multi-tenant RBAC).
 
 ### Trade-offs / decisions worth interview stories
 

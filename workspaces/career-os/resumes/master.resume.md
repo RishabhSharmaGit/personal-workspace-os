@@ -92,7 +92,7 @@ Built a local-first, LLM-mediated developer platform as an independent explorati
 ## Skills
 
 **Languages**: TypeScript · JavaScript · Python · Go · Java · SQL
-**Backend & APIs**: Node.js · NestJS · Fastify · RESTful microservices · GraphQL (Apollo) · event-driven / queues · Temporal · Kafka · RabbitMQ · Cloud Tasks
+**Backend & APIs**: Node.js · NestJS · Fastify · RESTful microservices · GraphQL (Apollo) · event-driven / queues · Temporal · RabbitMQ · Cloud Tasks
 **AI / ML**: LLM orchestration (OpenAI · Anthropic · Gemini) · multi-provider routing (LiteLLM) · RAG + semantic caching · real-time voice (STT/TTS/VAD; Pipecat · LiveKit · Retell · Deepgram · ElevenLabs) · LLM evals (Langfuse · Cekura) · AWS Comprehend · WebAssembly + WebWorkers
 **Cloud & DevOps**: GCP (Cloud Run · GKE · Cloud Tasks · GCS · Secret Manager) · AWS (Cognito · Comprehend · Kinesis · SNS/SQS) · Docker · Kubernetes · Terraform · GitLab CI / GitHub Actions · Workload Identity Federation
 **Databases**: PostgreSQL · Supabase (Postgres + RLS) · MongoDB · Redis · DynamoDB · pgvector · Prisma · pgx

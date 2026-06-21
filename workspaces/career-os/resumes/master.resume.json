@@ -190,7 +190,7 @@
     {
       "name": "Orchestration, queues & real-time",
       "level": "Advanced",
-      "keywords": ["Temporal", "GCP Cloud Tasks", "Kafka (CDC, Avro/Schema Registry)", "RabbitMQ", "MQTT (EMQX)", "WebSockets", "Server-Sent Events (SSE)", "Twilio (SIP, voice/SMS)", "Svix webhooks"]
+      "keywords": ["Temporal", "GCP Cloud Tasks", "RabbitMQ", "MQTT (EMQX)", "WebSockets", "Server-Sent Events (SSE)", "Twilio (SIP, voice/SMS)", "Svix webhooks"]
     },
     {
       "name": "Healthcare & integration",
